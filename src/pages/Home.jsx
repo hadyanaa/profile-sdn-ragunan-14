@@ -4,7 +4,7 @@ function Home() {
       <section id="top">
         <div className="max-h-screen overflow-hidden mb-7 -m-6">
           <video autoPlay muted loop
-            className="h-screen w-screen object-cover opacity-80"
+            className="h-screen w-screen object-cover opacity-80 -mt-12"
           >
             <source src="assets/video/video-profile.mp4" type="video/mp4"></source>
           </video>

@@ -26,9 +26,12 @@ export default function Header() {
                <span className='ml-1'>Ragunan 14 Pagi</span>
             </h1>
             <nav>
-               <ul className="flex flex-row space-y-2 gap-4">
+               <ul className="flex flex-row space-y-2 gap-6">
                <li className='hover:opacity-60'>
                   <Link to="/">Beranda</Link>
+               </li>
+               <li className='hover:opacity-60'>
+                  <Link to="/artikel">Artikel</Link>
                </li>
                <li>
                   <div className='relative' ref={dropdownRef}>
@@ -36,7 +39,15 @@ export default function Header() {
                         onClick={toggleDropdown}
                         className='hover:opacity-60 focus:outline-none cursor-pointer'
                      >
-                        Profil
+                        <div className='flex flex-row items-center gap-2'>
+                           <p>
+                              Profil
+                           </p>
+                           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                           </svg>
+                        </div>
 
                      </button>
                      {
@@ -54,7 +65,17 @@ export default function Header() {
                   </div>
                </li>
                <li className='hover:opacity-60'>
-                  <Link to="/services">Services</Link>
+                  <Link to="/services">
+                        <div className='flex flex-row items-center gap-2'>
+                           <p>
+                              Informasi
+                           </p>
+                           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                           </svg>
+                        </div>
+                  </Link>
                </li>
                <li className='hover:opacity-60'>
                   <Link to="/contact">Contact</Link>
