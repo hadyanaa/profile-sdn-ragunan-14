@@ -1,3 +1,5 @@
+import InstagramFeed from "../components/InstagramFeed";
+
 export default function About() {
   return(
     <>
@@ -18,6 +20,8 @@ export default function About() {
           bernama SD Negeri Jati Padang 05 Pagi dan SD Negeri Jati Padang 06 Petang. Perubahan nama tersebut terjadi sekitar tahun 1990-an dengan istilah "pemekaran" di wilayah kecamatan Pasar Minggu, serta pembangunan
           Jalan Tol TB Simatupang, sehingga terjadi perubahan nama serta alamat lokasi sekolah.
         </p>
+
+        <InstagramFeed />
       </div>
     </>
 
