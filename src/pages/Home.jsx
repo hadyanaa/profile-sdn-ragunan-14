@@ -1,4 +1,15 @@
+import { useEffect, useState } from "react";
+import PreviewPage from "../components/PreviewPage";
+
 function Home() {
+  const [ListGuru, setListGuru] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/data-guru.json')
+      .then(res => res.json())
+      .then(data => setListGuru(data))
+      .catch(err => console.error("Gagal mengambil data:", err));
+  }, []);
   return(
     <>
       <section id="top">
@@ -15,6 +26,15 @@ function Home() {
 
         </div>
       </section>
+      <PreviewPage 
+        title="Staf Guru" 
+        desc="Staf guru pada SDN Ragunan 14 Pagi"
+        items={ListGuru}
+      />
+      <PreviewPage 
+        title="Staf Tenaga Kependidikan" 
+        desc="Staf tenaga kependidikan pada SDN Ragunan 14 Pagi"
+      />
       <div>
 
       </div>
