@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 const ArticleContent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  console.log(data);
+
+  const convertDriveUrl = (url) => {
+    const regex = /\/d\/([a-zA-Z0-9_-]+)\//;
+    const match = url.match(regex);
+    return match && match[1]
+    ? `https://drive.google.com/uc?export=view&id=${match[1]}`
+    : null;
+  };
 
   useEffect(() => {
     fetch("https://script.google.com/macros/s/AKfycbw-Lfh15xbIRmQGYnZpLnsuiFiG8FfLgMBfjkCBV-Ed5yjcKj6L6MOq17OwRdxd4l1T8g/exec")
@@ -22,23 +31,17 @@ const ArticleContent = () => {
   return (
     <div>
       <h1>Data dari Google Sheet</h1>
-      <table border="1">
-        <thead>
-          <tr>
-            {data.length > 0 &&
-              Object.keys(data[0]).map((key) => <th key={key}>{key}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row, idx) => (
-            <tr key={idx}>
-              {Object.values(row).map((val, i) => (
-                <td key={i}>{val}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="grid grid-cols-4 gap-4">
+        {data.map((row, idx) => {
+          const imgSrc = convertDriveUrl(row.image);
+          return (
+            <div className="flex flex-col p-4 border-2" key={idx}>
+              <h1>{row.judul}</h1>
+              <img src={imgSrc} alt={"gambar " + row.judul} width={100} />
+            </div>
+          )}
+        )}
+      </div>
     </div>
   );
 };
