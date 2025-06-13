@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+
 export default function PreviewPage({ title, desc, items = [], pattern, drive }) {
 
   const convertDriveUrl = (url) => {
@@ -15,9 +17,9 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
           <h1 className="font-bold text-xl">{title}</h1>
           <h3 className={`${pattern ? "text-whiteprime" : "text-gray-600"}`}>{desc}</h3>
         </div>
-        <div className="text-blue-600 cursor-pointer hover:underline">
+        <Button variant="contained" size="small">
           Lihat Selengkapnya
-        </div>
+        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
