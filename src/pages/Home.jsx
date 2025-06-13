@@ -3,11 +3,19 @@ import PreviewPage from "../components/PreviewPage";
 
 function Home() {
   const [ListGuru, setListGuru] = useState([]);
+  const [ListTendik, setListTendik] = useState([]);
 
   useEffect(() => {
     fetch('/api/data-guru.json')
       .then(res => res.json())
       .then(data => setListGuru(data))
+      .catch(err => console.error("Gagal mengambil data:", err));
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/data-tendik.json')
+      .then(res => res.json())
+      .then(data => setListTendik(data))
       .catch(err => console.error("Gagal mengambil data:", err));
   }, []);
   return(
@@ -34,6 +42,7 @@ function Home() {
       <PreviewPage 
         title="Staf Tenaga Kependidikan" 
         desc="Staf tenaga kependidikan pada SDN Ragunan 14 Pagi"
+        items={ListTendik}
       />
       <div>
 

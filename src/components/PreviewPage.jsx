@@ -17,7 +17,7 @@ export default function PreviewPage({ title, desc, items = [] }) {
             key={index}
             className="flex flex-col p-4 border items-center rounded-lg shadow-sm hover:shadow-md transition duration-200"
           >
-            <img className="rounded-lg" src={item.url_foto} alt={"foto " + item.nama} />
+            <img className="rounded-lg w-auto h-80" src={item.url_foto} alt={"foto " + item.nama} />
             <h4 className="font-semibold text-lg">{item.nama}</h4>
             <p className="text-sm text-gray-500">{item.status}</p>
           </div>
