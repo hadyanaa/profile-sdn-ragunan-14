@@ -53,7 +53,7 @@ export default function Header() {
                      {
                         isDropdownOpen && (
                            <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md z-50">
-                              <Link to="/about" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Visi Misi</Link>
+                              <Link to="/profile/visi-misi" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Visi Misi</Link>
                               <Link to="/about" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Prestasi</Link>
                               <Link to="/about" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Ekstrakurikuler</Link>
                               <Link to="/about" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Guru dan Staf</Link>

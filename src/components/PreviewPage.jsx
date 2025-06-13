@@ -1,10 +1,10 @@
-export default function PreviewPage({ title, desc, items = [] }) {
+export default function PreviewPage({ title, desc, items = [], pattern }) {
   return (
-    <>
-      <div className="flex flex-row justify-between font-jakarta mb-4">
+    <div className={`px-28 py-8 ${pattern ? "bg-[url(/assets/image/pattern.png)] bg-main" : ""}`}>
+      <div className={`flex flex-row justify-between font-jakarta mb-4 ${pattern ? "text-primaryoren" : ""}`}>
         <div>
           <h1 className="font-bold text-xl">{title}</h1>
-          <h3 className="text-gray-600">{desc}</h3>
+          <h3 className={`${pattern ? "text-whiteprime" : "text-gray-600"}`}>{desc}</h3>
         </div>
         <div className="text-blue-600 cursor-pointer hover:underline">
           Lihat Selengkapnya
@@ -23,6 +23,6 @@ export default function PreviewPage({ title, desc, items = [] }) {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

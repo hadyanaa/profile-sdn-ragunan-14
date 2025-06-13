@@ -21,7 +21,7 @@ function Home() {
   return(
     <>
       <section id="top">
-        <div className="max-h-screen overflow-hidden mb-7 -m-6">
+        <div className="max-h-screen overflow-hidden mb-7">
           <video autoPlay muted loop
             className="h-screen w-screen object-cover opacity-80 -mt-12"
           >
@@ -43,6 +43,7 @@ function Home() {
         title="Staf Tenaga Kependidikan" 
         desc="Staf tenaga kependidikan pada SDN Ragunan 14 Pagi"
         items={ListTendik}
+        pattern
       />
       <div>
 
