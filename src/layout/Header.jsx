@@ -3,15 +3,27 @@ import {Link} from 'react-router-dom';
 
 
 export default function Header() {
-   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+   const [isDropdownProfileOpen, setIsDropdownProfileOpen] = useState(false);
+   const [isDropdownInformasiOpen, setIsDropdownInformasiOpen] = useState(false);
    const dropdownRef = useRef(null);
 
-   const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
+   const toggleDropdownProfile = () => setIsDropdownProfileOpen(prev => !prev);
+   const toggleDropdownInformasi = () => setIsDropdownInformasiOpen(prev => !prev);
 
    useEffect(() => {
       const handleClickOutside = (event) => {
          if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-         setIsDropdownOpen(false);
+         setIsDropdownProfileOpen(false);
+         }
+      };
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+   }, []);
+
+   useEffect(() => {
+      const handleClickOutside = (event) => {
+         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+         setIsDropdownInformasiOpen(false);
          }
       };
       document.addEventListener('mousedown', handleClickOutside);
@@ -36,7 +48,7 @@ export default function Header() {
                <li>
                   <div className='relative' ref={dropdownRef}>
                      <button
-                        onClick={toggleDropdown}
+                        onClick={toggleDropdownProfile}
                         className='hover:opacity-60 focus:outline-none cursor-pointer'
                      >
                         <div className='flex flex-row items-center gap-2'>
@@ -51,21 +63,27 @@ export default function Header() {
 
                      </button>
                      {
-                        isDropdownOpen && (
+                        isDropdownProfileOpen && (
                            <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md z-50">
                               <Link to="/profile/visi-misi" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Visi Misi</Link>
-                              <Link to="/about" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Prestasi</Link>
-                              <Link to="/about" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Ekstrakurikuler</Link>
-                              <Link to="/about" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Guru dan Staf</Link>
-                              <Link to="/about" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Fasilitas</Link>
+                              <Link to="/profile/tentang" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Tentang Sekolah</Link>
+                              <Link to="/profile/staf-guru" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Staf Guru</Link>
+                              <Link to="/profile/staf-tendik" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Staf Tenaga Kependidikan</Link>
+                              <Link to="/profile/prestasi" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Prestasi</Link>
+                              <Link to="/profile/ekskul" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Ekstrakurikuler</Link>
+                              <Link to="/profile/fasilitas" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Fasilitas</Link>
                            </div>
                         )
                      }
 
                   </div>
                </li>
-               <li className='hover:opacity-60'>
-                  <Link to="/services">
+               <li>
+                  <div className='relative' ref={dropdownRef}>
+                  <button
+                        onClick={toggleDropdownInformasi}
+                        className='hover:opacity-60 focus:outline-none cursor-pointer'
+                     >
                         <div className='flex flex-row items-center gap-2'>
                            <p>
                               Informasi
@@ -75,7 +93,17 @@ export default function Header() {
                               <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                            </svg>
                         </div>
-                  </Link>
+
+                     </button>
+                     {
+                        isDropdownInformasiOpen && (
+                           <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md z-50">
+                              <Link to="/informasi/agenda" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Agenda</Link>
+                              <Link to="/informasi/pengumuman" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Pengumuman</Link>
+                           </div>
+                        )
+                     }
+                  </div>
                </li>
                <li className='hover:opacity-60'>
                   <Link to="/contact">Contact</Link>

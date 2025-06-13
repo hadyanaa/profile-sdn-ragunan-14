@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PreviewPage from "../components/PreviewPage";
 
 function Home() {
+  const [dataArtikel, setDataArtikel] = useState([]);
   const [ListGuru, setListGuru] = useState([]);
   const [ListTendik, setListTendik] = useState([]);
 
@@ -18,6 +19,18 @@ function Home() {
       .then(data => setListTendik(data))
       .catch(err => console.error("Gagal mengambil data:", err));
   }, []);
+
+  useEffect(() => {
+    fetch("https://script.google.com/macros/s/AKfycbw-Lfh15xbIRmQGYnZpLnsuiFiG8FfLgMBfjkCBV-Ed5yjcKj6L6MOq17OwRdxd4l1T8g/exec")
+      .then((res) => res.json())
+      .then((result) => {
+        setDataArtikel(result);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
   return(
     <>
       <section id="top">
@@ -35,15 +48,21 @@ function Home() {
         </div>
       </section>
       <PreviewPage 
+        title="Artikel" 
+        desc="List artikel sekolah"
+        items={dataArtikel}
+        drive
+      />
+      <PreviewPage 
         title="Staf Guru" 
         desc="Staf guru pada SDN Ragunan 14 Pagi"
         items={ListGuru}
+        pattern
       />
       <PreviewPage 
         title="Staf Tenaga Kependidikan" 
         desc="Staf tenaga kependidikan pada SDN Ragunan 14 Pagi"
         items={ListTendik}
-        pattern
       />
       <div>
 
