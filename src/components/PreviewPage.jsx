@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function PreviewPage({ title, desc, items = [], pattern, drive }) {
 
@@ -10,6 +11,9 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
     : null;
   };
 
+  const LinkSelengkapnya = title == "Artikel" ? "/artikel" :
+  title == "Staf Guru" ? "/profile/staf-guru" : "/profile/staf-tendik"
+
   return (
     <div className={`px-28 py-8 ${pattern ? "bg-[url(/assets/image/pattern.png)] bg-main" : ""}`}>
       <div className={`flex flex-row justify-between font-jakarta mb-4 ${pattern ? "text-primaryoren" : ""}`}>
@@ -17,9 +21,12 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
           <h1 className="font-bold text-xl">{title}</h1>
           <h3 className={`${pattern ? "text-whiteprime" : "text-gray-600"}`}>{desc}</h3>
         </div>
-        <Button variant="contained" size="small">
-          Lihat Selengkapnya
-        </Button>
+        <Link to={`${LinkSelengkapnya}`}>
+          <Button variant="contained" size="small">
+            Lihat Selengkapnya
+          </Button>
+        </Link>
+
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
