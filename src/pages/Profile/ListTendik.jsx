@@ -1,20 +1,20 @@
-import { Card, CardMedia } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Card, CardMedia } from "@mui/material";
 
-export default function ListGuru() {
-  const [ListGuru, setListGuru] = useState([]);
-
+export default function ListTendik() {
+   const [ListTendik, setListTendik] = useState([]);
+   
    useEffect(() => {
-      fetch('/api/data-guru.json')
-      .then(res => res.json())
-      .then(data => setListGuru(data))
-      .catch(err => console.error("Gagal mengambil data:", err));
+         fetch('/api/data-tendik.json')
+         .then(res => res.json())
+         .then(data => setListTendik(data))
+         .catch(err => console.error("Gagal mengambil data:", err));
    }, []);
    return (
       <>
       <div className="grid grid-cols-4 gap-y-8 my-8">
          {
-            ListGuru.map((item, index) => (
+            ListTendik.map((item, index) => (
                <Card
                   className="mx-auto"
                   sx={{height: "auto", width: 250, padding: 2, 

@@ -6,6 +6,7 @@ import Layout from './layout/Layout';
 import VisiMisi from './pages/Profile/VisiMisi';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import ListGuru from './pages/Profile/ListGuru';
+import ListTendik from './pages/Profile/ListTendik';
 
 const theme = createTheme({
   typography: {
@@ -43,6 +44,7 @@ function App() {
             <Route path="/artikel" element={<Artikel />} />
             <Route path="/profile/visi-misi" element={<VisiMisi />} />
             <Route path="/profile/staf-guru" element={<ListGuru />} />
+            <Route path="/profile/staf-tendik" element={<ListTendik />} />
           </Routes>
         </Layout>
       </ThemeProvider>
