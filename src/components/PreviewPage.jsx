@@ -26,11 +26,11 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
         {items.slice(0, 4).map((item, index) => (
           <div
             key={index}
-            className="flex flex-col p-4 border items-center rounded-lg shadow-sm hover:shadow-md transition duration-200"
+            className="flex flex-col p-4 items-center"
           >
             <img className="rounded-lg w-auto h-80" src={drive ? convertDriveUrl(item.url_image) : item.url_image} alt={"foto " + item.nama} />
-            <h4 className="font-semibold text-lg">{drive ? item.judul : item.nama}</h4>
-            <p className="text-sm text-gray-500">{drive ? item.category : item.status}</p>
+            <h4 className={`font-semibold text-lg mt-4 ${pattern ? "text-secondary" : ''}`}>{drive ? item.judul : item.nama}</h4>
+            <p className={`text-sm ${pattern ? "text-whiteprime" : 'text-gray-500'}`}>{drive ? item.category : item.status}</p>
           </div>
         ))}
       </div>

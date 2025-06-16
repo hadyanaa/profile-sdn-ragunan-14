@@ -5,14 +5,15 @@ import {Link} from 'react-router-dom';
 export default function Header() {
    const [isDropdownProfileOpen, setIsDropdownProfileOpen] = useState(false);
    const [isDropdownInformasiOpen, setIsDropdownInformasiOpen] = useState(false);
-   const dropdownRef = useRef(null);
+   const dropdownRefProfile = useRef(null);
+   const dropdownRefInformasi = useRef(null);
 
    const toggleDropdownProfile = () => setIsDropdownProfileOpen(prev => !prev);
    const toggleDropdownInformasi = () => setIsDropdownInformasiOpen(prev => !prev);
 
    useEffect(() => {
       const handleClickOutside = (event) => {
-         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+         if (dropdownRefProfile.current && !dropdownRefProfile.current.contains(event.target)) {
          setIsDropdownProfileOpen(false);
          }
       };
@@ -22,7 +23,7 @@ export default function Header() {
 
    useEffect(() => {
       const handleClickOutside = (event) => {
-         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+         if (dropdownRefInformasi.current && !dropdownRefInformasi.current.contains(event.target)) {
          setIsDropdownInformasiOpen(false);
          }
       };
@@ -46,7 +47,7 @@ export default function Header() {
                   <Link to="/artikel">Artikel</Link>
                </li>
                <li>
-                  <div className='relative' ref={dropdownRef}>
+                  <div className='relative' ref={dropdownRefProfile}>
                      <button
                         onClick={toggleDropdownProfile}
                         className='hover:opacity-60 focus:outline-none cursor-pointer'
@@ -79,7 +80,7 @@ export default function Header() {
                   </div>
                </li>
                <li>
-                  <div className='relative' ref={dropdownRef}>
+                  <div className='relative' ref={dropdownRefInformasi}>
                   <button
                         onClick={toggleDropdownInformasi}
                         className='hover:opacity-60 focus:outline-none cursor-pointer'

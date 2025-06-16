@@ -33,7 +33,7 @@ const ArticleContent = () => {
       <h1>Data dari Google Sheet</h1>
       <div className="grid grid-cols-4 gap-4">
         {data.map((row, idx) => {
-          const imgSrc = convertDriveUrl(row.image);
+          const imgSrc = convertDriveUrl(row.url_image);
           return (
             <div className="flex flex-col p-4 border-2" key={idx}>
               <h1>{row.judul}</h1>
