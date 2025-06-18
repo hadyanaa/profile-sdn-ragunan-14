@@ -34,10 +34,14 @@ export default function Header() {
    return(
       <>
          <header className="flex flex-row justify-between bg-main text-whiteprime py-4 px-28">
-            <h1 className="flex content-center my-auto text-xl font-medium font-jakarta">
-               <span className='text-[#FF9100] font-bold'>SDN</span>
-               <span className='ml-1'>Ragunan 14 Pagi</span>
-            </h1>
+            <div className='flex content-center items-center my-auto gap-2'>
+               {/* <img src="/assets/image/dki-jakarta-logo.jpg" alt="Logo Jaya Raya" className='w-auto h-8' /> */}
+               <img src="/assets/image/logo-dikdasmen.png" alt="Logo Dikdasmen" className='w-auto h-8' />
+               <h1 className="text-xl font-medium font-jakarta">
+                  <span className='text-[#FF9100] font-bold'>SDN</span>
+                  <span className='ml-1'>Ragunan 14 Pagi</span>
+               </h1>
+            </div>
             <nav>
                <ul className="flex flex-row space-y-2 gap-6">
                <li className='hover:opacity-60'>
@@ -56,9 +60,9 @@ export default function Header() {
                            <p>
                               Profil
                            </p>
-                           <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                           <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2"
                               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
                            </svg>
                         </div>
 

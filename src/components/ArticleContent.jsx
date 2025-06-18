@@ -14,7 +14,7 @@ const ArticleContent = () => {
   };
 
   useEffect(() => {
-    fetch("https://script.google.com/macros/s/AKfycbw-Lfh15xbIRmQGYnZpLnsuiFiG8FfLgMBfjkCBV-Ed5yjcKj6L6MOq17OwRdxd4l1T8g/exec")
+    fetch("https://script.google.com/macros/s/AKfycbycOICEi7KSaZirIZVBXomzhPu6JVKdDgahXlGPDDuKqR-MVST8-vbtFwp9GxNFRnxN/exec")
       .then((res) => res.json())
       .then((result) => {
         setData(result);

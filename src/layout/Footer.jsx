@@ -4,10 +4,13 @@ export default function Footer() {
       <footer className="text-gray-300">
          <div className="flex flex-row gap-16 bg-gray-700 px-28 py-4">
             <div>
-               <h1 className="flex content-center my-auto text-xl font-medium font-jakarta text-whiteprime">
-                  <span className='text-[#FF9100] font-bold'>SDN</span>
-                  <span className='ml-1'>Ragunan 14 Pagi</span>
-               </h1>
+               <div className='flex content-center items-center gap-2'>
+                  <img src="/assets/image/logo-dikdasmen.png" alt="Logo Dikdasmen" className='w-auto h-8' />
+                  <h1 className="text-xl font-medium font-jakarta text-whiteprime">
+                     <span className='text-[#FF9100] font-bold'>SDN</span>
+                     <span className='ml-1'>Ragunan 14 Pagi</span>
+                  </h1>
+               </div>
                <p>SDN Ragunan 14 Pagi berkomitmen untuk memberikan pendidikan terbaik bagi anak-anak Ragunan dan sekitarnya.</p>
             </div>
             <div>
@@ -21,7 +24,13 @@ export default function Footer() {
             </div>
             <div>
                <h1>Alamat Kami</h1>
-               <p>Jalan Ragunan Raya</p>
+               <p className="max-w-40">
+                  Jl. Kebagusan Raya RT.001/007 
+                  Kelurahan Ragunan
+                  Kecamatan Pasar Minggu
+                  Suku Dinas Pendidikan Wilayah II 
+                  Kota Administrasi Jakarta Selatan
+               </p>
             </div>
          </div>
 
