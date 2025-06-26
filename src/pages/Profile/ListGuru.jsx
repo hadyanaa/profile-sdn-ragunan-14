@@ -19,7 +19,7 @@ export default function ListGuru() {
                   className="mx-auto"
                   sx={{height: "auto", width: 250, padding: 2, 
                      backgroundImage: "url(/assets/image/pattern.png)", 
-                     backgroundColor: "#00712D",
+                     backgroundColor: "#098fd1",
                      textAlign: "center"
                   }}
                >

@@ -15,7 +15,7 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
   title == "Staf Guru" ? "/profile/staf-guru" : "/profile/staf-tendik"
 
   return (
-    <div className={`px-28 py-8 ${pattern ? "bg-[url(/assets/image/pattern.png)] bg-main" : ""}`}>
+    <div className={`px-28 py-8 ${pattern ? "bg-[url(/assets/image/pattern.png)] bg-secondblue" : ""}`}>
       <div className={`flex flex-row justify-between font-jakarta mb-4 ${pattern ? "text-primaryoren" : ""}`}>
         <div>
           <h1 className="font-bold text-xl">{title}</h1>

@@ -3,8 +3,10 @@
 
 @theme {
   --font-jakarta: "Plus Jakarta Sans", sans-serif; 
-  --color-main: #00712D;
-  --color-secondary: #D5ED9F;
-  --color-whiteprime: #FFFBE6;
-  --color-primaryoren: #FF9100;
+  --color-mainblue: #0a4ea0;
+  --color-secondblue: #098fd1;
+  --color-secondary: #f6f5f5;
+  --color-whiteprime: #f9fafa;
+  --color-thirdgrey: #7e7da5;
+  --color-primaryoren: #f2df0c;
 }

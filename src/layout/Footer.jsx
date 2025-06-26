@@ -2,12 +2,12 @@ export default function Footer() {
    return(
       <>
       <footer className="text-gray-300">
-         <div className="flex flex-row gap-16 bg-gray-700 px-28 py-4">
+         <div className="flex flex-row gap-16 bg-secondblue px-28 py-4">
             <div>
                <div className='flex content-center items-center gap-2'>
-                  <img src="/assets/image/logo-dikdasmen.png" alt="Logo Dikdasmen" className='w-auto h-8' />
+                  <img src="/assets/image/logo-kawan-belajar-bged.png" alt="Logo Kawan Belajar" className='w-auto h-8' />
                   <h1 className="text-xl font-medium font-jakarta text-whiteprime">
-                     <span className='text-[#FF9100] font-bold'>SDN</span>
+                     <span className='text-primaryoren font-bold'>SDN</span>
                      <span className='ml-1'>Ragunan 14 Pagi</span>
                   </h1>
                </div>
@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
          </div>
 
-         <div className="bg-gray-800 p-4 text-center">
+         <div className="bg-mainblue p-4 text-center">
          © 2025 My Website. All rights reserved.
          </div>
       </footer>
