@@ -3,6 +3,8 @@ import PreviewPage from "../components/PreviewPage";
 
 function Home() {
   const [dataArtikel, setDataArtikel] = useState([]);
+  const [dataAgenda, setDataAgenda] = useState([]);
+  const [dataPengumuman, setDataPengumuman] = useState([]);
   const [ListGuru, setListGuru] = useState([]);
   const [ListTendik, setListTendik] = useState([]);
 
@@ -63,6 +65,17 @@ function Home() {
         title="Staf Tenaga Kependidikan" 
         desc="Staf tenaga kependidikan pada SDN Ragunan 14 Pagi"
         items={ListTendik}
+      />
+      <PreviewPage 
+        title="Agenda" 
+        desc="List Agenda SDN Ragunan 14 Pagi"
+        items={dataAgenda}
+        pattern
+      />
+      <PreviewPage 
+        title="Pengumuman" 
+        desc="List Pengumuman SDN Ragunan 14 Pagi"
+        items={dataPengumuman}
       />
       <div>
 

@@ -1,8 +1,14 @@
+import { Box, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogContent, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const ArticleContent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  
   console.log(data);
 
   const convertDriveUrl = (url) => {
@@ -29,16 +35,34 @@ const ArticleContent = () => {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
-      <h1>Data dari Google Sheet</h1>
+    <div className="my-8">
       <div className="grid grid-cols-4 gap-4">
         {data.map((row, idx) => {
           const imgSrc = convertDriveUrl(row.url_image);
           return (
-            <div className="flex flex-col p-4 border-2" key={idx}>
-              <h1>{row.judul}</h1>
-              <img src={imgSrc} alt={"gambar " + row.judul} width={100} />
-            </div>
+            <Card key={idx}>
+              <CardActionArea onClick={handleOpen}>
+                <CardMedia
+                component="img"
+                image={imgSrc}
+                sx={{ height: 150, objectFit: 'cover'}}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {row.judul}
+                  </Typography>
+                  <Typography className="truncate-multiline-2"
+                  variant="body2"
+                  sx={{ 
+                    color: 'text.secondary',
+
+                  }}
+                  >
+                    {row.content}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
           )}
         )}
       </div>

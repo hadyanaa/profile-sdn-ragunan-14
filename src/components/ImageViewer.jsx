@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogContent, Box } from '@mui/material';
 
-export default function ImageViewer({ imageUrl, fullImageUrl }) {
+export default function ImageViewer({ imageUrl }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -28,7 +28,7 @@ export default function ImageViewer({ imageUrl, fullImageUrl }) {
         <DialogContent sx={{ p: 0, bgcolor: 'black' }}>
           <Box
             component="img"
-            src={fullImageUrl}
+            src={imageUrl}
             alt="Full Image"
             sx={{
               width: '100%',
