@@ -1,5 +1,6 @@
 import { Card, CardMedia } from "@mui/material";
 import { useEffect, useState } from "react";
+import ImageViewer from "../../components/ImageViewer";
 
 export default function ListGuru() {
   const [ListGuru, setListGuru] = useState([]);
@@ -23,12 +24,9 @@ export default function ListGuru() {
                      textAlign: "center"
                   }}
                >
-                  <CardMedia 
-                     className="object-cover"
-                     sx={{ height: 250, objectFit: "cover"}}
-                     image={item.url_image}
-                     title={"Gambar " + item.nama}
-                  />
+                  <div className="flex justify-center">
+                     <ImageViewer imageUrl={item.url_image} fullImageUrl={item.url_image} />
+                  </div>
                   <h4 className={`font-semibold text-lg mt-4 text-secondary`}>{item.nama}</h4>
                   <p className={`text-sm text-whiteprime`}>{item.status}</p>
                </Card>

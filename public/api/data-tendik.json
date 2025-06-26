@@ -2,26 +2,26 @@
    {
       "nama": "HADYAN ABDUL AZIZ",
       "status": "Tenaga Administrasi",
-      "url_image": "asdasd"
+      "url_image": "/assets/image/tendik/hadyan.jpg"
    },
    {
       "nama": "IBRAHIM",
       "status": "Tenaga Administrasi",
-      "url_image": "/assets/image/tendik/BAIM.png"
+      "url_image": "/assets/image/tendik/pak baim.jpg"
    },
    {
       "nama": "HENDRA KURNIAWAN",
       "status": "Tenaga Kebersihan",
-      "url_image": "asdasd"
+      "url_image": "/assets/image/tendik/pak hendra.jpg"
    },
    {
       "nama": "IWAN SUMARWAN",
       "status": "Penjaga Sekolah",
-      "url_image": "asdasd"
+      "url_image": "/assets/image/tendik/pak iwan.jpg"
    },
    {
       "nama": "SYAHRULLAH",
       "status": "Tenaga Satpam",
-      "url_image": "/assets/image/tendik/CAUNG.png"
+      "url_image": "/assets/image/tendik/pak caung.jpg"
    }
 ]
