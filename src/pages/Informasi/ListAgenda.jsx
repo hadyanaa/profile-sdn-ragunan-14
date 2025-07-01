@@ -1,7 +1,7 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogContent, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
-const ArticleContent = () => {
+const ListAgenda = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,7 @@ const ArticleContent = () => {
   };
 
   useEffect(() => {
-    fetch("https://script.google.com/macros/s/AKfycbycOICEi7KSaZirIZVBXomzhPu6JVKdDgahXlGPDDuKqR-MVST8-vbtFwp9GxNFRnxN/exec")
+    fetch("https://script.google.com/macros/s/AKfycbwHZTdj2DdUzOQ-CSxKkXL7hgiCSppYoOvoRd20GfIwvXnQdtpuQ72l7LnQsTxX0y3a/exec")
       .then((res) => res.json())
       .then((result) => {
         setData(result);
@@ -36,6 +36,7 @@ const ArticleContent = () => {
 
   return (
     <div className="my-8">
+      <h1>List Agenda</h1>
       <div className="grid grid-cols-4 gap-4">
         {data.map((row, idx) => {
           const imgSrc = convertDriveUrl(row.url_image);
@@ -71,4 +72,4 @@ const ArticleContent = () => {
   );
 };
 
-export default ArticleContent;
+export default ListAgenda;

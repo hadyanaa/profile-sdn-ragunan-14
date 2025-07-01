@@ -1,7 +1,7 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogContent, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
-const ArticleContent = () => {
+const ListPengumuman = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +20,7 @@ const ArticleContent = () => {
   };
 
   useEffect(() => {
-    fetch("https://script.google.com/macros/s/AKfycbycOICEi7KSaZirIZVBXomzhPu6JVKdDgahXlGPDDuKqR-MVST8-vbtFwp9GxNFRnxN/exec")
+    fetch("https://script.google.com/macros/s/AKfycbyUa3X4iUR4VTK9COpDchzOIE7xRla9nov8Y-qTW1s3a7VRBh9Z7q6Ex-K8NcV_8Ltz/exec")
       .then((res) => res.json())
       .then((result) => {
         setData(result);
@@ -71,4 +71,4 @@ const ArticleContent = () => {
   );
 };
 
-export default ArticleContent;
+export default ListPengumuman;
