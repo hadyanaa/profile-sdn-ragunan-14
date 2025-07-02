@@ -1,23 +1,16 @@
 import { Box, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogContent, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import ModalDetail from "./ModalDetail";
+import convertDriveUrl from "../functions/DriveImage";
 
 const ArticleContent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  
-  console.log(data);
-
-  const convertDriveUrl = (url) => {
-    const regex = /\/d\/([a-zA-Z0-9_-]+)\//;
-    const match = url.match(regex);
-    return match && match[1]
-    ? `https://drive.google.com/thumbnail?id=${match[1]}`
-    : null;
-  };
+  const [selectedArticle, setSelectedArticle] = useState(null);
+  const openModal = (article) => {
+    setSelectedArticle(article);
+  }
 
   useEffect(() => {
     fetch("https://script.google.com/macros/s/AKfycbycOICEi7KSaZirIZVBXomzhPu6JVKdDgahXlGPDDuKqR-MVST8-vbtFwp9GxNFRnxN/exec")
@@ -41,7 +34,7 @@ const ArticleContent = () => {
           const imgSrc = convertDriveUrl(row.url_image);
           return (
             <Card key={idx}>
-              <CardActionArea onClick={handleOpen}>
+              <CardActionArea onClick={() => openModal(row)}>
                 {/* <CardMedia
                 component="img"
                 image={imgSrc}
@@ -67,6 +60,10 @@ const ArticleContent = () => {
           )}
         )}
       </div>
+      <ModalDetail
+        selectedItem={selectedArticle}
+        artikel
+      />
     </div>
   );
 };

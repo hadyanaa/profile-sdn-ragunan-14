@@ -9,8 +9,9 @@ export default function ListTendik() {
 
    const openModal = (tendik) => {
       setSelectedTendik(tendik);
-      setOpen(true);
    };
+
+   console.log(selectedTendik);
    
    useEffect(() => {
          fetch('/api/data-tendik.json')

@@ -9,7 +9,6 @@ export default function ListGuru() {
 
    const openModal = (guru) => {
       setSelectedGuru(guru);
-      setOpen(true);
    };
 
 
