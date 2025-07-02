@@ -9,6 +9,7 @@ import ListGuru from './pages/Profile/ListGuru';
 import ListTendik from './pages/Profile/ListTendik';
 import ListAgenda from './pages/Informasi/ListAgenda';
 import ListPengumuman from './pages/Informasi/ListPengumuman';
+import ListPrestasi from './pages/Profile/ListPrestasi';
 
 const theme = createTheme({
   typography: {
@@ -47,6 +48,7 @@ function App() {
             <Route path="/profile/visi-misi" element={<VisiMisi />} />
             <Route path="/profile/staf-guru" element={<ListGuru />} />
             <Route path="/profile/staf-tendik" element={<ListTendik />} />
+            <Route path="/profile/prestasi" element={<ListPrestasi />} />
             <Route path="/informasi/agenda" element={<ListAgenda />} />
             <Route path="/informasi/pengumuman" element={<ListPengumuman />} />
           </Routes>
