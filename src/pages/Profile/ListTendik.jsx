@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
-import { Card, CardMedia } from "@mui/material";
-import ImageViewer from "../../components/ImageViewer";
+import { Card, CardActionArea } from "@mui/material";
 import LogoSD from "../../components/LogoSD";
+import ModalDetail from "../../components/ModalDetail";
 
 export default function ListTendik() {
    const [ListTendik, setListTendik] = useState([]);
+   const [selectedTendik, setSelectedTendik] = useState(null);
+
+   const openModal = (tendik) => {
+      setSelectedTendik(tendik);
+      setOpen(true);
+   };
    
    useEffect(() => {
          fetch('/api/data-tendik.json')
@@ -28,15 +34,22 @@ export default function ListTendik() {
                         textAlign: "center"
                      }}
                   >
-                     <div className="flex justify-center">
-                        <ImageViewer imageUrl={item.url_image} />
-                     </div>
-                     <h4 className={`font-semibold text-lg mt-4 text-secondary`}>{item.nama}</h4>
-                     <p className={`text-sm text-whiteprime`}>{item.status}</p>
+                      <CardActionArea
+                        onClick={() => openModal(item)}
+                     >
+                        <div className="flex justify-center">
+                           <img src={item.url_image} alt={item.url_image} />
+                        </div>
+                        <h4 className={`font-semibold text-lg mt-4 text-secondary`}>{item.nama}</h4>
+                        <p className={`text-sm text-whiteprime`}>{item.status}</p>
+                     </CardActionArea>
                   </Card>
                ))
             }
          </div>
+         <ModalDetail
+            selectedItem={selectedTendik}
+         />
       </div>
    )
 }
