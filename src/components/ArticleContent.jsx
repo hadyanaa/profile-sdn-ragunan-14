@@ -2,9 +2,11 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogConten
 import { useEffect, useState } from "react";
 import ModalDetail from "./ModalDetail";
 import convertDriveUrl from "../functions/DriveImage";
+import ParagraphDivider from "../functions/ParagraphContent";
 
 const ArticleContent = () => {
   const [data, setData] = useState([]);
+  console.log(data)
   const [loading, setLoading] = useState(true);
 
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -52,7 +54,7 @@ const ArticleContent = () => {
 
                   }}
                   >
-                    {row.content}
+                    <ParagraphDivider text={row.content} />
                   </Typography>
                 </CardContent>
               </CardActionArea>

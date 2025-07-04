@@ -1,6 +1,7 @@
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import convertDriveUrl from "../functions/DriveImage";
+import ParagraphDivider from "../functions/ParagraphContent";
 
 export default function ModalDetail({selectedItem, artikel}){
    const [open, setOpen] = useState(false);
@@ -53,8 +54,7 @@ export default function ModalDetail({selectedItem, artikel}){
                tabIndex={-1}
             >
                <div className="flex flex-col items-center my-4">
-                  {artikel ? 
-                     <p>{selectedItem?.content}</p>
+                  {artikel ? <ParagraphDivider text={selectedItem?.content}/>
                   :
                   <>
                      <h1 className="text-whiteprime font-bold text-2xl">
