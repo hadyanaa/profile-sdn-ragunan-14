@@ -3,7 +3,7 @@ export default function ParagraphDivider({text}){
    const paragraphs = text?.split('\n')
    return paragraphs.map((para,index) => (
       <>
-      <p key={index}>{para}</p> <br />
+      <p className="text-justify" key={index}>{para}</p> <br />
       </>
    ))
 }

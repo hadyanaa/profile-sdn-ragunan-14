@@ -31,27 +31,32 @@ const ArticleContent = () => {
 
   return (
     <div className="my-8">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4 shadow">
         {data.map((row, idx) => {
           const imgSrc = convertDriveUrl(row.url_image);
           return (
-            <Card key={idx}>
+            <Card 
+              key={idx} 
+              sx={{
+                backgroundImage: "url(/assets/image/pattern.png)",
+                backgroundColor: "#098fd1",
+                boxShadow: "0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1) !important"
+              }}
+            >
               <CardActionArea onClick={() => openModal(row)}>
-                {/* <CardMedia
-                component="img"
-                image={imgSrc}
-                sx={{ height: 150, objectFit: 'cover'}}
-                /> */}
                 <img src={imgSrc} className="h-40 object-cover mx-auto" />
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="div"
+                    sx={{ 
+                      color: 'var(--color-secondary)',
+                    }}
+                  >
                     {row.judul}
                   </Typography>
                   <Typography className="truncate-multiline-2"
                   variant="body2"
                   sx={{ 
-                    color: 'text.secondary',
-
+                    color: 'var(--color-whiteprime)',
                   }}
                   >
                     <ParagraphDivider text={row.content} />

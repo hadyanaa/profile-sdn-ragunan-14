@@ -3,7 +3,7 @@
 
 @theme {
   --font-jakarta: "Plus Jakarta Sans", sans-serif; 
-  --color-mainblue: #0a4ea0;
+  --color-mainblue: #0a4ea0; 
   --color-secondblue: #098fd1;
   --color-secondary: #f6f5f5;
   --color-whiteprime: #f9fafa;
@@ -17,4 +17,12 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.color-main {
+  background: linear-gradient(180deg, #098fd1, #0a4ea0);
+}
+
+.scrolled {
+  background: linear-gradient(180deg, #0d47a1, #42a5f5);
 }

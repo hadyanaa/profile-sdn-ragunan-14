@@ -34,9 +34,6 @@ export default function ModalDetail({selectedItem, artikel}){
          aria-labelledby="scroll-dialog-title"
          aria-describedby="scroll-dialog-description"
       >
-         {artikel ? 
-         <DialogTitle id="scroll-dialog-title">{selectedItem?.judul}</DialogTitle>
-         : ''}
          <DialogContent
             dividers
             sx={{
@@ -46,21 +43,26 @@ export default function ModalDetail({selectedItem, artikel}){
          >
             <img 
                src={artikel ? convertDriveUrl(selectedItem?.url_image) : selectedItem?.url_image} 
-               alt={selectedItem?.url_image} 
+               alt={selectedItem?.url_image}
+               className="mx-auto min-w-52 h-auto max-h-72 mb-8"
             />
             <DialogContentText
                id="scroll-dialog-description"
                ref={descriptionElementRef}
                tabIndex={-1}
             >
-               <div className="flex flex-col items-center my-4">
-                  {artikel ? <ParagraphDivider text={selectedItem?.content}/>
+               <div className="flex flex-col items-center my-4 text-whiteprime">
+                  {artikel ? 
+                  <>
+                     <h1 className="w-full font-bold text-2xl text-left mb-4">{selectedItem?.judul}</h1>
+                     <ParagraphDivider text={selectedItem?.content}/>
+                  </>
                   :
                   <>
-                     <h1 className="text-whiteprime font-bold text-2xl">
+                     <h1 className="font-bold text-2xl">
                         {selectedItem?.nama}
                      </h1>
-                     <p className="text-whiteprime">
+                     <p>
                         {selectedItem?.status}
                      </p>
                   </>

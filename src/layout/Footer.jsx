@@ -34,7 +34,7 @@ export default function Footer() {
             </div>
          </div>
 
-         <div className="bg-mainblue p-4 text-center">
+         <div className="color-main p-4 pt-12 text-center">
          © 2025 My Website. All rights reserved.
          </div>
       </footer>
