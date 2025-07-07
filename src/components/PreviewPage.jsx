@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, Skeleton } from "@mui/material";
 import { Link } from "react-router-dom";
 
 export default function PreviewPage({ title, desc, items = [], pattern, drive }) {
@@ -30,7 +30,8 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-        {items.slice(0, 4).map((item, index) => (
+        {items.length > 0 ?
+        items.slice(0, 4).map((item, index) => (
           <div
             key={index}
             className="flex flex-col p-4 items-center"
@@ -39,7 +40,25 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
             <h4 className={`font-semibold text-lg mt-4 ${pattern ? "text-secondary" : ''}`}>{drive ? item.judul : item.nama}</h4>
             <p className={`text-sm ${pattern ? "text-whiteprime" : 'text-gray-500'}`}>{drive ? item.category : item.status}</p>
           </div>
-        ))}
+        ))
+        :
+        Array.from({ length: 4 }).map((_, index) => (
+          <div
+            key={index}
+            className="flex flex-col p-4 items-center"
+          >
+            <Skeleton animation="wave" variant="overlay">
+              <img
+                className="rounded-lg w-auto h-80"
+                alt=""
+                src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+              />
+            </Skeleton>
+            <h4 className={`font-semibold text-lg mt-4 ${pattern ? "text-secondary" : ''}`}></h4>
+            <p className={`text-sm ${pattern ? "text-whiteprime" : 'text-gray-500'}`}></p>
+          </div>
+        ))
+      }
       </div>
     </div>
   );

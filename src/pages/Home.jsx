@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PreviewPage from "../components/PreviewPage";
-import { Button, Card, CardContent, CardMedia } from "@mui/material";
+import { Button, Card, CardContent, CardMedia, Skeleton } from "@mui/material";
 import convertDriveUrl from "../functions/DriveImage";
 import { Link } from "react-router-dom";
 
@@ -71,47 +71,47 @@ function Home() {
   };
 
   // hit api agenda atau aktivitas terkini
+  // const [loadingAgenda, setLoadingAgenda] = useState(false);
   useEffect(() => {
+    // setLoadingAgenda(true);
     fetch("https://script.google.com/macros/s/AKfycbwHZTdj2DdUzOQ-CSxKkXL7hgiCSppYoOvoRd20GfIwvXnQdtpuQ72l7LnQsTxX0y3a/exec")
       .then((res) => res.json())
       .then((result) => {
         setDataAgenda(result);
-        setLoading(false);
+        // setLoadingAgenda(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setLoading(false);
+        // setLoadingAgenda(false);
       });
   }, []);
-
-  console.log(dataAgenda);
   return(
     <>
       <section id="top">
-      <div className="relative w-full h-screen overflow-hidden rounded-lg z-[3]">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute -top-14 left-0 w-full h-full transition-opacity duration-1000
-              ${index === current ? "opacity-100" : "opacity-0"}`}
-          >
-            {/* Gambar background */}
-            <img
-              src={slide.bg}
-              alt=""
-              className="w-full h-full object-cover"
-            />
-            
-            {/* Overlay gelap sedikit supaya teks lebih jelas */}
-            <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-[3]"></div>
-            
-            {/* Teks di atas image */}
-            <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-4xl font-bold text-white z-[3]">
-              {slide.text}
+        <div className="relative w-full h-screen overflow-hidden rounded-lg z-[3]">
+          {slides.map((slide, index) => (
+            <div
+              key={slide.id}
+              className={`absolute -top-14 left-0 w-full h-full transition-opacity duration-1000
+                ${index === current ? "opacity-100" : "opacity-0"}`}
+            >
+              {/* Gambar background */}
+              <img
+                src={slide.bg}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+              
+              {/* Overlay gelap sedikit supaya teks lebih jelas */}
+              <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-[3]"></div>
+              
+              {/* Teks di atas image */}
+              <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-4xl font-bold text-white z-[3]">
+                {slide.text}
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </section>
 
       <section id="agenda" >
@@ -126,7 +126,8 @@ function Home() {
             </Link>
           </div>
           <div className="relative h-80 cursor-pointer">
-            {dataAgenda.map((agenda, index) => {
+            { dataAgenda.length > 0 ? 
+            dataAgenda.map((agenda, index) => {
               const imgSrc = convertDriveUrl(agenda.url_image);
               return(
                 <div
@@ -134,11 +135,11 @@ function Home() {
                   className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000
                     ${index === currentIndex ? "opacity-100 z-20" : "opacity-0 z-10"}`}
                 >
-                  <div className="relative w-full bg-gray-100 rounded-lg overflow-hidden h-80 shadow">
+                  <div className="relative w-full bg-gray-500 rounded-lg overflow-hidden h-80 shadow">
                     <img
                       src={imgSrc}
                       alt={"gambar " + agenda.judul}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full mx-auto object-contain"
                     />
                     <div className="absolute top-8/12 left-0 w-full h-full flex flex-col justify-start items-center p-6 z-30 bg-black/30">
                       <h3 className="text-xl font-semibold mb-2 text-white">{agenda.judul}</h3>
@@ -147,9 +148,22 @@ function Home() {
                   </div>
                 </div>
               )
-            }
-            )}
-
+            })
+            :
+            <>
+              <div
+                className={`absolute top-0 left-0 w-full h-full`}
+              >
+                <div className="relative w-full rounded-lg overflow-hidden h-80 shadow">
+                  <Skeleton 
+                    animation="wave"
+                    loading={dataAgenda.length === 0} 
+                    sx={{ height: 700, top: -200}}
+                  />
+                </div>
+              </div>
+            </>
+          }
             {/* tombol prev & next */}
             <button
               onClick={prevSlide}
@@ -185,15 +199,6 @@ function Home() {
         desc="Staf tenaga kependidikan pada SDN Ragunan 14 Pagi"
         items={ListTendik}
       />
-      <PreviewPage 
-        title="Pengumuman" 
-        desc="List Pengumuman SDN Ragunan 14 Pagi"
-        items={dataPengumuman}
-      />
-      <div>
-
-      </div>
-    
     </>
 
   );
