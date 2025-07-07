@@ -35,7 +35,6 @@ export default function Header() {
 
    useEffect(() => {
       const onScroll = () => {
-         console.log("ScrollY:", window.scrollY)
          setIsScrolled(window.scrollY > 800);
       };
       window.addEventListener("scroll", onScroll);
@@ -44,7 +43,7 @@ export default function Header() {
 
    return(
       <>
-         <header className={`fixed top-0 z-50 w-full flex flex-row justify-between text-whiteprime py-4 px-28 ${isScrolled ? 'scrolled' : 'backdrop-blur-2xl' }`}>
+         <header className={`fixed top-0 z-50 w-full flex flex-row justify-between text-whiteprime py-4 px-28 ${isScrolled ? 'scrolled-header' : 'backdrop-blur-2xl' }`}>
             <div className='flex content-center items-center my-auto gap-2'>
                {/* <img src="/assets/image/dki-jakarta-logo.jpg" alt="Logo Jaya Raya" className='w-auto h-8' /> */}
                <img src="/assets/image/logo-kawan-belajar-bged.png" alt="Logo Kawan Belajar" className='w-auto h-8' />

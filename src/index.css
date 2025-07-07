@@ -23,6 +23,6 @@
   background: linear-gradient(180deg, #098fd1, #0a4ea0);
 }
 
-.scrolled {
-  background: linear-gradient(180deg, #0d47a1, #42a5f5);
+.scrolled-header {
+  background: linear-gradient(180deg, #0a4ea0, #098fd1);
 }
