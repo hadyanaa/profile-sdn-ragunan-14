@@ -20,39 +20,39 @@ export default function ListGuru() {
   }, []);
 
   return (
-    <div className="px-28 py-8">
-      <div className="flex justify-center bg-secondblue bg-[url(/assets/image/pattern.png)] p-4 rounded-lg w-full">
-        <LogoSD titlePage="Guru" />
-      </div>
-      <div className="grid grid-cols-4 gap-y-8 my-8">
-        {ListGuru.map((item, index) => (
-          <Card
-            key={index}
-            className="mx-auto"
-            sx={{
-              height: "auto", width: 250, padding: 2,
-              backgroundImage: "url(/assets/image/pattern.png)",
-              backgroundColor: "#098fd1",
-              textAlign: "center"
-            }}
-          >
-            <CardActionArea
-              onClick={() => openModal(item)}
+    <>
+      <LogoSD titlePage="Guru" isTitlePage />
+      <div className="px-28 py-8">
+        <div className="grid grid-cols-4 gap-y-8 my-8">
+          {ListGuru.map((item, index) => (
+            <Card
+              key={index}
+              className="mx-auto"
+              sx={{
+                height: "auto", width: 250, padding: 2,
+                backgroundImage: "url(/assets/image/pattern.png)",
+                backgroundColor: "#098fd1",
+                textAlign: "center"
+              }}
             >
-               <div className="flex justify-center">
-                  <img src={item.url_image} alt={item.url_image} />
-               </div>
-               <h4 className="font-semibold text-lg mt-4 text-secondary">{item.nama}</h4>
-               <p className="text-sm text-whiteprime">{item.status}</p>
-            </CardActionArea>
-          </Card>
-        ))}
-      </div>
+              <CardActionArea
+                onClick={() => openModal(item)}
+              >
+                <div className="flex justify-center">
+                    <img src={item.url_image} alt={item.url_image} />
+                </div>
+                <h4 className="font-semibold text-lg mt-4 text-secondary">{item.nama}</h4>
+                <p className="text-sm text-whiteprime">{item.status}</p>
+              </CardActionArea>
+            </Card>
+          ))}
+        </div>
 
-      {/* Modal hanya satu, datanya dari selectedGuru */}
-      <ModalDetail
-         selectedItem={selectedGuru} 
-      />
-    </div>
+        {/* Modal hanya satu, datanya dari selectedGuru */}
+        <ModalDetail
+          selectedItem={selectedGuru} 
+        />
+      </div>
+    </>
   );
 }

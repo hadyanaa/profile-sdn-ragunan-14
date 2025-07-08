@@ -1,8 +1,11 @@
 import InstagramFeed from "../components/InstagramFeed";
+import LogoSD from "../components/LogoSD";
 
 export default function About() {
   return(
     <>
+      <LogoSD titlePage="Tentang" isTitlePage />
+    
       <div className="flex flex-col gap-4 px-28">
         <h1>Profile SD Negeri Ragunan 14 Pagi</h1>
         <p>

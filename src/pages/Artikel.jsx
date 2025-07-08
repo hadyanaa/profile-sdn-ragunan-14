@@ -5,11 +5,13 @@ import LogoSD from "../components/LogoSD";
 export default function Artikel() {
   return(
     <>
-      <div className="flex flex-col gap-4 px-28">
-        <div className="flex justify-center bg-secondblue bg-[url(/assets/image/pattern.png)] p-4 rounded-lg w-full mt-8">
+      <div className="flex flex-col gap-4">
+        <div className="flex justify-center bg-secondblue p-4 rounded-lg w-full pt-20">
           <LogoSD titlePage="Artikel" />
         </div>
-        <ArticleContent />
+        <div className="px-28">
+          <ArticleContent />
+        </div>
       </div>
     </>
 

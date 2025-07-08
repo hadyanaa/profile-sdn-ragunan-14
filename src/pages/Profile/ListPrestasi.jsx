@@ -30,48 +30,48 @@ export default function ListPrestasi() {
 
   if (loading) return <p>Loading...</p>;
    return (
-      <div className="px-28 py-8">
-         <div className="flex justify-center bg-secondblue bg-[url(/assets/image/pattern.png)] p-4 rounded-lg w-full">
-            <LogoSD titlePage="Prestasi" />
-         </div>
-         <div className="grid grid-cols-4 gap-y-8 my-8">
-            {
-               ListPrestasi.map((item, index) => (
-                  <Card
-                     key={index}
-                     className="mx-auto"
-                     sx={{height: "auto", width: 250, padding: 2, 
-                        backgroundImage: "url(/assets/image/pattern.png)", 
-                        backgroundColor: "#098fd1",
-                        textAlign: "center"
-                     }}
-                  >
-                     <CardActionArea
-                        onClick={() => openModal(item)}
+      <>
+         <LogoSD titlePage="Prestasi" isTitlePage />
+         <div className="px-28 py-8">
+            <div className="grid grid-cols-4 gap-y-8 my-8">
+               {
+                  ListPrestasi.map((item, index) => (
+                     <Card
+                        key={index}
+                        className="mx-auto"
+                        sx={{height: "auto", width: 250, padding: 2, 
+                           backgroundImage: "url(/assets/image/pattern.png)", 
+                           backgroundColor: "#098fd1",
+                           textAlign: "center"
+                        }}
                      >
-                        <div className="flex justify-center">
-                           <img src={item.url_image} alt={item.url_image} />
-                        </div>
-                        <h4 className={`font-semibold text-lg mt-4 text-secondary`}>{item.nama}</h4>
-                        <div className="flex flex-row gap-2">
-                           <Chip 
-                              variant="outlined"
-                              label={item.jenis}   
-                           />
-                           <Chip 
-                              variant="outlined"
-                              label={item.deskripsi}   
-                           />
-                        </div>
-                        <p className={`text-sm text-whiteprime`}>{item.status}</p>
-                     </CardActionArea>
-                  </Card>
-               ))
-            }
+                        <CardActionArea
+                           onClick={() => openModal(item)}
+                        >
+                           <div className="flex justify-center">
+                              <img src={item.url_image} alt={item.url_image} />
+                           </div>
+                           <h4 className={`font-semibold text-lg mt-4 text-secondary`}>{item.nama}</h4>
+                           <div className="flex flex-row gap-2">
+                              <Chip 
+                                 variant="outlined"
+                                 label={item.jenis}   
+                              />
+                              <Chip 
+                                 variant="outlined"
+                                 label={item.deskripsi}   
+                              />
+                           </div>
+                           <p className={`text-sm text-whiteprime`}>{item.status}</p>
+                        </CardActionArea>
+                     </Card>
+                  ))
+               }
+            </div>
+            <ModalDetail 
+               selectedItem={selectedPrestasi}
+            />
          </div>
-         <ModalDetail 
-            selectedItem={selectedPrestasi}
-         />
-      </div>
+      </>
    )
 }

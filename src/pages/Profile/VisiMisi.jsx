@@ -1,6 +1,9 @@
+import LogoSD from "../../components/LogoSD";
+
 export default function VisiMisi() {
   return(
     <>
+      <LogoSD titlePage="Visi Misi" isTitlePage />
       <div className="flex flex-col gap-8 px-28 font-jakarta">
         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-8 w-full p-8 bg-[url(/assets/image/pattern.png)]">
           <h1 className="font-bold text-2xl">VISI</h1>

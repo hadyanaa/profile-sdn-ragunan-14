@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 
 export default function Header() {
+   const location = useLocation();
+   const homePath = "/";
    const [isDropdownProfileOpen, setIsDropdownProfileOpen] = useState(false);
    const [isDropdownInformasiOpen, setIsDropdownInformasiOpen] = useState(false);
    const dropdownRefProfile = useRef(null);
@@ -43,7 +45,9 @@ export default function Header() {
 
    return(
       <>
-         <header className={`fixed top-0 z-50 w-full flex flex-row justify-between text-whiteprime py-4 px-28 ${isScrolled ? 'scrolled-header' : 'backdrop-blur-2xl' }`}>
+         <header className={`fixed top-0 z-50 w-full flex flex-row justify-between text-whiteprime py-4 px-28 
+            ${location.pathname === homePath ? isScrolled ?  'scrolled-header' : 'backdrop-blur-2xl' : 'scrolled-header' }
+            `}>
             <div className='flex content-center items-center my-auto gap-2'>
                {/* <img src="/assets/image/dki-jakarta-logo.jpg" alt="Logo Jaya Raya" className='w-auto h-8' /> */}
                <img src="/assets/image/logo-kawan-belajar-bged.png" alt="Logo Kawan Belajar" className='w-auto h-8' />
