@@ -20,9 +20,12 @@
 }
 
 .color-main {
-  background: linear-gradient(180deg, #098fd1, #0a4ea0);
+  /* background:#0a4ea0; */
+  /* background: linear-gradient(90deg, #098fd1, #0a4ea0); */
+  background: linear-gradient(90deg, #0a4ea0, #098fd1);
 }
 
 .scrolled-header {
-  background: linear-gradient(180deg, #0a4ea0, #098fd1);
+  /* background:#0a4ea0; */
+  background: linear-gradient(90deg, #0a4ea0, #098fd1);
 }

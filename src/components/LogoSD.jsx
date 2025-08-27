@@ -1,7 +1,7 @@
 export default function LogoSD({titlePage, isTitlePage}){
    return (
       <div className={`
-      ${isTitlePage ? "flex justify-center bg-secondblue p-4 rounded-lg w-full pt-20" : ""}
+      ${isTitlePage ? "flex justify-center scrolled-header p-4 rounded-b-4xl w-full pt-24" : ""}
       `}>
          <div className='flex content-center items-center my-auto gap-2'>
             { titlePage ? '' 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, CardActionArea, CardMedia, Chip } from "@mui/material";
+import { Card, CardActionArea, CardMedia, Chip, Skeleton } from "@mui/material";
 import ImageViewer from "../../components/ImageViewer";
 import LogoSD from "../../components/LogoSD";
 import ModalDetail from "../../components/ModalDetail";
@@ -28,13 +28,12 @@ export default function ListPrestasi() {
       });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
    return (
       <>
          <LogoSD titlePage="Prestasi" isTitlePage />
          <div className="px-28 py-8">
             <div className="grid grid-cols-4 gap-y-8 my-8">
-               {
+               { ListPrestasi.length > 0 ? 
                   ListPrestasi.map((item, index) => (
                      <Card
                         key={index}
@@ -65,6 +64,20 @@ export default function ListPrestasi() {
                            <p className={`text-sm text-whiteprime`}>{item.status}</p>
                         </CardActionArea>
                      </Card>
+                  )) :
+                  Array.from({ length: 4 }).map((_, index) => (
+                     <div
+                        key={index}
+                        className="flex flex-col p-4 items-center"
+                        >
+                        <Skeleton animation="wave" variant="overlay">
+                           <img
+                              className="rounded-lg w-auto h-40"
+                              alt=""
+                              src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                           />
+                        </Skeleton>
+                     </div>
                   ))
                }
             </div>

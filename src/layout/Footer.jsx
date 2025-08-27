@@ -2,7 +2,7 @@ export default function Footer() {
    return(
       <>
       <footer className="text-gray-300">
-         <div className="flex flex-row gap-16 bg-secondblue px-28 py-4">
+         <div className="flex flex-row gap-16 scrolled-header px-28 py-4">
             <div>
                <div className='flex content-center items-center gap-2'>
                   <img src="/assets/image/logo-kawan-belajar-bged.png" alt="Logo Kawan Belajar" className='w-auto h-8' />

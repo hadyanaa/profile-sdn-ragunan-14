@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogContent, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardContent, CardMedia, Dialog, DialogContent, Skeleton, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import ModalDetail from "./ModalDetail";
 import convertDriveUrl from "../functions/DriveImage";
@@ -7,7 +7,6 @@ import ParagraphDivider from "../functions/ParagraphContent";
 const ArticleContent = () => {
   const [data, setData] = useState([]);
   console.log(data)
-  const [loading, setLoading] = useState(true);
 
   const [selectedArticle, setSelectedArticle] = useState(null);
   const openModal = (article) => {
@@ -19,20 +18,17 @@ const ArticleContent = () => {
       .then((res) => res.json())
       .then((result) => {
         setData(result);
-        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setLoading(false);
       });
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-
   return (
     <div className="my-8">
-      <div className="grid grid-cols-4 gap-4 shadow">
-        {data.map((row, idx) => {
+      <div className="grid grid-cols-4 gap-4">
+        {data.length > 0 ?
+        data.map((row, idx) => {
           const imgSrc = convertDriveUrl(row.url_image);
           return (
             <Card 
@@ -65,7 +61,22 @@ const ArticleContent = () => {
               </CardActionArea>
             </Card>
           )}
-        )}
+        ) :
+        Array.from({ length: 4 }).map((_, index) => (
+          <div
+            key={index}
+            className="flex flex-col p-4 items-center"
+          >
+            <Skeleton animation="wave" variant="overlay">
+              <img
+                className="rounded-lg w-auto h-40"
+                alt=""
+                src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+              />
+            </Skeleton>
+          </div>
+        ))
+        }
       </div>
       <ModalDetail
         selectedItem={selectedArticle}

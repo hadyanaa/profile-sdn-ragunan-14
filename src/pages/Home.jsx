@@ -71,18 +71,15 @@ function Home() {
   };
 
   // hit api agenda atau aktivitas terkini
-  // const [loadingAgenda, setLoadingAgenda] = useState(false);
   useEffect(() => {
     // setLoadingAgenda(true);
     fetch("https://script.google.com/macros/s/AKfycbwHZTdj2DdUzOQ-CSxKkXL7hgiCSppYoOvoRd20GfIwvXnQdtpuQ72l7LnQsTxX0y3a/exec")
       .then((res) => res.json())
       .then((result) => {
         setDataAgenda(result);
-        // setLoadingAgenda(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        // setLoadingAgenda(false);
       });
   }, []);
   return(
@@ -115,7 +112,7 @@ function Home() {
       </section>
 
       <section id="agenda" >
-        <div className="relative pt-12 p-8 -top-40 w-8/12 mx-auto min-h-[500px] bg-whiteprime shadow-2xl rounded-xl z-[5]">
+        <div className="relative pt-12 p-8 -top-40 -mb-16 w-8/12 mx-auto min-h-[500px] bg-whiteprime shadow-2xl rounded-xl z-[5]">
         <div className="">
           <div className="flex flex-row justify-between mb-4">
             <h1 className="font-bold text-2xl text-mainblue">Aktivitas Terkini</h1>

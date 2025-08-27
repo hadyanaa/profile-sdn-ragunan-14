@@ -6,9 +6,7 @@ export default function Artikel() {
   return(
     <>
       <div className="flex flex-col gap-4">
-        <div className="flex justify-center bg-secondblue p-4 rounded-lg w-full pt-20">
-          <LogoSD titlePage="Artikel" />
-        </div>
+        <LogoSD titlePage="Artikel" isTitlePage />
         <div className="px-28">
           <ArticleContent />
         </div>
