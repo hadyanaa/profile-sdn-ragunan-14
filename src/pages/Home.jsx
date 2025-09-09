@@ -100,10 +100,13 @@ function Home() {
               />
               
               {/* Overlay gelap sedikit supaya teks lebih jelas */}
-              <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-[3]"></div>
+              <div className="absolute top-0 left-0 w-full h-full bg-black/70 z-[3]"></div>
               
               {/* Teks di atas image */}
-              <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center text-4xl font-bold text-white z-[3]">
+              <div className="absolute top-0 left-0 w-full h-full flex flex-col text-center items-center justify-center text-4xl font-bold text-white z-[3]">
+                SDN Ragunan 14 Pagi
+                <br/>
+                <br/>
                 {slide.text}
               </div>
             </div>

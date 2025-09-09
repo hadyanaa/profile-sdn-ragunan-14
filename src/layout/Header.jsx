@@ -43,6 +43,10 @@ export default function Header() {
       return () => window.removeEventListener("scroll", onScroll);
    }, []);
 
+   const styleMenu = "hover:text-primaryoren hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out"
+   const styleSubMenu = "block px-4 py-2 hover:bg-mainblue rounded-md cursor-pointer z-50 hover:text-primaryoren hover:scale-105 hover:shadow-lg transition-all duration-300"
+   const styleSubMenuActive = "bg-mainblue rounded-md cursor-pointer z-50 text-primaryoren scale-105shadow-lg transition-all duration-300"
+
    return(
       <>
          <header className={`fixed top-0 z-50 w-full flex flex-row justify-between text-whiteprime py-4 px-28 
@@ -58,17 +62,17 @@ export default function Header() {
             </div>
             <nav>
                <ul className="flex flex-row space-y-2 gap-6">
-               <li className='hover:opacity-60'>
+               <li className={`${styleMenu} ${location.pathname === '/' ? 'text-primaryoren' : ''}`}>
                   <Link to="/">Beranda</Link>
                </li>
-               <li className='hover:opacity-60'>
+               {/* <li className='hover:text-primaryoren'>
                   <Link to="/artikel">Artikel</Link>
-               </li>
+               </li> */}
                <li>
                   <div className='relative' ref={dropdownRefProfile}>
                      <button
                         onClick={toggleDropdownProfile}
-                        className='hover:opacity-60 focus:outline-none cursor-pointer'
+                        className={`${styleMenu} ${location.pathname.startsWith('/profile'+'/') ? 'text-primaryoren' : ''} focus:outline-none cursor-pointer`}
                      >
                         <div className='flex flex-row items-center gap-2'>
                            <p>
@@ -83,14 +87,13 @@ export default function Header() {
                      </button>
                      {
                         isDropdownProfileOpen && (
-                           <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md z-50">
-                              <Link to="/profile/visi-misi" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Visi Misi</Link>
-                              <Link to="/profile/tentang" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Tentang Sekolah</Link>
-                              <Link to="/profile/staf-guru" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Staf Guru</Link>
-                              <Link to="/profile/staf-tendik" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Staf Tenaga Kependidikan</Link>
-                              <Link to="/profile/prestasi" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Prestasi</Link>
-                              <Link to="/profile/ekskul" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Ekstrakurikuler</Link>
-                              <Link to="/profile/fasilitas" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Fasilitas</Link>
+                           <div className="absolute right-0 mt-2 w-52 bg-white text-black rounded-md z-50">
+                              <Link to="/profile/tentang-sekolah" className={`${styleSubMenu} ${location.pathname === "/profile/tentang-sekolah" ? styleSubMenuActive : "" }`}>Tentang Sekolah</Link>
+                              <Link to="/profile/visi-misi-tujuan" className={`${styleSubMenu} ${location.pathname === "/profile/visi-misi-tujuan" ? styleSubMenuActive : "" }`}>Visi, Misi dan Tujuan</Link>
+                              <Link to="/profile/sdm-sekolah" className={`${styleSubMenu} ${location.pathname === "/profile/sdm-sekolah" ? styleSubMenuActive : "" }`}>SDM Sekolah</Link>
+                              <Link to="/profile/statistik-siswa" className={`${styleSubMenu} ${location.pathname === "/profile/statistik-siswa" ? styleSubMenuActive : "" }`}>Statistik Siswa</Link>
+                              <Link to="/profile/prestasi-sekolah" className={`${styleSubMenu} ${location.pathname === "/profile/prestasi-sekolah" ? styleSubMenuActive : "" }`}>Prestasi Sekolah</Link>
+                              <Link to="/profile/ekstrakurikuler" className={`${styleSubMenu} ${location.pathname === "/profile/ekstrakurikuler" ? styleSubMenuActive : "" }`}>Ekstrakurikuler</Link>
                            </div>
                         )
                      }
@@ -101,7 +104,7 @@ export default function Header() {
                   <div className='relative' ref={dropdownRefInformasi}>
                   <button
                         onClick={toggleDropdownInformasi}
-                        className='hover:opacity-60 focus:outline-none cursor-pointer'
+                        className={`${styleMenu} ${location.pathname.startsWith('/informasi'+'/') ? 'text-primaryoren' : ''} focus:outline-none cursor-pointer`}
                      >
                         <div className='flex flex-row items-center gap-2'>
                            <p>
@@ -117,14 +120,14 @@ export default function Header() {
                      {
                         isDropdownInformasiOpen && (
                            <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md z-50">
-                              <Link to="/informasi/agenda" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Agenda</Link>
-                              <Link to="/informasi/pengumuman" className='block px-4 py-2 hover:bg-secondary rounded-md cursor-pointer z-50'>Pengumuman</Link>
+                              <Link to="/informasi/agenda" className={`${styleSubMenu} ${location.pathname === "/informasi/agenda" ? styleSubMenuActive : "" }`}>Agenda</Link>
+                              <Link to="/informasi/pengumuman" className={`${styleSubMenu} ${location.pathname === "/informasi/pengumuman" ? styleSubMenuActive : "" }`}>Pengumuman</Link>
                            </div>
                         )
                      }
                   </div>
                </li>
-               <li className='hover:opacity-60'>
+               <li className={`${styleMenu}`}>
                   <Link to="/contact">Contact</Link>
                </li>
                </ul>
