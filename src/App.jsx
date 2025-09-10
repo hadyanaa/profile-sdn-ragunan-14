@@ -10,6 +10,8 @@ import ListTendik from './pages/Profile/ListTendik';
 import ListAgenda from './pages/Informasi/ListAgenda';
 import ListPengumuman from './pages/Informasi/ListPengumuman';
 import ListPrestasi from './pages/Profile/ListPrestasi';
+import { ImInsertTemplate } from 'react-icons/im';
+import TentangSekolah from './pages/Profile/TentangSekolah';
 
 const theme = createTheme({
   typography: {
@@ -35,6 +37,18 @@ const theme = createTheme({
   }
 });
 
+export const routes = [
+  { path: "/", element: <Home />, name: "Beranda" },
+  { path: "/profile/tentang-sekolah", element: <TentangSekolah />, name: "Tentang Sekolah" },
+  { path: "/profile/visi-misi-tujuan", element: <VisiMisi />, name: "Visi, Misi dan Tujuan" },
+  { path: "/profile/sdm-sekolah", element: <ListGuru />, name: "SDM Sekolah" },
+  { path: "/profile/statistik-siswa", element: <VisiMisi />, name: "Statistik Siswa" },
+  { path: "/profile/prestasi-sekolah", element: <ListPrestasi />, name: "Prestasi Sekolah" },
+  { path: "/profile/ekstrakurikuler", element: <ListPrestasi />, name: "Ekstrakurikuler" },
+  { path: "/informasi/agenda", element: <ListAgenda />, name: "Agenda" },
+  { path: "/informasi/pengumuman", element: <ListPengumuman />, name: "Pengumuman" },
+];
+
 function App() {
   return (
     <Router>
@@ -42,15 +56,10 @@ function App() {
         <CssBaseline />
         <Layout>
           <Routes>
+            {routes.map((r) =>(
+              <Route key={r.path} path={r.path} element={r.element} />
+            ))}
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/artikel" element={<Artikel />} />
-            <Route path="/profile/visi-misi" element={<VisiMisi />} />
-            <Route path="/profile/staf-guru" element={<ListGuru />} />
-            <Route path="/profile/staf-tendik" element={<ListTendik />} />
-            <Route path="/profile/prestasi" element={<ListPrestasi />} />
-            <Route path="/informasi/agenda" element={<ListAgenda />} />
-            <Route path="/informasi/pengumuman" element={<ListPengumuman />} />
           </Routes>
         </Layout>
       </ThemeProvider>
