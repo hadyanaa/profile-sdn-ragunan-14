@@ -5,13 +5,12 @@ import Artikel from './pages/Artikel';
 import Layout from './layout/Layout';
 import VisiMisi from './pages/Profile/VisiMisi';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import ListGuru from './pages/Profile/ListGuru';
-import ListTendik from './pages/Profile/ListTendik';
 import ListAgenda from './pages/Informasi/ListAgenda';
 import ListPengumuman from './pages/Informasi/ListPengumuman';
 import ListPrestasi from './pages/Profile/ListPrestasi';
 import { ImInsertTemplate } from 'react-icons/im';
 import TentangSekolah from './pages/Profile/TentangSekolah';
+import ListSdm from './pages/Profile/ListSDM';
 
 const theme = createTheme({
   typography: {
@@ -41,7 +40,7 @@ export const routes = [
   { path: "/", element: <Home />, name: "Beranda" },
   { path: "/profile/tentang-sekolah", element: <TentangSekolah />, name: "Tentang Sekolah" },
   { path: "/profile/visi-misi-tujuan", element: <VisiMisi />, name: "Visi, Misi dan Tujuan" },
-  { path: "/profile/sdm-sekolah", element: <ListGuru />, name: "SDM Sekolah" },
+  { path: "/profile/sdm-sekolah", element: <ListSdm />, name: "SDM Sekolah" },
   { path: "/profile/statistik-siswa", element: <VisiMisi />, name: "Statistik Siswa" },
   { path: "/profile/prestasi-sekolah", element: <ListPrestasi />, name: "Prestasi Sekolah" },
   { path: "/profile/ekstrakurikuler", element: <ListPrestasi />, name: "Ekstrakurikuler" },
