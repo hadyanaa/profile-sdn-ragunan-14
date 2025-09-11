@@ -3,25 +3,9 @@ import LogoSD from "../../components/LogoSD";
 import { Skeleton, Table, TableBody, TableCell, TableRow } from "@mui/material";
 
 export default function TentangSekolah() {
-  const [Tentang, setTentang] = useState([]);
-  const [loading, setLoading] = useState(true);
-
    const lat = -6.298173640926657;
    const lng = 106.82610639533858;
    const src = `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
-   
-   useEffect(() => {
-      fetch("https://script.google.com/macros/s/AKfycbymbySyX9CBn74tgENUNc8bPXNXNFTTsokzBlay9Pys6Umg5SntwvXKTh5es1cLOiim/exec")
-         .then((res) => res.json())
-         .then((result) => {
-         setTentang(result);
-         setLoading(false);
-         })
-         .catch((error) => {
-         console.error("Error fetching data:", error);
-         setLoading(false);
-         });
-   }, []);
 
   const dataIdentitas = [
    {
@@ -124,7 +108,7 @@ karakter, dan penguatan profil pelajar Pancasila menjadi fokus utama dalam
 pengelolaan satuan pendidikan.
           </p>
         </div>
-         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <div className="space-y-6">
                <div className="bg-secondblue rounded-lg text-center content-start items-start text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
                   <h1 className="font-bold text-2xl mb-4">Identitas Sekolah</h1>

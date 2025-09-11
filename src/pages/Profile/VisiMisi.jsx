@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
 import LogoSD from "../../components/LogoSD";
 import { Skeleton } from "@mui/material";
+import { useAppStore } from "../../store/useAppStore";
 
 export default function VisiMisi() {
-  const [VisiMisi, setVisiMisi] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { visiMisi, loading, error, fetchVisiMisi } = useAppStore();
    
   useEffect(() => {
-    fetch("https://script.google.com/macros/s/AKfycbymbySyX9CBn74tgENUNc8bPXNXNFTTsokzBlay9Pys6Umg5SntwvXKTh5es1cLOiim/exec")
-      .then((res) => res.json())
-      .then((result) => {
-        setVisiMisi(result);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      });
-  }, []);
-  console.log(VisiMisi);
+    if (visiMisi.length === 0) {
+      // hanya fetch kalau data belum ada
+      fetchVisiMisi();
+    }
+  }, [visiMisi, fetchVisiMisi]);
   return(
     <>
       <LogoSD titlePage="Visi Misi" isTitlePage />
@@ -29,7 +22,7 @@ export default function VisiMisi() {
             "{loading ? 
             <Skeleton animation="wave" variant="overlay">
             </Skeleton> :
-            VisiMisi[0]?.visi}"
+            visiMisi[0]?.visi}"
           </p>
         </div>
         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
@@ -42,7 +35,7 @@ export default function VisiMisi() {
             <Skeleton animation="wave" variant="overlay">
             </Skeleton>
             </> :
-            VisiMisi.filter(item => item.misi).map((item, index) => (
+            visiMisi.filter(item => item.misi).map((item, index) => (
               <div className="border-2 rounded-lg p-4 flex text-justify gap-x-2 hover:scale-105 hover:border-primaryoren hover:bg-mainblue/40 hover:text-primaryoren transition-all duration-300 ease-in-out" 
               key={index}>
                 <div className="border-2 rounded-full w-fit h-fit p-1 text-center">
@@ -64,7 +57,7 @@ export default function VisiMisi() {
             <Skeleton animation="wave" variant="overlay">
             </Skeleton>
             </> :
-            VisiMisi.map((item, index) => (
+            visiMisi.map((item, index) => (
               <div className="border-2 rounded-lg p-4 flex text-justify gap-x-2 hover:scale-105 hover:border-primaryoren hover:bg-mainblue/40 hover:text-primaryoren transition-all duration-300 ease-in-out" 
               key={index}>
                 <div className="border-2 rounded-full w-fit h-fit p-1 text-center ">
