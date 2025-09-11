@@ -5,6 +5,7 @@ import axios from "axios";
 export const useAppStore = create((set) => ({
    visiMisi: [],
    sdm: [],
+   siswa: [],
    prestasi: [],
    pengumuman: [],
    agenda: [],
@@ -30,6 +31,18 @@ export const useAppStore = create((set) => ({
          set({ sdm: res.data });
       } catch (err) {
          set({ error: "Gagal fetch SDM" });
+      } finally {
+         set({ loading: false });
+      }
+   },
+
+   fetchSiswa: async () => {
+      set({ loading: true, error: null });
+      try {
+         const res = await axios.get("https://script.google.com/macros/s/AKfycbw8n9B5o98Wzv8cm6LbBj1suN3dK6KDK2RM9UtcCnGGsRUsrO-y-EZXs6pfj8Bltpd4/exec");
+         set({ siswa: res.data });
+      } catch (err) {
+         set({ error: "Gagal fetch Siswa" });
       } finally {
          set({ loading: false });
       }

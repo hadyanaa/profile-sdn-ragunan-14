@@ -11,6 +11,7 @@ import ListPrestasi from './pages/Profile/ListPrestasi';
 import { ImInsertTemplate } from 'react-icons/im';
 import TentangSekolah from './pages/Profile/TentangSekolah';
 import ListSdm from './pages/Profile/ListSDM';
+import ListSiswa from './pages/Profile/ListSiswa';
 
 const theme = createTheme({
   typography: {
@@ -41,7 +42,7 @@ export const routes = [
   { path: "/profile/tentang-sekolah", element: <TentangSekolah />, name: "Tentang Sekolah" },
   { path: "/profile/visi-misi-tujuan", element: <VisiMisi />, name: "Visi, Misi dan Tujuan" },
   { path: "/profile/sdm-sekolah", element: <ListSdm />, name: "SDM Sekolah" },
-  { path: "/profile/statistik-siswa", element: <VisiMisi />, name: "Statistik Siswa" },
+  { path: "/profile/statistik-siswa", element: <ListSiswa />, name: "Statistik Siswa" },
   { path: "/profile/prestasi-sekolah", element: <ListPrestasi />, name: "Prestasi Sekolah" },
   { path: "/profile/ekstrakurikuler", element: <ListPrestasi />, name: "Ekstrakurikuler" },
   { path: "/informasi/agenda", element: <ListAgenda />, name: "Agenda" },
