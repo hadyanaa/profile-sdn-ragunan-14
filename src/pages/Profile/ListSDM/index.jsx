@@ -28,12 +28,7 @@ export default function ListSdm() {
          fetchSDM();
       }
    }, [sdm, fetchSDM]);
-
-   console.log(sdm);
-
    const styleStat = "border-2 rounded-lg p-4 flex flex-col items-center text-justify gap-x-2 hover:scale-105 hover:border-primaryoren hover:bg-mainblue/40 hover:text-primaryoren transition-all duration-300 ease-in-out"
-
-   // type PieSectorDataItem = React.SVGProps<SVGPathElement> & Partial<SectorProps> & PieSectorData;
 
    const dataGender = [
       { name: 'Laki-laki', value: sdm.filter(items => items.gender === "L").length, fill: "#0A4EA0" },
