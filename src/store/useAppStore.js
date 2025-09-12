@@ -51,8 +51,8 @@ export const useAppStore = create((set) => ({
    fetchPrestasi: async () => {
       set({ loading: true, error: null });
       try {
-         const res = await axios.get("http://localhost:8000/api/prestasi");
-         set({ prestasi: res.data.data });
+         const res = await axios.get("https://script.google.com/macros/s/AKfycby_dTOVeJ0JYJgLY0Yv6_mX6uek2lEK1oyT9fQD_Rzz12vzX1UqnFAKQdGFeD7HvM3q/exec");
+         set({ prestasi: res.data });
       } catch (err) {
          set({ error: "Gagal fetch prestasi" });
       } finally {

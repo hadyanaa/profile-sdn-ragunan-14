@@ -1,6 +1,5 @@
 export const CustomTooltip = ({ active, payload, label, isPie }) => {
   const isVisible = active && payload && payload.length;
-  console.log(payload)
   return (
     <div className="text-mainblue rounded-lg p-4 border bg-whiteprime/80" style={{ visibility: isVisible ? 'visible' : 'hidden' }}>
       {isVisible && (

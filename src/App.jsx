@@ -7,11 +7,11 @@ import VisiMisi from './pages/Profile/VisiMisi';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import ListAgenda from './pages/Informasi/ListAgenda';
 import ListPengumuman from './pages/Informasi/ListPengumuman';
-import ListPrestasi from './pages/Profile/ListPrestasi';
 import { ImInsertTemplate } from 'react-icons/im';
 import TentangSekolah from './pages/Profile/TentangSekolah';
 import ListSdm from './pages/Profile/ListSDM';
 import ListSiswa from './pages/Profile/ListSiswa';
+import ListPrestasi from './pages/Profile/ListPrestasi';
 
 const theme = createTheme({
   typography: {
