@@ -27,7 +27,7 @@ export default function VisiMisi() {
         </div>
         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
           <h1 className="font-bold text-2xl mb-4">MISI</h1>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {loading ? 
             <>
             <Skeleton animation="wave" variant="overlay">
@@ -49,7 +49,7 @@ export default function VisiMisi() {
         </div>
         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mb-8 w-full p-8 bg-[url(/assets/image/pattern.png)]">
           <h1 className="font-bold text-2xl mb-4">TUJUAN</h1>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {loading ? 
             <>
             <Skeleton animation="wave" variant="overlay">

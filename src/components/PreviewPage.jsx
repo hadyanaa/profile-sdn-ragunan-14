@@ -15,14 +15,14 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
   title == "Staf Guru" ? "/profile/staf-guru" : "/profile/staf-tendik"
 
   return (
-    <div className={`px-28 py-8 ${pattern ? "bg-[url(/assets/image/pattern.png)] bg-secondblue" : ""}`}>
+    <div className={`px-2 sm:px-12 md:px-28 py-8 ${pattern ? "bg-[url(/assets/image/pattern.png)] bg-secondblue" : ""}`}>
       <div className={`flex flex-row justify-between font-jakarta mb-4 ${pattern ? "text-primaryoren" : ""}`}>
         <div>
-          <h1 className="font-bold text-xl">{title}</h1>
-          <h3 className={`${pattern ? "text-whiteprime" : "text-gray-600"}`}>{desc}</h3>
+          <h1 className="font-semibold text-base lg:font-bold lg:text-xl">{title}</h1>
+          <h3 className={`font-medium text-xs lg:text-base ${pattern ? "text-whiteprime" : "text-gray-600"}`}>{desc}</h3>
         </div>
         <Link to={`${LinkSelengkapnya}`}>
-          <Button variant="contained" size="small">
+          <Button className="text-xs font-light lg:font-semibold lg:text-lg" variant="contained" size="small">
             Lihat Selengkapnya
           </Button>
         </Link>
@@ -36,7 +36,7 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
             key={index}
             className="flex flex-col p-4 items-center"
           >
-            <img className="rounded-lg w-auto h-80" src={drive ? convertDriveUrl(item.url_image) : item.url_image} alt={"foto " + item.nama} />
+            <img className="rounded-lg w-auto h-auto" src={drive ? convertDriveUrl(item.url_image) : item.url_image} alt={"foto " + item.nama} />
             <h4 className={`font-semibold text-lg mt-4 ${pattern ? "text-secondary" : ''}`}>{drive ? item.judul : item.nama}</h4>
             <p className={`text-sm ${pattern ? "text-whiteprime" : 'text-gray-500'}`}>{drive ? item.category : item.status}</p>
           </div>
@@ -49,7 +49,7 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
           >
             <Skeleton animation="wave" variant="overlay">
               <img
-                className="rounded-lg w-auto h-80"
+                className="rounded-lg w-auto h-auto"
                 alt=""
                 src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
               />

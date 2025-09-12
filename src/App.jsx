@@ -12,6 +12,7 @@ import TentangSekolah from './pages/Profile/TentangSekolah';
 import ListSdm from './pages/Profile/ListSDM';
 import ListSiswa from './pages/Profile/ListSiswa';
 import ListPrestasi from './pages/Profile/ListPrestasi';
+import Ekstrakurikuler from './pages/Profile/Ekstrakurikuler';
 
 const theme = createTheme({
   typography: {
@@ -44,7 +45,7 @@ export const routes = [
   { path: "/profile/sdm-sekolah", element: <ListSdm />, name: "SDM Sekolah" },
   { path: "/profile/statistik-siswa", element: <ListSiswa />, name: "Statistik Siswa" },
   { path: "/profile/prestasi-sekolah", element: <ListPrestasi />, name: "Prestasi Sekolah" },
-  { path: "/profile/ekstrakurikuler", element: <ListPrestasi />, name: "Ekstrakurikuler" },
+  { path: "/profile/ekstrakurikuler", element: <Ekstrakurikuler />, name: "Ekstrakurikuler" },
   { path: "/informasi/agenda", element: <ListAgenda />, name: "Agenda" },
   { path: "/informasi/pengumuman", element: <ListPengumuman />, name: "Pengumuman" },
 ];
@@ -59,7 +60,6 @@ function App() {
             {routes.map((r) =>(
               <Route key={r.path} path={r.path} element={r.element} />
             ))}
-            <Route path="/" element={<Home />} />
           </Routes>
         </Layout>
       </ThemeProvider>

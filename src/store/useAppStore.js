@@ -7,6 +7,7 @@ export const useAppStore = create((set) => ({
    sdm: [],
    siswa: [],
    prestasi: [],
+   ekskul: [],
    pengumuman: [],
    agenda: [],
    loading: false,
@@ -55,6 +56,18 @@ export const useAppStore = create((set) => ({
          set({ prestasi: res.data });
       } catch (err) {
          set({ error: "Gagal fetch prestasi" });
+      } finally {
+         set({ loading: false });
+      }
+   },
+
+   fetchEkskul: async () => {
+      set({ loading: true, error: null });
+      try {
+         const res = await axios.get("https://script.google.com/macros/s/AKfycbwHeGGbcQYmvpmKDJBObmUzDNm7JGQfvjbbHv5W0sv0yKtpktkgYQyNw1gtYRUxkD1a/exec");
+         set({ ekskul: res.data });
+      } catch (err) {
+         set({ error: "Gagal fetch Ekskul" });
       } finally {
          set({ loading: false });
       }

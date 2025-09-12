@@ -115,9 +115,9 @@ function Home() {
       </section>
 
       <section id="agenda" >
-        <div className="relative pt-12 p-8 -top-40 -mb-16 w-8/12 mx-auto min-h-[500px] bg-whiteprime shadow-2xl rounded-xl z-[5]">
+        <div className="relative pt-12 p-2 md:p-8 -top-40 -mb-16 w-11/12 md:w-8/12 mx-auto min-h-[500px] bg-whiteprime shadow-2xl rounded-xl z-[5]">
         <div className="">
-          <div className="flex flex-row justify-between mb-4">
+          <div className="flex flex-col md:flex-row justify-between mb-4">
             <h1 className="font-bold text-2xl text-mainblue">Aktivitas Terkini</h1>
             <Link to="/informasi/agenda">
               <Button variant="plain" size="small" sx={{ color: "var(--color-mainblue)"}}>
@@ -182,12 +182,7 @@ function Home() {
 
         </div>
       </section>
-      <PreviewPage 
-        title="Artikel" 
-        desc="List artikel sekolah"
-        items={dataArtikel}
-        drive
-      />
+
       <PreviewPage 
         title="Staf Guru" 
         desc="Staf guru pada SDN Ragunan 14 Pagi"
