@@ -99,7 +99,7 @@ export default function StatistikPrestasi() {
                </div>
             </div>
          </div>
-         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full p-8 bg-[url(/assets/image/pattern.png)]">
+         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
             <h1 className="font-bold text-2xl ">Visualisasi Data</h1>
             <span className="font-medium text-md">Grafik dan diagram distribusi data siswa sekolah</span>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
@@ -178,7 +178,7 @@ export default function StatistikPrestasi() {
                      }
                   </div>
                </div>
-               <div className={styleStat + " col-span-2"}>
+               <div className={styleStat}>
                   <p className="font-extrabold text-xl text-center mb-4">
                      Distribusi Tahun Prestasi
                   </p>

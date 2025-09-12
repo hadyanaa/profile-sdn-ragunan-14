@@ -14,14 +14,68 @@ export default function Prestasi() {
 
    console.log(prestasi)
 
+   const [kategoriFilter, setKategoriFilter] = useState("Semua");
+   const [tingkatFilter, setTingkatFilter] = useState("Semua");
+
+   const kategoriList = ["Semua", "Akademik", "Seni", "Agama", "Olahraga"];
+   const tingkatList = ["Semua", "Lainnya", "Kecamatan", "Kota", "Provinsi", "Nasional", "Internasional"];
+
+   // Filter data dari API
+   const filteredData = prestasi.filter((item) => {
+      const byKategori = kategoriFilter === "Semua" || item.kategori === kategoriFilter;
+      const byTingkat = tingkatFilter === "Semua" || item.tingkat === tingkatFilter;
+      return byKategori && byTingkat;
+   });
+
    return (
       <>
-         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+               <div>
+                  <h1 className="font-bold text-left text-lg mb-2">Kategori Prestasi</h1>
+                  <div className="flex gap-2 flex-wrap">
+                     {kategoriList.map((kategori) => (
+                        <button
+                        key={kategori}
+                        onClick={() => setKategoriFilter(kategori)}
+                        className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer ${
+                           kategoriFilter === kategori
+                              ? "bg-gray-700 text-white hover:bg-gray-900"
+                              : "bg-gray-100 text-gray-700 hover:bg-gray-300"
+                        }`}
+                        >
+                        {kategori}
+                        </button>
+                     ))}
+                  </div>
+               </div>
+               <div>
+                  <h1 className="font-bold text-left text-lg mb-2">Tingkat Prestasi</h1>
+                  <div className="flex gap-2 flex-wrap">
+                     {tingkatList.map((tingkat) => (
+                        <button
+                        key={tingkat}
+                        onClick={() => setTingkatFilter(tingkat)}
+                        className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer ${
+                           tingkatFilter === tingkat
+                              ? "bg-gray-700 text-white hover:bg-gray-900"
+                              : "bg-gray-100 text-gray-700 hover:bg-gray-300"
+                        }`}
+                        >
+                        {tingkat}
+                        </button>
+                     ))}
+                  </div>
+               </div>
+
+            </div>
+         </div>
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             { prestasi.length > 0 ? 
-               prestasi.map((item, index) => (
+               filteredData.map((item, index) => (
                   <Card
                      key={index}
-                     className="w-full h-auto min-h-44 hover:scale-105 transition-all duration-300 ease-in-out"
+                     className="w-full h-auto min-h-44 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn"
                      sx={{ 
                         backgroundImage: "url(/assets/image/pattern.png)", 
                         backgroundColor: "#098fd1",
