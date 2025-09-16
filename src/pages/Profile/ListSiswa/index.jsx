@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import { useState } from "react";
 import CustomTabPanel from "../../../components/CustomTabPanel";
 import StatistikSiswa from "./StatistikSiswa";
+import TelusurAlumni from "./TelusurAlumni";
 
 export default function ListSiswa() {
    const [value, setValue] = useState(0);
@@ -27,7 +28,7 @@ export default function ListSiswa() {
                <StatistikSiswa />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-               Item Two
+               <TelusurAlumni />
             </CustomTabPanel>
          </Box>
       </div>

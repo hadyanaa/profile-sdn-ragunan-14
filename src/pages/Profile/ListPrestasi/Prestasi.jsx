@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, CardActionArea, CardMedia, Chip, Skeleton } from "@mui/material";
+import { Card, CardMedia, Chip, Skeleton } from "@mui/material";
 import { useAppStore } from "../../../store/useAppStore";
 
 export default function Prestasi() {
@@ -54,15 +54,15 @@ export default function Prestasi() {
                   <div className="flex gap-2 flex-wrap">
                      {tingkatList.map((tingkat) => (
                         <button
-                        key={tingkat}
-                        onClick={() => setTingkatFilter(tingkat)}
-                        className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer ${
-                           tingkatFilter === tingkat
-                              ? "bg-gray-700 text-white hover:bg-gray-900"
-                              : "bg-gray-100 text-gray-700 hover:bg-gray-300"
-                        }`}
-                        >
-                        {tingkat}
+                           key={tingkat}
+                           onClick={() => setTingkatFilter(tingkat)}
+                           className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer ${
+                              tingkatFilter === tingkat
+                                 ? "bg-gray-700 text-white hover:bg-gray-900"
+                                 : "bg-gray-100 text-gray-700 hover:bg-gray-300"
+                           }`}
+                           >
+                           {tingkat}
                         </button>
                      ))}
                   </div>
@@ -70,38 +70,46 @@ export default function Prestasi() {
 
             </div>
          </div>
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
             { prestasi.length > 0 ? 
                filteredData.map((item, index) => (
-                  <Card
+                  <div
                      key={index}
-                     className="w-full h-auto min-h-44 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn"
-                     sx={{ 
-                        backgroundImage: "url(/assets/image/pattern.png)", 
-                        backgroundColor: "#098fd1",
-                        textAlign: "center"
-                     }}
+                     className="rounded-lg w-full h-auto min-h-44 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
                   >
-                     <CardActionArea
-                     >
-                        <div className="flex justify-center">
-                           <img src={item.url_image} alt={item.url_image} />
+                     <div className="relative h-64 overflow-hidden">
+                        <img className="rounded-lg border-2 h-full w-full" src={item.foto} alt={item.peringkat} />
+                        <div className="absolute right-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-700 text-white font-bold">
+                           {item.tahun}
                         </div>
-                        <h4 className={`font-semibold text-lg mt-4 text-secondary`}>{item.nama}</h4>
-                        <div className="flex flex-row gap-2">
-                           <Chip
-                              className="text-white" 
-                              variant="outlined"
-                              label={item.jenis}   
-                           />
-                           <Chip 
-                              variant="outlined"
-                              label={item.deskripsi}   
-                           />
+                        <div className="absolute left-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-100 text-gray-700 font-bold">
+                           {item.tingkat}
                         </div>
-                        <p className={`text-sm text-whiteprime`}>{item.status}</p>
-                     </CardActionArea>
-                  </Card>
+                     </div>
+                     <div className="flex flex-col space-y-1.5 p-6 pb-3">
+                        <div className="flex items-center justify-between">
+                           <div className="px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-100 text-gray-700 font-bold">
+                              {item.kategori}
+                           </div>
+                        </div>
+                        <h4 className={`font-semibold text-lg text-secondary`}>{item.peringkat}</h4>
+                     </div>
+                     <div className="p-6 pt-0">
+                        <div className="border-t border-slate-50 pt-4">
+                           <div className="flex items-center justify-between text-sm">
+                              <div className="text-left">
+                                 <p className="font-medium text-slate-700">
+                                    {item.nama}
+                                 </p>
+                                 <p className="text-white/60">
+                                    {item.deskripsi}
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <p className={`text-sm text-whiteprime`}>{item.status}</p>
+                  </div>
                )) :
                Array.from({ length: 4 }).map((_, index) => (
                   <div

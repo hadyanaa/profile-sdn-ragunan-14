@@ -6,6 +6,7 @@ export const useAppStore = create((set) => ({
    visiMisi: [],
    sdm: [],
    siswa: [],
+   alumni: [],
    prestasi: [],
    ekskul: [],
    pengumuman: [],
@@ -44,6 +45,18 @@ export const useAppStore = create((set) => ({
          set({ siswa: res.data });
       } catch (err) {
          set({ error: "Gagal fetch Siswa" });
+      } finally {
+         set({ loading: false });
+      }
+   },
+
+   fetchAlumni: async () => {
+      set({ loading: true, error: null });
+      try {
+         const res = await axios.get("https://script.google.com/macros/s/AKfycbycOcTioD5vi8BHeyh0Wcbrd-KDSzQwYOrMJUSmtZ99rXTnm8K4Npnu53fSiS7Lvgdf/exec");
+         set({ alumni: res.data });
+      } catch (err) {
+         set({ error: "Gagal fetch Alumni" });
       } finally {
          set({ loading: false });
       }
