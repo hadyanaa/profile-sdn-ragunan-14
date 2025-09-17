@@ -60,7 +60,7 @@ export default function Header() {
                   <span className='ml-1'>Ragunan 14 Pagi</span>
                </h1>
             </div>
-            <nav>
+            <nav className='hidden lg:block'>
                <ul className="flex flex-row space-y-2 gap-6">
                <li className={`${styleMenu} ${location.pathname === '/' ? 'text-primaryoren' : ''}`}>
                   <Link to="/">Beranda</Link>
