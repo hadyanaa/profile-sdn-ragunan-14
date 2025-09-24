@@ -53,7 +53,7 @@ export default function TentangSekolah() {
    },
    {
       title: "Email",
-      nama: "sdnragunan14pagi@gmail.com"
+      nama: "sdnragunan14pagi@ gmail.com"
    },
    {
       title: "Instagram",
@@ -95,10 +95,10 @@ export default function TentangSekolah() {
   return(
     <>
       <LogoSD titlePage="Profil" isTitlePage />
-      <div className="flex flex-col gap-8 px-28 font-jakarta">
+      <div className="flex flex-col gap-8 px-8 sm:px-14 md:px-28 font-jakarta">
         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-8 w-full p-8 bg-[url(/assets/image/pattern.png)]">
-          <h1 className="font-bold text-2xl mb-4">Tentang Sekolah Kami</h1>
-          <p className="text-lg bg-mainblue/60 p-4 rounded-md">
+          <h1 className="font-bold text-lg md:text-2xl mb-4">Tentang Sekolah Kami</h1>
+          <p className="text-sm md:text-lg bg-mainblue/60 p-4 rounded-md">
             SD Negeri Ragunan 14 Pagi merupakan salah satu sekolah dasar negeri
 yang memiliki reputasi baik di lingkungan Kecamatan Pasar Minggu. Sekolah ini
 dikenal aktif dalam mengikuti berbagai program peningkatan mutu pendidikan
@@ -111,26 +111,44 @@ pengelolaan satuan pendidikan.
          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <div className="space-y-6">
                <div className="bg-secondblue rounded-lg text-center content-start items-start text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-                  <h1 className="font-bold text-2xl mb-4">Identitas Sekolah</h1>
+                  <h1 className="font-bold text-lg md:text-2xl mb-4">Identitas Sekolah</h1>
                   <Table>
                      <TableBody sx={{color: '#f9fafa' }}>
                         {dataIdentitas.map((i) => (
                            <TableRow>
-                              <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>{i.title}</TableCell>
-                              <TableCell sx={{ color: '#f9fafa'}}>: {i.nama}</TableCell>
+                              <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>
+                                 <p className="text-xs md:text-sm">
+                                    {i.title}
+                                 </p>
+                              </TableCell>
+                              <TableCell sx={{ color: '#f9fafa'}}>
+                                 <p className="text-xs md:text-sm">
+                                 : {i.nama}
+                                 </p>
+                              </TableCell>
                            </TableRow>
                         ))}
                      </TableBody>
                   </Table>
                </div>
-               <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-                  <h1 className="font-bold text-2xl mb-4">Kontak Sekolah</h1>
+               <div className="bg-secondblue rounded-lg text-center content-start items-start text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
+                  <h1 className="font-bold text-lg md:text-2xl mb-4">Kontak Sekolah</h1>
                   <Table>
                      <TableBody>
                         {dataKontak.map((i) => (
                            <TableRow>
-                              <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>{i.title}</TableCell>
-                              <TableCell sx={{ color: '#f9fafa'}}>: {i.nama}</TableCell>
+                              <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>
+                              <p className="text-xs md:text-sm">
+                                 {i.title}
+                              </p>
+                              </TableCell>
+                              <TableCell sx={{ color: '#f9fafa'}}>
+                                 <div className="max-w-[200px] overflow-hidden">
+                                    <p className="text-xs md:text-sm line-clamp-2">
+                                       : {i.nama}
+                                    </p>
+                                 </div>
+                              </TableCell>
                            </TableRow>
                         ))}
                      </TableBody>
@@ -139,20 +157,28 @@ pengelolaan satuan pendidikan.
             </div>
             <div className="space-y-6">
                <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-                  <h1 className="font-bold text-2xl mb-4">Data Pelengkap</h1>
+                  <h1 className="font-bold text-lg md:text-2xl mb-4">Data Pelengkap</h1>
                   <Table>
                      <TableBody>
                         {dataPelengkap.map((i) => (
                            <TableRow>
-                              <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>{i.title}</TableCell>
-                              <TableCell sx={{ color: '#f9fafa'}}>: {i.nama}</TableCell>
+                              <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>
+                                 <p className="text-xs md:text-sm">
+                                    {i.title}
+                                 </p>
+                              </TableCell>
+                              <TableCell sx={{ color: '#f9fafa'}}>
+                              <p className="text-xs md:text-sm">
+                                 : {i.nama}
+                              </p>
+                              </TableCell>
                            </TableRow>
                         ))}
                      </TableBody>
                   </Table>
                </div>
                <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-                  <h1 className="font-bold text-2xl mb-4">Peta Lokasi</h1>
+                  <h1 className="font-bold text-lg md:text-2xl mb-4">Peta Lokasi</h1>
                   <iframe
                      title="map"
                      src={src}
