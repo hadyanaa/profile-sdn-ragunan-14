@@ -6,7 +6,7 @@ export default function LogoSD({titlePage, isTitlePage}){
          <div className='flex content-center items-center my-auto gap-2'>
             { titlePage ? '' 
             : <img src="/assets/image/logo-kawan-belajar-bged.png" alt="Logo Kawan Belajar" className='w-auto h-8' />}
-            <h1 className="text-xl font-medium font-jakarta">
+            <h1 className="text-lg md:text-xl font-medium text-center font-jakarta">
                <span className='text-whiteprime mr-1'>{titlePage}</span>
                <span className='text-primaryoren font-bold'>SDN</span>
                <span className='text-whiteprime ml-1'>Ragunan 14 Pagi</span>

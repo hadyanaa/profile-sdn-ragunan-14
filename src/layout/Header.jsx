@@ -147,10 +147,26 @@ export default function Header() {
             <div className='relative block md:hidden transition-all duration-300 ease-out' ref={dropdownRefMenuMobile}>
                <button
                onClick={toggleDropdownMenuMobile} 
-               className='relative w-11 h-11 rounded-xl transition-all duration-300 ease-out bg-white/90 text-slate-700 hover:bg-gradient-to-br hover:from-primary/10 hover:to-blue-600/5 hover:text-primary border border-slate-200/50
+               className='relative w-11 h-11 rounded-xl transition-all duration-300 ease-out bg-transparent/80 text-slate-700 hover:bg-gradient-to-br hover:from-primary/10 hover:to-blue-600/5 hover:text-primary border-2 border-whiteprime/60
                backdrop-blur-md hover:scale-105 active:scale-95 hover:shadow-lg'>
-                  <div class="w-6 h-6 transition-transform duration-300 " bis_skin_checked="1">
-                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                  <div className='absolute inset-0 flex items-center justify-center'>
+                     <div className={`w-6 h-6 transition-transform duration-300 text-whiteprime/60 ${isDropdownMenuMobileOpen ? 'rotate-90' : 'rotate-180'}`} bis_skin_checked="1">
+                        {!isDropdownMenuMobileOpen ? (
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                        ) : (
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="w-6 h-6 transition-transform duration-300 rotate-180"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                           >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                           </svg>
+                        )
+
+                        }
+                     </div>
                   </div>
                </button>
                {isDropdownMenuMobileOpen && (
