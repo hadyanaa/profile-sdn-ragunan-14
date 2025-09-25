@@ -42,9 +42,9 @@ export default function TableEkstrakurikuler() {
 
    return (
    <>
-      <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full p-8 bg-[url(/assets/image/pattern.png)]">
-         <h1 className="font-bold text-2xl ">Data Ekstrakurikuler</h1>
-         <span className="font-medium text-md">Daftar lengkap data ekstrakurikuler sekolah</span>
+      <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full px-4 sm:px-8 p-8 bg-[url(/assets/image/pattern.png)]">
+         <h1 className="font-bold text-xl md:text-2xl ">Data Ekstrakurikuler</h1>
+         <span className="font-medium text-sm md:text-md">Daftar lengkap data ekstrakurikuler sekolah</span>
          <Paper sx={{ height: 450, width: '100%', marginTop: '16px' }}>
             <DataGrid
                rows={dataEkskul}

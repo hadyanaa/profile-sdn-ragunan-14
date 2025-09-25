@@ -16,10 +16,10 @@ export default function Ekstrakurikuler() {
    return (
    <>
       <LogoSD titlePage="Ekstrakurikuler" isTitlePage />
-      <div className="flex flex-col gap-8 px-28 font-jakarta mb-8">
+      <div className="flex flex-col gap-8 px-4 sm:px-14 md:px-28 font-jakarta mb-8">
          <Box sx={{ width: '100%', marginTop: '4px' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tabs value={value} variant="scrollable" onChange={handleChange} aria-label="basic tabs example">
                <Tab label="Visi Misi Ekstrakurikuler" />
                <Tab label="Daftar Ekstrakurikuler" />
             </Tabs>
