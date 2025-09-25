@@ -57,9 +57,9 @@ export default function TableSDM() {
 
    return (
    <>
-      <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full p-8 bg-[url(/assets/image/pattern.png)]">
-         <h1 className="font-bold text-2xl ">Data Guru & Tenaga Kependidikan</h1>
-         <span className="font-medium text-md">Daftar lengkap data guru dan tenaga kependidikan sekolah</span>
+      <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full px-4 sm:px-8 p-8 bg-[url(/assets/image/pattern.png)]">
+         <h1 className="font-bold text-xl md:text-2xl">Data Guru & Tenaga Kependidikan</h1>
+         <span className="font-medium text-sm md:text-md">Daftar lengkap data guru dan tenaga kependidikan sekolah</span>
          <Paper sx={{ height: 600, width: '100%', marginTop: '16px' }}>
             <DataGrid
                rows={sdm}

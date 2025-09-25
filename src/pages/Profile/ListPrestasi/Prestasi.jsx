@@ -70,7 +70,7 @@ export default function Prestasi() {
 
             </div>
          </div>
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
             { prestasi.length > 0 ? 
                filteredData.map((item, index) => (
                   <div
@@ -78,7 +78,8 @@ export default function Prestasi() {
                      className="rounded-lg w-full h-auto min-h-44 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
                   >
                      <div className="relative h-64 overflow-hidden">
-                        <img className="rounded-lg border-2 h-full w-full" src={item.foto} alt={item.peringkat} />
+                        <img className="rounded-lg border h-full w-full" src={item.foto ? item.foto : '/assets/image/prestasi-no-image.png'} alt={item.peringkat} 
+                           onError={(e) => {e.currentTarget.src = "/assets/image/prestasi-no-image.png";}}/>
                         <div className="absolute right-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-700 text-white font-bold">
                            {item.tahun}
                         </div>
@@ -98,10 +99,10 @@ export default function Prestasi() {
                         <div className="border-t border-slate-50 pt-4">
                            <div className="flex items-center justify-between text-sm">
                               <div className="text-left">
-                                 <p className="font-medium text-slate-700">
+                                 <p className="font-bold text-slate-700">
                                     {item.nama}
                                  </p>
-                                 <p className="text-white/60">
+                                 <p className="font-normal text-white/80">
                                     {item.deskripsi}
                                  </p>
                               </div>

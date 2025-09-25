@@ -62,13 +62,13 @@ export default function Header() {
 
    return(
       <>
-         <header className={`fixed top-0 z-50 w-full flex flex-row justify-between text-whiteprime py-4 px-10 lg:px-28 
+         <header className={`fixed top-0 z-50 w-full flex flex-row justify-between text-whiteprime py-4 px-6 md:px-16 lg:px-28 
             ${location.pathname === homePath ? isScrolled ?  'scrolled-header' : 'backdrop-blur-2xl' : 'scrolled-header' }
             `}>
             <div className='flex content-center items-center my-auto gap-2'>
                {/* <img src="/assets/image/dki-jakarta-logo.jpg" alt="Logo Jaya Raya" className='w-auto h-8' /> */}
                <img src="/assets/image/logo-kawan-belajar-bged.png" alt="Logo Kawan Belajar" className='w-auto h-8' />
-               <h1 className="text-xl font-medium font-jakarta">
+               <h1 className="text-base md:text-xl font-medium font-jakarta">
                   <span className='text-primaryoren font-bold'>SDN</span>
                   <span className='ml-1'>Ragunan 14 Pagi</span>
                </h1>

@@ -17,10 +17,10 @@ export default function ListSdm() {
    return (
    <>
       <LogoSD titlePage="Data Guru & Tenaga Kependidikan" isTitlePage />
-      <div className="flex flex-col gap-8 px-28 font-jakarta mb-8">
+      <div className="flex flex-col gap-8 px-4 xs:px-8 sm:px-14 md:px-28 font-jakarta mb-8">
          <Box sx={{ width: '100%', marginTop: '4px' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+            <Tabs value={value} variant="scrollable" onChange={handleChange} aria-label="basic tabs example">
                <Tab label="Data dan Statistik" />
                <Tab label="Struktur Organisasi" />
             </Tabs>

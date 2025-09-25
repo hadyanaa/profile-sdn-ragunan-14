@@ -143,7 +143,7 @@ pengelolaan satuan pendidikan.
                               </p>
                               </TableCell>
                               <TableCell sx={{ color: '#f9fafa'}}>
-                                 <div className="max-w-[200px] overflow-hidden">
+                                 <div className="max-w-[300px] overflow-hidden">
                                     <p className="text-xs md:text-sm line-clamp-2">
                                        : {i.nama}
                                     </p>

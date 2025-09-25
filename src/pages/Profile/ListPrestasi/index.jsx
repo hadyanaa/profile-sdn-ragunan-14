@@ -16,7 +16,7 @@ export default function ListPrestasi() {
    return (
    <>
       <LogoSD titlePage="Prestasi Siswa" isTitlePage />
-      <div className="flex flex-col gap-8 px-28 font-jakarta">
+      <div className="flex flex-col gap-8 px-4 xs:px-8 sm:px-14 md:px-28 font-jakarta">
          <StatistikPrestasi />
          <Prestasi />
       </div>

@@ -52,9 +52,9 @@ export default function StatistikSiswa() {
    return (
       <>
          <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-            <h1 className="font-bold text-2xl ">Statistik Umum</h1>
-            <span className="font-medium text-md">Ringkasan data siswa sekolah</span>
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 mt-4">
+            <h1 className="font-bold text-xl md:text-2xl">Statistik Umum</h1>
+            <span className="font-medium text-sm md:text-md">Ringkasan data siswa sekolah</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
                <div className={styleStat}>
                   <p className="font-extrabold text-4xl">
                      {loading ?
@@ -94,12 +94,12 @@ export default function StatistikSiswa() {
             </div>
          </div>
          <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full p-8 bg-[url(/assets/image/pattern.png)]">
-            <h1 className="font-bold text-2xl ">Visualisasi Data</h1>
-            <span className="font-medium text-md">Grafik dan diagram distribusi data siswa sekolah</span>
+            <h1 className="font-bold text-xl md:text-2xl">Visualisasi Data</h1>
+            <span className="font-medium text-sm md:text-md">Grafik dan diagram distribusi data siswa sekolah</span>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-               <div className={styleStat + " h-80"}>
-                  <div className="h-60">
-                     <p className="font-extrabold text-xl text-center mb-4">
+               <div className={styleStat + " h-64 md:h-80"}>
+                  <div className="h-52 md:h-60">
+                     <p className="font-extrabold text-lg md:text-xl text-center mb-0 sm:mb-1 md:mb-4">
                         Distribusi Gender
                      </p>
                      {loading ?
@@ -119,9 +119,9 @@ export default function StatistikSiswa() {
                      }
                   </div>
                </div>
-               <div className={styleStat + " h-80"}>
-                  <div className="h-60">
-                     <p className="font-extrabold text-xl text-center mb-4">
+               <div className={styleStat + " h-64 md:h-80"}>
+                  <div className="h-52 md:h-60">
+                     <p className="font-extrabold text-lg md:text-xl text-center mb-0 sm:mb-1 md:mb-4">
                         Distribusi Agama
                      </p>
                      {loading ?
@@ -142,10 +142,10 @@ export default function StatistikSiswa() {
                   </div>
                </div>
                <div className={styleStat}>
-                  <p className="font-extrabold text-xl text-center mb-4">
+                  <p className="font-extrabold text-lg md:text-xl text-center mb-0 sm:mb-1 md:mb-4">
                      Distribusi Usia
                   </p>
-                  <div className="font-medium text-md w-full h-72 text-center rounded-2xl">
+                  <div className="font-medium text-sm md:text-md w-full h-56 md:h-72 text-center rounded-2xl">
                      {loading ?
                         <Skeleton animation="wave" variant="overlay">
                         </Skeleton>
@@ -155,7 +155,7 @@ export default function StatistikSiswa() {
                            margin={{
                               top: 5,
                               right: 30,
-                              left: 20,
+                              left: -20,
                               bottom: 5,
                            }}
                            width={10} height={300} data={dataUsia}>
@@ -168,10 +168,10 @@ export default function StatistikSiswa() {
                   </div>
                </div>
                <div className={styleStat}>
-                  <p className="font-extrabold text-xl text-center mb-4">
+                  <p className="font-extrabold text-lg md:text-xl text-center mb-0 sm:mb-1 md:mb-4">
                      Jumlah Murid Per Kelas
                   </p>
-                  <div className="font-medium text-md w-full h-72">
+                  <div className="font-medium text-md w-full h-56 md:h-72">
                      {loading ?
                         <Skeleton animation="wave" variant="overlay">
                         </Skeleton>
@@ -183,8 +183,8 @@ export default function StatistikSiswa() {
                               data={dspr}
                               margin={{
                                  top: 5,
-                                 right: 30,
-                                 left: 20,
+                                 right:10,
+                                 left: -30,
                                  bottom: 5,
                               }}
                            >
