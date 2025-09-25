@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import LogoSD from "../../components/LogoSD";
 import { Skeleton, Table, TableBody, TableCell, TableRow } from "@mui/material";
+import { useAppStore } from "../../store/useAppStore";
 
 export default function TentangSekolah() {
+   const { loading } = useAppStore();
+   
    const lat = -6.298173640926657;
    const lng = 106.82610639533858;
    const src = `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
@@ -94,6 +97,15 @@ export default function TentangSekolah() {
 
   return(
     <>
+      { loading ? (
+         <>
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+               <img className="w-32 md:w-auto h-auto" src="/assets/video/Rippletransparent.gif" alt="" />
+            </div>
+         </>
+      ) : (
+         <></>
+      )}
       <LogoSD titlePage="Profil" isTitlePage />
       <div className="flex flex-col gap-8 px-8 sm:px-14 md:px-28 font-jakarta">
         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-8 w-full p-8 bg-[url(/assets/image/pattern.png)]">

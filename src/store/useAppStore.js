@@ -13,16 +13,27 @@ export const useAppStore = create((set) => ({
    agenda: [],
    loading: false,
    error: null,
+   progress: 0,
 
    fetchVisiMisi: async () => {
-      set({ loading: true, error: null });
+      set({ loading: true, error: null, progress: 0 });
+      let fakeProgress = 0;
+      const interval = setInterval(() => {
+         fakeProgress += 10;
+         if (fakeProgress < 90) {
+            set({ progress: fakeProgress });
+         } else {
+            clearInterval(interval);
+         }
+      }, 200);
       try {
          const res = await axios.get("https://script.google.com/macros/s/AKfycbymbySyX9CBn74tgENUNc8bPXNXNFTTsokzBlay9Pys6Umg5SntwvXKTh5es1cLOiim/exec");
-         set({ visiMisi: res.data });
+         set({ visiMisi: res.data, progress: 100 });
       } catch (err) {
          set({ error: "Gagal fetch visi misi" });
       } finally {
-         set({ loading: false });
+         clearInterval(interval);
+         setTimeout(()=> set({ loading: false, progress: 0 }), 500);
       }
    },
 
