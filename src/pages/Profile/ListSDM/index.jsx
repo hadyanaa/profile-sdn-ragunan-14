@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { useState } from "react";
 import CustomTabPanel from "../../../components/CustomTabPanel";
 import { useAppStore } from "../../../store/useAppStore";
+import StrukturOrganisasi from "./StrukturSekolah";
 
 
 export default function ListSdm() {
@@ -42,7 +43,7 @@ export default function ListSdm() {
                <TableSDM />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-            Item Two
+               <StrukturOrganisasi />
             </CustomTabPanel>
          </Box>
       </div>
