@@ -6,6 +6,7 @@ import { useState } from "react";
 import CustomTabPanel from "../../../components/CustomTabPanel";
 import { useAppStore } from "../../../store/useAppStore";
 import Agenda from "./AgendaSekolah";
+import KalenderAkademik from "./KalenderAkademik";
 
 export default function ListAgenda() {
    const [value, setValue] = useState(0);
@@ -39,7 +40,7 @@ export default function ListAgenda() {
                <Agenda />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
-               Ini Kalender
+               <KalenderAkademik />
             </CustomTabPanel>
          </Box>
       </div>

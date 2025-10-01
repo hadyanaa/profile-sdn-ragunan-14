@@ -11,6 +11,7 @@ export const useAppStore = create((set) => ({
    ekskul: [],
    pengumuman: [],
    agenda: [],
+   kalender: [],
    loading: false,
    error: null,
    progress: 0,
@@ -116,6 +117,18 @@ export const useAppStore = create((set) => ({
          set({ agenda: res.data });
       } catch (err) {
          set({ error: "Gagal fetch agenda" });
+      } finally {
+         set({ loading: false });
+      }
+   },
+
+   fetchAgenda: async () => {
+      set({ loading: true, error: null });
+      try {
+         const res = await axios.get("https://script.google.com/macros/s/AKfycbzCEd3f16F513Z3TmfUNEG1Dk7F4D-SCpYjg-wj-c79yNmNVLZ8V1bn0u5t0-Qu-K0/exec");
+         set({ kalender: res.data });
+      } catch (err) {
+         set({ error: "Gagal fetch kalender" });
       } finally {
          set({ loading: false });
       }

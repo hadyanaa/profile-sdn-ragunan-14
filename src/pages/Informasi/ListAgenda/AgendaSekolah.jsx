@@ -12,7 +12,6 @@ export default function Agenda() {
       }
    }, [agenda, fetchAgenda]);
 
-   console.log(agenda);
 
    const [kategoriFilter, setKategoriFilter] = useState("Semua");
    // const [tingkatFilter, setTingkatFilter] = useState("Semua");
