@@ -112,8 +112,8 @@ export const useAppStore = create((set) => ({
    fetchAgenda: async () => {
       set({ loading: true, error: null });
       try {
-         const res = await axios.get("http://localhost:8000/api/agenda");
-         set({ agenda: res.data.data });
+         const res = await axios.get("https://script.google.com/macros/s/AKfycbwHZTdj2DdUzOQ-CSxKkXL7hgiCSppYoOvoRd20GfIwvXnQdtpuQ72l7LnQsTxX0y3a/exec");
+         set({ agenda: res.data });
       } catch (err) {
          set({ error: "Gagal fetch agenda" });
       } finally {

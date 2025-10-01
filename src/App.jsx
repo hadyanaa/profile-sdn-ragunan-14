@@ -5,7 +5,6 @@ import Artikel from './pages/Artikel';
 import Layout from './layout/Layout';
 import VisiMisi from './pages/Profile/VisiMisi';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import ListAgenda from './pages/Informasi/ListAgenda';
 import ListPengumuman from './pages/Informasi/ListPengumuman';
 import { ImInsertTemplate } from 'react-icons/im';
 import ListSdm from './pages/Profile/ListSDM';
@@ -13,6 +12,7 @@ import ListSiswa from './pages/Profile/ListSiswa';
 import ListPrestasi from './pages/Profile/ListPrestasi';
 import Ekstrakurikuler from './pages/Profile/Ekstrakurikuler';
 import TentangSekolah from './pages/Profile/TentangSekolah';
+import ListAgenda from './pages/Informasi/ListAgenda';
 
 const theme = createTheme({
   typography: {
