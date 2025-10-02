@@ -3,7 +3,6 @@ import { Card, CardMedia, Chip, Skeleton } from "@mui/material";
 import { useAppStore } from "../../../store/useAppStore";
 import convertDriveUrl from "../../../functions/DriveImage";
 import { formatTanggal } from "../../../functions/FormatTanggal";
-import PdfWithToolbar from "./PdfView";
 import PDFViewer, { DownloadPdf } from "../../../components/PdfPreview";
 
 export default function Pengumuman() {
@@ -19,9 +18,6 @@ export default function Pengumuman() {
          fetchPengumuman();
       }
    }, []);
-
-   console.log(pengumuman)
-
 
    const [kategoriFilter, setKategoriFilter] = useState("Semua");
    // const [tingkatFilter, setTingkatFilter] = useState("Semua");
@@ -136,7 +132,6 @@ export default function Pengumuman() {
                   ))
                }
             </div>
-            {/* <PdfWithToolbar /> */}
             <div className="col-span-3">
                <PDFViewer fileId={pdfUrl} />
             </div>

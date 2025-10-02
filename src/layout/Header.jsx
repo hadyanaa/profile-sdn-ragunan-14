@@ -139,7 +139,7 @@ export default function Header() {
                      </div>
                   </li>
                   <li className={`${styleMenu}`}>
-                     <Link to="/contact">Contact</Link>
+                     <Link to="/kontak">Kontak</Link>
                   </li>
                </ul>
             </nav>
@@ -234,8 +234,8 @@ export default function Header() {
                               }
                            </div>
                         </li>
-                        <li className={`${styleSubMenu} z-auto ${location.pathname === '/contact' ? styleSubMenuActive : ''}`}>
-                           <Link to="/contact">Contact</Link>
+                        <li className={`${styleSubMenu} z-auto ${location.pathname === '/kontak' ? styleSubMenuActive : ''}`}>
+                           <Link to="/kontak">Kontak</Link>
                         </li>
                      </ul>
                   </nav>
