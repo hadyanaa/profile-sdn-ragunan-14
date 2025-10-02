@@ -14,19 +14,9 @@ export const useAppStore = create((set) => ({
    kalender: [],
    loading: false,
    error: null,
-   progress: 0,
 
    fetchVisiMisi: async () => {
       set({ loading: true, error: null, progress: 0 });
-      let fakeProgress = 0;
-      const interval = setInterval(() => {
-         fakeProgress += 10;
-         if (fakeProgress < 90) {
-            set({ progress: fakeProgress });
-         } else {
-            clearInterval(interval);
-         }
-      }, 200);
       try {
          const res = await axios.get("https://script.google.com/macros/s/AKfycbymbySyX9CBn74tgENUNc8bPXNXNFTTsokzBlay9Pys6Umg5SntwvXKTh5es1cLOiim/exec");
          set({ visiMisi: res.data, progress: 100 });
@@ -101,8 +91,8 @@ export const useAppStore = create((set) => ({
    fetchPengumuman: async () => {
       set({ loading: true, error: null });
       try {
-         const res = await axios.get("http://localhost:8000/api/pengumuman");
-         set({ pengumuman: res.data.data });
+         const res = await axios.get("https://script.google.com/macros/s/AKfycbyUa3X4iUR4VTK9COpDchzOIE7xRla9nov8Y-qTW1s3a7VRBh9Z7q6Ex-K8NcV_8Ltz/exec");
+         set({ pengumuman: res.data });
       } catch (err) {
          set({ error: "Gagal fetch pengumuman" });
       } finally {
@@ -117,12 +107,13 @@ export const useAppStore = create((set) => ({
          set({ agenda: res.data });
       } catch (err) {
          set({ error: "Gagal fetch agenda" });
+         console.error(err)
       } finally {
          set({ loading: false });
       }
    },
 
-   fetchAgenda: async () => {
+   fetchKalender: async () => {
       set({ loading: true, error: null });
       try {
          const res = await axios.get("https://script.google.com/macros/s/AKfycbzCEd3f16F513Z3TmfUNEG1Dk7F4D-SCpYjg-wj-c79yNmNVLZ8V1bn0u5t0-Qu-K0/exec");

@@ -1,7 +1,5 @@
   import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import About from './pages/About';
-import Artikel from './pages/Artikel';
 import Layout from './layout/Layout';
 import VisiMisi from './pages/Profile/VisiMisi';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';

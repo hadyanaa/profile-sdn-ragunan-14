@@ -3,17 +3,17 @@ import { Card, CardMedia, Chip, Skeleton } from "@mui/material";
 import { useAppStore } from "../../../store/useAppStore";
 import convertDriveUrl from "../../../functions/DriveImage";
 
-export default function Agenda() {
-   const { agenda, loading, fetchAgenda } = useAppStore();
+export default function Pengumuman() {
+   const { pengumuman, loading, fetchPengumuman } = useAppStore();
 
    useEffect(() => {
-      if (!agenda || agenda?.length === 0) {
+      if (!pengumuman || pengumuman?.length === 0) {
          // hanya fetch kalau data belum ada
-         fetchAgenda();
+         fetchPengumuman();
       }
    }, []);
 
-   console.log(agenda)
+   console.log(pengumuman)
 
 
    const [kategoriFilter, setKategoriFilter] = useState("Semua");
@@ -23,7 +23,7 @@ export default function Agenda() {
    // const tingkatList = ["Semua", "Lainnya", "Kecamatan", "Kota", "Provinsi", "Nasional", "Internasional"];
 
    // Filter data dari API
-   const filteredData = agenda?.filter((item) => {
+   const filteredData = pengumuman?.filter((item) => {
       const byKategori = kategoriFilter === "Semua" || item.kategori === kategoriFilter;
       // const byTingkat = tingkatFilter === "Semua" || item.tingkat === tingkatFilter;
       return byKategori;
@@ -43,7 +43,7 @@ export default function Agenda() {
          <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 mb-4 bg-[url(/assets/image/pattern.png)]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                <div className="col-span-2">
-                  <h1 className="font-bold text-left text-lg mb-2">Kategori Agenda</h1>
+                  <h1 className="font-bold text-left text-lg mb-2">Kategori pengumuman</h1>
                   <div className="flex gap-2 flex-wrap">
                      {kategoriList.map((kategori) => (
                         <button
@@ -64,7 +64,7 @@ export default function Agenda() {
             </div>
          </div>
          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-            { agenda.length > 0 ? 
+            { pengumuman.length > 0 ? 
                filteredData.map((item, index) => (
                   <div
                      key={index}
@@ -72,7 +72,7 @@ export default function Agenda() {
                   >
                      <div className="relative h-64 overflow-hidden">
                         <img className="rounded-lg border h-full w-full" src={item.foto ? convertDriveUrl(item.foto) : '/assets/image/agenda-no-image.png'} alt={item.peringkat} 
-                           onError={(e) => {e.currentTarget.src = "/assets/image/agenda-no-image.png";}}/>
+                           onError={(e) => {e.currentTarget.src = "/assets/image/pengumuman-no-image.png";}}/>
                         <div className="absolute right-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-700 text-white font-bold">
                            {item.tahun}
                         </div>
