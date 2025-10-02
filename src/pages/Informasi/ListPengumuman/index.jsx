@@ -14,9 +14,10 @@ export default function ListPengumuman() {
    };
    return (
    <>
-      <LogoSD titlePage="Pengumuman" isTitlePage />
+      <LogoSD titlePage="Informasi" isTitlePage />
       <div className="flex flex-col gap-8 px-4 sm:px-8 md:px-28 font-jakarta mb-8">
-         <Box sx={{ width: '100%', marginTop: '4px' }}>
+         <Pengumuman />
+         {/* <Box sx={{ width: '100%', marginTop: '4px' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} variant="scrollable" onChange={handleChange} aria-label="basic tabs example">
                <Tab label="Pengumuman Sekolah" />
@@ -24,12 +25,11 @@ export default function ListPengumuman() {
             </Tabs>
             </Box>
             <CustomTabPanel value={value} index={0}>
-               <Pengumuman />
             </CustomTabPanel>
             <CustomTabPanel value={value} index={1}>
                Ini Informasi
             </CustomTabPanel>
-         </Box>
+         </Box> */}
       </div>
    </>
   );

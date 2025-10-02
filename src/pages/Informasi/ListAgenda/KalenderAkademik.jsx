@@ -4,22 +4,11 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import idLocale from "@fullcalendar/core/locales/id";
 import { useEffect, useState } from "react";
 import { useAppStore } from "../../../store/useAppStore";
+import { formatTanggal } from "../../../functions/FormatTanggal";
 
 export default function KalenderAkademik() {
    const { kalender, loading, error, fetchKalender } = useAppStore();
    const [selectedEvent, setSelectedEvent] = useState(null);
-
-   const formatTanggal = (dateInput) => {
-      if (!dateInput) return "";
-      const date = dateInput instanceof Date ? dateInput : new Date(dateInput);
-      const options = {
-         weekday: "long", // Senin
-         day: "numeric",  // 13
-         month: "long",   // Juli
-         year: "numeric"  // 2025
-      };
-      return date.toLocaleDateString("id-ID", options);
-   };
 
    useEffect(() => {
       if (kalender?.length === 0) {

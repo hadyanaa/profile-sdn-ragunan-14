@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Card, CardMedia, Chip, Skeleton } from "@mui/material";
 import { useAppStore } from "../../../store/useAppStore";
 import convertDriveUrl from "../../../functions/DriveImage";
+import { formatTanggal } from "../../../functions/FormatTanggal";
+import PdfWithToolbar from "./PdfView";
 
 export default function Pengumuman() {
    const { pengumuman, loading, fetchPengumuman } = useAppStore();
@@ -19,7 +21,7 @@ export default function Pengumuman() {
    const [kategoriFilter, setKategoriFilter] = useState("Semua");
    // const [tingkatFilter, setTingkatFilter] = useState("Semua");
 
-   const kategoriList = ["Semua", "Akademik", "Kesiswaan", "Keagamaan", "Nasional", "Sekolah", "Sosial", "Khusus"];
+   const kategoriList = ["Semua", "Akademik", "Prestasi", "Kegiatan Sekolah", "SPMB", "Beasiswa", "Kebijakan", "Umum"];
    // const tingkatList = ["Semua", "Lainnya", "Kecamatan", "Kota", "Provinsi", "Nasional", "Internasional"];
 
    // Filter data dari API
@@ -40,10 +42,10 @@ export default function Pengumuman() {
          ) : (
             <></>
          )}
-         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 mb-4 bg-[url(/assets/image/pattern.png)]">
+         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 mb-4 mt-8 bg-[url(/assets/image/pattern.png)]">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                <div className="col-span-2">
-                  <h1 className="font-bold text-left text-lg mb-2">Kategori pengumuman</h1>
+                  <h1 className="font-bold text-left text-lg mb-2">Kategori Informasi</h1>
                   <div className="flex gap-2 flex-wrap">
                      {kategoriList.map((kategori) => (
                         <button
@@ -55,7 +57,7 @@ export default function Pengumuman() {
                               : "bg-gray-100 text-gray-700 hover:bg-gray-300"
                         }`}
                         >
-                        {kategori}
+                        {kategori === "Semua" ? pengumuman.length + " | " + kategori : pengumuman.filter((item) => item.kategori === kategori).length + " | " + kategori}
                         </button>
                      ))}
                   </div>
@@ -63,55 +65,52 @@ export default function Pengumuman() {
 
             </div>
          </div>
-         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-            { pengumuman.length > 0 ? 
-               filteredData.map((item, index) => (
-                  <div
-                     key={index}
-                     className="rounded-lg w-full h-auto min-h-44 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
-                  >
-                     <div className="relative h-64 overflow-hidden">
-                        <img className="rounded-lg border h-full w-full" src={item.foto ? convertDriveUrl(item.foto) : '/assets/image/agenda-no-image.png'} alt={item.peringkat} 
-                           onError={(e) => {e.currentTarget.src = "/assets/image/pengumuman-no-image.png";}}/>
-                        <div className="absolute right-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-700 text-white font-bold">
-                           {item.tahun}
+         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4">
+            <div>
+               { pengumuman.length > 0 ? 
+                  filteredData.map((item, index) => (
+                     <div
+                        key={index}
+                        className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
+                     >
+                        <div className="flex flex-row overflow-hidden">
+                           <img className="rounded-lg h-14 w-auto p-2 my-auto" src={'/assets/image/pdf.png'} alt={item.peringkat} />
+                           <h4 className="text-left pt-2 border-b text-lg font-bold text-secondary line-clamp-2 w-full">
+                              {item.judul}
+                           </h4>
                         </div>
-                        <div className="absolute left-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-100 text-gray-700 font-bold">
-                           {item.kategori}
-                        </div>
-                     </div>
-                     <div className="p-6 pt-0">
-                        <div className="pt-4">
+                        <div className="p-4">
                            <div className="flex items-center justify-between text-sm">
-                              <div className="text-justify w-full">
-                                 <h4 className="text-center mb-4 border-b text-lg font-bold text-secondary line-clamp-2">
-                                    {item.judul}
-                                 </h4>
-                                 <p className="font-normal text-white line-clamp-3">
-                                    {item.deskripsi}
+                              <p className="font-normal text-justify text-white">
+                                 {item.kategori}
+                              </p>
+                              <div>
+                                 <p className="text-white">
+                                    {formatTanggal(item.tanggal)}
                                  </p>
                               </div>
                            </div>
                         </div>
+                        <p className={`text-sm text-whiteprime`}>{item.status}</p>
                      </div>
-                     <p className={`text-sm text-whiteprime`}>{item.status}</p>
-                  </div>
-               )) :
-               Array.from({ length: 4 }).map((_, index) => (
-                  <div
-                     key={index}
-                     className="flex flex-col p-4 items-center"
-                     >
-                     <Skeleton animation="wave" variant="overlay">
-                        <img
-                           className="rounded-lg w-auto h-40"
-                           alt=""
-                           src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
-                        />
-                     </Skeleton>
-                  </div>
-               ))
-            }
+                  )) :
+                  Array.from({ length: 4 }).map((_, index) => (
+                     <div
+                        key={index}
+                        className="flex flex-col p-4 items-center"
+                        >
+                        <Skeleton animation="wave" variant="overlay">
+                           <img
+                              className="rounded-lg w-auto h-40"
+                              alt=""
+                              src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+                           />
+                        </Skeleton>
+                     </div>
+                  ))
+               }
+            </div>
+            <PdfWithToolbar />
          </div>
       </>
    )
