@@ -4,9 +4,14 @@ import { useAppStore } from "../../../store/useAppStore";
 import convertDriveUrl from "../../../functions/DriveImage";
 import { formatTanggal } from "../../../functions/FormatTanggal";
 import PdfWithToolbar from "./PdfView";
+import PDFViewer, { DownloadPdf } from "../../../components/PdfPreview";
 
 export default function Pengumuman() {
    const { pengumuman, loading, fetchPengumuman } = useAppStore();
+   const [ pdfUrl, setPdfUrl ]= useState("");
+   const handlePdfClick = (url) => {
+      setPdfUrl(url);
+   }
 
    useEffect(() => {
       if (!pengumuman || pengumuman?.length === 0) {
@@ -27,7 +32,6 @@ export default function Pengumuman() {
    // Filter data dari API
    const filteredData = pengumuman?.filter((item) => {
       const byKategori = kategoriFilter === "Semua" || item.kategori === kategoriFilter;
-      // const byTingkat = tingkatFilter === "Semua" || item.tingkat === tingkatFilter;
       return byKategori;
    }) ?? {};
 
@@ -68,32 +72,54 @@ export default function Pengumuman() {
          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4">
             <div>
                { pengumuman.length > 0 ? 
-                  filteredData.map((item, index) => (
-                     <div
-                        key={index}
-                        className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
-                     >
-                        <div className="flex flex-row overflow-hidden">
-                           <img className="rounded-lg h-14 w-auto p-2 my-auto" src={'/assets/image/pdf.png'} alt={item.peringkat} />
-                           <h4 className="text-left pt-2 border-b text-lg font-bold text-secondary line-clamp-2 w-full">
-                              {item.judul}
-                           </h4>
-                        </div>
-                        <div className="p-4">
-                           <div className="flex items-center justify-between text-sm">
-                              <p className="font-normal text-justify text-white">
-                                 {item.kategori}
-                              </p>
-                              <div>
-                                 <p className="text-white">
-                                    {formatTanggal(item.tanggal)}
+                  filteredData.length > 0 ? 
+                     filteredData.map((item, index) => (
+                        <div
+                           key={index}
+                           onClick={()=>handlePdfClick(item.url)}
+                           className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
+                        >
+                           <div className="flex flex-row overflow-hidden">
+                              <img className="rounded-lg h-14 w-auto p-2 my-auto" src={'/assets/image/pdf.png'} alt={item.peringkat} />
+                              <h4 className="text-left pt-2 border-b text-lg font-bold text-secondary line-clamp-2 w-full">
+                                 {item.judul}
+                              </h4>
+                           </div>
+                           <div className="p-4">
+                              <div className="flex items-center justify-between text-sm">
+                                 <p className="font-normal text-justify text-white">
+                                    {item.kategori}
                                  </p>
+                                 <div>
+                                    <p className="text-white">
+                                       {formatTanggal(item.tanggal)}
+                                    </p>
+                                 </div>
                               </div>
                            </div>
                         </div>
-                        <p className={`text-sm text-whiteprime`}>{item.status}</p>
-                     </div>
-                  )) :
+                     )) :
+                     (
+                        <div className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center">
+                           <div className="flex flex-row overflow-hidden">
+                              <h4 className="text-center pt-2 border-b text-lg font-bold text-secondary line-clamp-2 w-full">
+                                 Belum ada informasi
+                              </h4>
+                           </div>
+                           <div className="p-4">
+                              <div className="flex items-center justify-between text-sm">
+                                 <p className="font-normal text-justify text-white">
+                                    -
+                                 </p>
+                                 <div>
+                                    <p className="text-white">
+                                       -
+                                    </p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>) 
+                  :
                   Array.from({ length: 4 }).map((_, index) => (
                      <div
                         key={index}
@@ -110,7 +136,10 @@ export default function Pengumuman() {
                   ))
                }
             </div>
-            <PdfWithToolbar />
+            {/* <PdfWithToolbar /> */}
+            <div className="col-span-3">
+               <PDFViewer fileId={pdfUrl} />
+            </div>
          </div>
       </>
    )
