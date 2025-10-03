@@ -132,7 +132,7 @@ export default function Header() {
                            isDropdownInformasiOpen && (
                               <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md z-50">
                                  <Link to="/informasi/agenda" className={`${styleSubMenu} ${location.pathname === "/informasi/agenda" ? styleSubMenuActive : "" }`}>Agenda</Link>
-                                 <Link to="/informasi/pengumuman" className={`${styleSubMenu} ${location.pathname === "/informasi/pengumuman" ? styleSubMenuActive : "" }`}>Pengumuman</Link>
+                                 <Link to="/informasi/pengumuman" className={`${styleSubMenu} ${location.pathname === "/informasi/pengumuman" ? styleSubMenuActive : "" }`}>Informasi</Link>
                               </div>
                            )
                         }
@@ -228,7 +228,7 @@ export default function Header() {
                                  isDropdownInformasiOpen && (
                                     <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md z-50">
                                        <Link to="/informasi/agenda" className={`${styleSubMenu} ${location.pathname === "/informasi/agenda" ? styleSubMenuActive : "" }`}>Agenda</Link>
-                                       <Link to="/informasi/pengumuman" className={`${styleSubMenu} ${location.pathname === "/informasi/pengumuman" ? styleSubMenuActive : "" }`}>Pengumuman</Link>
+                                       <Link to="/informasi/pengumuman" className={`${styleSubMenu} ${location.pathname === "/informasi/pengumuman" ? styleSubMenuActive : "" }`}>Informasi</Link>
                                     </div>
                                  )
                               }

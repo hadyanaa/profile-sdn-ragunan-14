@@ -74,7 +74,7 @@ export default function KalenderAkademik() {
                plugins={[multiMonthPlugin, dayGridPlugin]}
                initialView="multiMonthYear"
                locales={[idLocale]}
-               locale="id" // 👈 aktifkan bahasa Indonesia
+               locale="id" 
                headerToolbar={{
                   left: "prev,next today",
                   center: "title",

@@ -73,7 +73,7 @@ export default function Pengumuman() {
                         <div
                            key={index}
                            onClick={()=>handlePdfClick(item.url)}
-                           className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
+                           className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center cursor-pointer"
                         >
                            <div className="flex flex-row overflow-hidden">
                               <img className="rounded-lg h-14 w-auto p-2 my-auto" src={'/assets/image/pdf.png'} alt={item.peringkat} />

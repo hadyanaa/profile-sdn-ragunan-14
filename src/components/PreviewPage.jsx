@@ -12,7 +12,7 @@ export default function PreviewPage({ title, desc, items = [], pattern, drive })
   };
 
   const LinkSelengkapnya = title == "Artikel" ? "/artikel" :
-  title == "Staf Guru" ? "/profile/staf-guru" : "/profile/staf-tendik"
+  title == "Staf Guru" ? "/profile/staf-guru" : "/profile/sdm-sekolah"
 
   return (
     <div className={`px-2 sm:px-12 md:px-28 py-8 ${pattern ? "bg-[url(/assets/image/pattern.png)] bg-secondblue" : ""}`}>
