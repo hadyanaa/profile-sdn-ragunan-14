@@ -46,9 +46,9 @@ function Home() {
   const totalPr = dataRombel.reduce((sum, item) => sum + item.pr, 0);
   const totalSiswa = totalLk + totalPr;
   const slides = [
-    { id: 1, text: "Slide Pertama", bg: "/assets/image/banner/banner-1.png" },
-    { id: 2, text: "Slide Kedua", bg: "/assets/image/banner/banner-2.JPG" },
-    { id: 3, text: "Slide Ketiga", bg: "/assets/image/banner/banner-3.jpg" },
+    { id: 1, text: "Sekolah Ramah dan Berprestasi di Ragunan", bg: "/assets/image/banner/banner-1.png" },
+    { id: 2, text: "Belajar Bermakna, Wujudkan Profil Pelajar Pancasila", bg: "/assets/image/banner/banner-2.JPG" },
+    { id: 3, text: "Kolaborasi Sekolah dan Masyarakat untuk Masa Depan Gemilang", bg: "/assets/image/banner/banner-3.jpg" },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -216,7 +216,7 @@ yang diselenggarakan oleh Dinas Pendidikan Provinsi DKI Jakarta.</p>
 
       <div className="bg-secondblue bg-[url(/assets/image/pattern.png)] py-4 mt-8"> 
         <div className="px-2 sm:px-12 md:px-28">
-          <h1 className="font-bold text-center text-xl md:text-2xl text-primaryoren">Data Sekolah</h1>
+          <h1 className="font-bold text-center text-xl md:text-2xl text-whiteprime">Data Sekolah</h1>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-white my-4">
             <div className={styleStat}>
               <p className="font-extrabold text-3xl md:text-4xl">
