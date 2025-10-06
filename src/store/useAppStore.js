@@ -16,15 +16,14 @@ export const useAppStore = create((set) => ({
    error: null,
 
    fetchVisiMisi: async () => {
-      set({ loading: true, error: null, progress: 0 });
+      set({ loading: true, error: null });
       try {
          const res = await axios.get("https://script.google.com/macros/s/AKfycbymbySyX9CBn74tgENUNc8bPXNXNFTTsokzBlay9Pys6Umg5SntwvXKTh5es1cLOiim/exec");
-         set({ visiMisi: res.data, progress: 100 });
+         set({ visiMisi: res.data });
       } catch (err) {
          set({ error: "Gagal fetch visi misi" });
       } finally {
-         clearInterval(interval);
-         setTimeout(()=> set({ loading: false, progress: 0 }), 500);
+         set({ loading: false });
       }
    },
 

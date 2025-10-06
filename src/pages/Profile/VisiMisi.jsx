@@ -5,6 +5,8 @@ import { useAppStore } from "../../store/useAppStore";
 
 export default function VisiMisi() {
   const { visiMisi, loading, error, fetchVisiMisi } = useAppStore();
+
+  console.log(visiMisi);
    
   useEffect(() => {
     if (visiMisi.length === 0) {
@@ -47,10 +49,12 @@ export default function VisiMisi() {
             visiMisi.filter(item => item.misi).map((item, index) => (
               <div className="border-2 rounded-lg p-4 flex flex-col md:flex-row text-sm md:text-base text-justify gap-x-2 hover:scale-105 hover:border-primaryoren hover:bg-mainblue/40 hover:text-primaryoren transition-all duration-300 ease-in-out" 
               key={index}>
-                <div className="border-2 rounded-full mx-auto md:ml-0 w-fit h-fit p-0.5 text-center">
+                <div className="mx-auto md:ml-0 w-fit h-fit p-0.5 text-center">
                   {index+1}. 
                 </div>
-                {item.misi}
+                <div className="w-full">
+                  {item.misi}
+                </div>
               </div>
             ))
             }
@@ -69,7 +73,7 @@ export default function VisiMisi() {
             visiMisi.map((item, index) => (
               <div className="border-2 rounded-lg p-4 flex flex-col md:flex-row text-sm md:text-base text-justify gap-x-2 hover:scale-105 hover:border-primaryoren hover:bg-mainblue/40 hover:text-primaryoren transition-all duration-300 ease-in-out" 
               key={index}>
-                <div className="border-2 rounded-full mx-auto md:ml-0 w-fit h-fit p-0.5 text-center ">
+                <div className="mx-auto md:ml-0 w-fit h-fit p-0.5 text-center ">
                   {index+1}. 
                 </div>
                 {item.tujuan}
