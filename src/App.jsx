@@ -12,6 +12,8 @@ import Ekstrakurikuler from './pages/Profile/Ekstrakurikuler';
 import TentangSekolah from './pages/Profile/TentangSekolah';
 import ListAgenda from './pages/Informasi/ListAgenda';
 import Kontak from './pages/Kontak';
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const theme = createTheme({
   typography: {
@@ -56,6 +58,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Layout>
+          <Analytics />
+          <SpeedInsights />
           <Routes>
             {routes.map((r) =>(
               <Route key={r.path} path={r.path} element={r.element} />
