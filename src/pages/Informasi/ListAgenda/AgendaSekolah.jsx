@@ -68,7 +68,7 @@ export default function Agenda() {
                      className="rounded-lg w-full h-auto min-h-44 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
                   >
                      <div className="relative h-64 overflow-hidden">
-                        <img className="rounded-lg border h-full w-full" src={item.foto ? convertDriveUrl(item.foto) : '/assets/image/agenda-no-image.png'} alt={item.peringkat} 
+                        <img className="rounded-lg border h-full w-full" src={item.foto ? convertDriveUrl(item.foto, "thumbnail") : '/assets/image/agenda-no-image.png'} alt={item.peringkat} 
                            onError={(e) => {e.currentTarget.src = "/assets/image/agenda-no-image.png";}}/>
                         <div className="absolute right-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-700 text-white font-bold">
                            {item.tahun}
