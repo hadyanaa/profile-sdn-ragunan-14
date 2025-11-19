@@ -12,7 +12,7 @@ export const options = {
 };
 
 export default function () {
-  http.get('http://localhost:5173/kontak');
+  http.get('http://localhost:5173/');
 
   sleep(1);
 }
