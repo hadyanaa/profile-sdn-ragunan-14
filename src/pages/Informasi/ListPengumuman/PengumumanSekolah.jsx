@@ -22,7 +22,7 @@ export default function Pengumuman() {
    const [kategoriFilter, setKategoriFilter] = useState("Semua");
    // const [tingkatFilter, setTingkatFilter] = useState("Semua");
 
-   const kategoriList = ["Semua", "Akademik", "Prestasi", "Kegiatan Sekolah", "SPMB", "Beasiswa", "Kebijakan", "Umum"];
+   const kategoriList = ["Semua", "Akademik", "Prestasi", "Kegiatan Sekolah", "SPMB/Mutasi", "Beasiswa", "Kebijakan", "Umum"];
    // const tingkatList = ["Semua", "Lainnya", "Kecamatan", "Kota", "Provinsi", "Nasional", "Internasional"];
 
    // Filter data dari API
@@ -69,7 +69,9 @@ export default function Pengumuman() {
             <div>
                { pengumuman.length > 0 ? 
                   filteredData.length > 0 ? 
-                     filteredData.map((item, index) => (
+                     [...filteredData]
+                     .sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal)) // Urutkan dari terbaru ke terlama
+                     .map((item, index) => (
                         <div
                            key={index}
                            onClick={()=>handlePdfClick(item.url)}
@@ -94,7 +96,8 @@ export default function Pengumuman() {
                               </div>
                            </div>
                         </div>
-                     )) :
+                     )) 
+                     :
                      (
                         <div className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center">
                            <div className="flex flex-row overflow-hidden">

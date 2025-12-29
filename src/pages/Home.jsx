@@ -181,7 +181,7 @@ function Home() {
             <div className="flex justify-center p-4 mt-4 w-full text-xs md:text-lg">
               <FullCalendar
                 plugins={[dayGridPlugin, listPlugin]}
-                initialView="listMonth" // langsung tampil agenda pekanan
+                initialView="listMonth" // langsung tampil agenda bulanan
                 locales={[idLocale]}
                 locale="id" 
                 headerToolbar={{
