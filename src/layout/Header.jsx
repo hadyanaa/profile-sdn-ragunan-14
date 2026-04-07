@@ -67,14 +67,14 @@ export default function Header() {
             `}>
             <div className='flex content-center items-center my-auto gap-2'>
                {/* <img src="/assets/image/dki-jakarta-logo.jpg" alt="Logo Jaya Raya" className='w-auto h-8' /> */}
-               <img src="/assets/image/LOGO-SDN-14-PAGI-NEW.png" alt="Logo SDN Ragunan 14 Pagi" className='w-auto h-8' />
+               <img src="/assets/image/favicon-sdnragunan14.svg" alt="Logo SDN Ragunan 14 Pagi" className='w-auto h-10' />
                <h1 className="text-base md:text-xl font-medium font-jakarta">
                   <span className='text-primaryoren font-bold'>SDN</span>
                   <span className='ml-1'>Ragunan 14 Pagi</span>
                </h1>
             </div>
             {/* header menu web */}
-            <nav className='hidden md:block'>
+            <nav className='hidden md:block content-center'>
                <ul className="flex flex-row space-y-2 gap-6">
                   <li className={`${styleMenu} ${location.pathname === '/' ? 'text-primaryoren' : ''}`}>
                      <Link to="/">Beranda</Link>

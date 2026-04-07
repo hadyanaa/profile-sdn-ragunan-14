@@ -5,7 +5,7 @@ export default function Footer() {
          <div className="flex flex-col sm:flex-row gap-16 scrolled-header px-8 md:px-28 py-4">
             <div className="flex flex-col gap-4">
                <div className='flex content-center items-center gap-2'>
-                  <img src="/assets/image/LOGO-SDN-14-PAGI-NEW.png" alt="Logo SDN Ragunan 14 Pagi" className='w-auto h-8' />
+                  <img src="/assets/image/LOGO-SDN-14-PAGI-NEW.png" alt="Logo SDN Ragunan 14 Pagi" className='w-auto h-14' />
                   <h1 className="text-xs lg:text-xl font-medium font-jakarta text-whiteprime">
                      <span className='text-primaryoren font-bold'>SDN</span>
                      <span className='ml-1'>Ragunan 14 Pagi</span>
