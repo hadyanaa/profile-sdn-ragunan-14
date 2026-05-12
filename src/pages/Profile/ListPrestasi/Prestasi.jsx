@@ -29,19 +29,19 @@ export default function Prestasi() {
 
    return (
       <>
-         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
+         <div className="filter-panel">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                <div>
-                  <h1 className="font-bold text-left text-lg mb-2">Kategori Prestasi</h1>
+                  <h1 className="font-bold text-left text-lg mb-3 text-mainblue">Kategori Prestasi</h1>
                   <div className="flex gap-2 flex-wrap">
                      {kategoriList.map((kategori) => (
                         <button
                         key={kategori}
                         onClick={() => setKategoriFilter(kategori)}
-                        className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer ${
+                        className={`filter-chip ${
                            kategoriFilter === kategori
-                              ? "bg-gray-700 text-white hover:bg-gray-900"
-                              : "bg-gray-100 text-gray-700 hover:bg-gray-300"
+                              ? "filter-chip-active"
+                              : ""
                         }`}
                         >
                         {kategori}
@@ -50,16 +50,16 @@ export default function Prestasi() {
                   </div>
                </div>
                <div>
-                  <h1 className="font-bold text-left text-lg mb-2">Tingkat Prestasi</h1>
+                  <h1 className="font-bold text-left text-lg mb-3 text-mainblue">Tingkat Prestasi</h1>
                   <div className="flex gap-2 flex-wrap">
                      {tingkatList.map((tingkat) => (
                         <button
                            key={tingkat}
                            onClick={() => setTingkatFilter(tingkat)}
-                           className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer ${
+                           className={`filter-chip ${
                               tingkatFilter === tingkat
-                                 ? "bg-gray-700 text-white hover:bg-gray-900"
-                                 : "bg-gray-100 text-gray-700 hover:bg-gray-300"
+                                 ? "filter-chip-active"
+                                 : ""
                            }`}
                            >
                            {tingkat}
@@ -75,41 +75,41 @@ export default function Prestasi() {
                filteredData.map((item, index) => (
                   <div
                      key={index}
-                     className="rounded-lg w-full h-auto min-h-44 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center"
+                     className="info-card transform opacity-0 animate-fadeIn"
                   >
-                     <div className="relative h-64 overflow-hidden">
-                        <img className="rounded-lg border h-full w-full" src={item.foto ? item.foto : '/assets/image/prestasi-no-image.png'} alt={item.peringkat} 
+                     <div className="relative overflow-hidden">
+                        <img className="info-card-media" src={item.foto ? item.foto : '/assets/image/prestasi-no-image.png'} alt={item.peringkat} 
                            onError={(e) => {e.currentTarget.src = "/assets/image/prestasi-no-image.png";}}/>
-                        <div className="absolute right-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-700 text-white font-bold">
+                        <div className="absolute right-4 top-4 rounded-full bg-mainblue px-3 py-1 text-sm font-bold text-white">
                            {item.tahun}
                         </div>
-                        <div className="absolute left-4 top-4 px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-100 text-gray-700 font-bold">
+                        <div className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-sm font-bold text-mainblue">
                            {item.tingkat}
                         </div>
                      </div>
                      <div className="flex flex-col space-y-1.5 p-6 pb-3">
                         <div className="flex items-center justify-between">
-                           <div className="px-3 py-1 rounded-full text-sm hover:scale-105 bg-gray-100 text-gray-700 font-bold">
+                           <div className="soft-badge">
                               {item.kategori}
                            </div>
                         </div>
-                        <h4 className={`font-semibold text-lg text-secondary`}>{item.peringkat}</h4>
+                        <h4 className="text-lg font-extrabold text-mainblue">{item.peringkat}</h4>
                      </div>
                      <div className="p-6 pt-0">
-                        <div className="border-t border-slate-50 pt-4">
+                        <div className="border-t border-mainblue/10 pt-4">
                            <div className="flex items-center justify-between text-sm">
                               <div className="text-left">
                                  <p className="font-bold text-slate-700">
                                     {item.nama}
                                  </p>
-                                 <p className="font-normal text-white/80">
+                                 <p className="mt-1 font-normal leading-6 text-slate-500">
                                     {item.deskripsi}
                                  </p>
                               </div>
                            </div>
                         </div>
                      </div>
-                     <p className={`text-sm text-whiteprime`}>{item.status}</p>
+                     <p className="px-6 pb-6 text-sm font-semibold text-mainblue">{item.status}</p>
                   </div>
                )) :
                Array.from({ length: 4 }).map((_, index) => (

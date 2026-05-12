@@ -5,14 +5,14 @@ export default function PDFViewer({ fileId, height = "600px" }) {
    let downloadUrl = convertDriveUrl(fileId, "download")
 
   return (
-   <div className="w-full h-[600px] border rounded-lg overflow-hidden flex flex-col">
+   <div className="flex w-full flex-col overflow-hidden rounded-lg border border-mainblue/10 bg-white shadow-[0_16px_42px_rgba(8,57,115,0.08)]" style={{ height }}>
       {/* Toolbar */}
-      <div className="flex justify-end p-2 bg-[url(/assets/image/pattern.png)] bg-secondblue border-b">
+      <div className="flex justify-end border-b border-mainblue/10 bg-mainblue/5 p-2">
       <a
          href={downloadUrl}
          target="_blank"
          rel="noopener noreferrer"
-         className="px-3 py-1 text-sm bg-blue-700 text-white rounded hover:bg-blue-800"
+         className="brand-button brand-button--compact !min-h-9"
       >
          Download
       </a>

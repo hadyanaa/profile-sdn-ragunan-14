@@ -61,15 +61,14 @@ export default function KalenderAkademik() {
    return (
       <>
          { loading ? (
-            <>
-               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-                  <img className="w-32 md:w-auto h-auto" src="/assets/video/Rippletransparent.gif" alt="" />
-               </div>
-            </>
+            <div className="loading-toast">
+               <img className="h-8 w-8" src="/assets/video/Rippletransparent.gif" alt="" />
+               <span>Memuat data terbaru...</span>
+            </div>
          ) : (
             <></>
          )}
-         <div className="p-4">
+         <div className="data-table-panel">
             <FullCalendar
                plugins={[multiMonthPlugin, dayGridPlugin]}
                initialView="multiMonthYear"
@@ -86,9 +85,9 @@ export default function KalenderAkademik() {
             />
             {/* Modal */}
             {selectedEvent && (
-               <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
-                  <div className="bg-white rounded-xl shadow-lg p-6 w-80">
-                     <h2 className="text-xl font-bold mb-2">{selectedEvent.title}</h2>
+               <div className="fixed inset-0 z-50 flex items-center justify-center bg-mainblue/20 p-4 backdrop-blur-sm">
+                  <div className="w-full max-w-sm rounded-lg bg-white p-6 shadow-2xl shadow-blue-950/20">
+                     <h2 className="text-xl font-extrabold mb-2 text-mainblue">{selectedEvent.title}</h2>
                      <p className="text-gray-600 text-sm mb-2">
                         {formatTanggal(selectedEvent.start)}
                         {selectedEvent.end
@@ -98,7 +97,7 @@ export default function KalenderAkademik() {
                      {/* <p className="text-gray-600 mb-4">Deskripsi: {selectedEvent.extendedProps.deskripsi}</p> */}
                      <button
                      onClick={closeModal}
-                     className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                     className="brand-button brand-button--compact"
                      >
                      Tutup
                      </button>

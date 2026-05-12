@@ -41,15 +41,14 @@ export default function StrukturOrganisasi() {
   return(
     <>
       { loading ? (
-         <>
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-               <img className="w-32 md:w-auto h-auto" src="/assets/video/Rippletransparent.gif" alt="" />
-            </div>
-         </>
+         <div className="loading-toast">
+            <img className="h-8 w-8" src="/assets/video/Rippletransparent.gif" alt="" />
+            <span>Memuat data terbaru...</span>
+         </div>
       ) : (
          <></>
       )}
-      <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full px-4 sm:px-8 p-8 bg-[url(/assets/image/pattern.png)]">
+      <div className="panel-card-blue mt-4 text-center">
       <div className="flex flex-col mx-auto gap-4">
          <div className="mx-auto p-4 bg-gradient-to-r from-cyan-300 to-cyan-500 w-3/4 sm:w-1/2 md:w-1/4 h-auto rounded-lg hover:scale-105 transition-all duration-300 ease-in-out">
             <h1 className="text-blue-900 font-extrabold">{kepalaSekolah.nama}</h1>
@@ -226,7 +225,7 @@ export default function StrukturOrganisasi() {
             </div>
             <div></div>
          </div>
-         <div className="flex flex-col border mt-6 w-[80%] p-4 gap-y-4 h-auto mx-auto rounded-lg bg-white">
+         <div className="flex flex-col border border-mainblue/10 mt-6 w-[80%] p-4 gap-y-4 h-auto mx-auto rounded-lg bg-white shadow-sm">
             <h1 className="font-semibold text-lg text-mainblue">Keterangan Warna</h1>
             <div className="grid grid-cols-3 md:grid-cols-6 gap-2 text-xs">
                <div className="bg-gradient-to-r from-cyan-300 to-cyan-500 py-2 rounded-lg">

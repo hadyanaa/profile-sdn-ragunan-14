@@ -91,9 +91,10 @@ export default function Tentang(){
 
    return (
    <>
-      <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-8 w-full p-8 bg-[url(/assets/image/pattern.png)] mb-8">
-         <h1 className="font-bold text-lg md:text-2xl mb-4">Tentang Sekolah Kami</h1>
-         <p className="text-sm md:text-lg bg-mainblue/60 p-4 rounded-md">
+      <div className="page-stack">
+      <div className="panel-card-blue text-center">
+         <h1 className="text-xl font-extrabold md:text-3xl mb-4">Tentang Sekolah Kami</h1>
+         <p className="mx-auto max-w-4xl rounded-lg bg-white/10 p-5 text-sm leading-7 text-white/90 md:text-lg md:leading-8">
          SD Negeri Ragunan 14 Pagi merupakan salah satu sekolah dasar negeri
 yang memiliki reputasi baik di lingkungan Kecamatan Pasar Minggu. Sekolah ini
 dikenal aktif dalam mengikuti berbagai program peningkatan mutu pendidikan
@@ -103,21 +104,21 @@ karakter, dan penguatan profil pelajar Pancasila menjadi fokus utama dalam
 pengelolaan satuan pendidikan.
          </p>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
          <div className="space-y-6">
-            <div className="bg-secondblue rounded-lg text-center content-start items-start text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-               <h1 className="font-bold text-lg md:text-2xl mb-4">Identitas Sekolah</h1>
+            <div className="panel-card content-start items-start">
+               <h1 className="panel-title text-center mb-4">Identitas Sekolah</h1>
                <Table>
-                  <TableBody sx={{color: '#f9fafa' }}>
+                  <TableBody>
                      {dataIdentitas.map((i) => (
-                        <TableRow>
-                           <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>
+                        <TableRow key={i.title}>
+                           <TableCell sx={{ color: '#0a4ea0', width: 2/5, fontWeight: 800}}>
                               <p className="text-xs md:text-sm">
                                  {i.title}
                               </p>
                            </TableCell>
-                           <TableCell sx={{ color: '#f9fafa'}}>
-                              <p className="text-xs md:text-sm">
+                           <TableCell sx={{ color: '#334155'}}>
+                              <p className="text-xs md:text-sm leading-6">
                               : {i.nama}
                               </p>
                            </TableCell>
@@ -126,20 +127,20 @@ pengelolaan satuan pendidikan.
                   </TableBody>
                </Table>
             </div>
-            <div className="bg-secondblue rounded-lg text-center content-start items-start text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-               <h1 className="font-bold text-lg md:text-2xl mb-4">Kontak Sekolah</h1>
+            <div className="panel-card content-start items-start">
+               <h1 className="panel-title text-center mb-4">Kontak Sekolah</h1>
                <Table>
                   <TableBody>
                      {dataKontak.map((i) => (
-                        <TableRow>
-                           <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>
+                        <TableRow key={i.title}>
+                           <TableCell sx={{ color: '#0a4ea0', width: 2/5, fontWeight: 800}}>
                            <p className="text-xs md:text-sm">
                               {i.title}
                            </p>
                            </TableCell>
-                           <TableCell sx={{ color: '#f9fafa'}}>
+                           <TableCell sx={{ color: '#334155'}}>
                               <div className="max-w-[300px] overflow-hidden">
-                                 <p className="text-xs md:text-sm line-clamp-2">
+                                 <p className="text-xs md:text-sm leading-6 line-clamp-2">
                                     : {i.nama}
                                  </p>
                               </div>
@@ -151,19 +152,19 @@ pengelolaan satuan pendidikan.
             </div>
          </div>
          <div className="space-y-6">
-            <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-               <h1 className="font-bold text-lg md:text-2xl mb-4">Data Pelengkap</h1>
+            <div className="panel-card text-center">
+               <h1 className="panel-title mb-4">Data Pelengkap</h1>
                <Table>
                   <TableBody>
                      {dataPelengkap.map((i) => (
-                        <TableRow>
-                           <TableCell sx={{ color: '#f9fafa', width: 2/5, fontWeight: 700}}>
+                        <TableRow key={i.title}>
+                           <TableCell sx={{ color: '#0a4ea0', width: 2/5, fontWeight: 800}}>
                               <p className="text-xs md:text-sm">
                                  {i.title}
                               </p>
                            </TableCell>
-                           <TableCell sx={{ color: '#f9fafa'}}>
-                           <p className="text-xs md:text-sm">
+                           <TableCell sx={{ color: '#334155'}}>
+                           <p className="text-xs md:text-sm leading-6">
                               : {i.nama}
                            </p>
                            </TableCell>
@@ -172,17 +173,18 @@ pengelolaan satuan pendidikan.
                   </TableBody>
                </Table>
             </div>
-            <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-               <h1 className="font-bold text-lg md:text-2xl mb-4">Peta Lokasi</h1>
+            <div className="panel-card text-center">
+               <h1 className="panel-title mb-4">Peta Lokasi</h1>
                <iframe
                   title="map"
                   src={src}
-                  className="w-full h-full hover:scale-105 transition-all duration-300 ease-in-out"
+                  className="min-h-80 w-full rounded-lg border border-mainblue/10 transition-all duration-300 ease-in-out hover:scale-[1.01]"
                   allowFullScreen
                   loading="lazy"
                />
             </div>
          </div>
+      </div>
       </div>
    </>
    )

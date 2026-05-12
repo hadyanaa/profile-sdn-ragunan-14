@@ -34,27 +34,26 @@ export default function Pengumuman() {
    return (
       <>
          { loading ? (
-            <>
-               <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-                  <img className="w-32 md:w-auto h-auto" src="/assets/video/Rippletransparent.gif" alt="" />
-               </div>
-            </>
+            <div className="loading-toast">
+               <img className="h-8 w-8" src="/assets/video/Rippletransparent.gif" alt="" />
+               <span>Memuat data terbaru...</span>
+            </div>
          ) : (
             <></>
          )}
-         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 mb-4 mt-8 bg-[url(/assets/image/pattern.png)]">
+         <div className="filter-panel mb-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                <div className="col-span-2">
-                  <h1 className="font-bold text-left text-lg mb-2">Kategori Informasi</h1>
+                  <h1 className="mb-3 text-left text-lg font-bold text-mainblue">Kategori Informasi</h1>
                   <div className="flex gap-2 flex-wrap">
                      {kategoriList.map((kategori) => (
                         <button
                         key={kategori}
                         onClick={() => setKategoriFilter(kategori)}
-                        className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer ${
+                        className={`filter-chip ${
                            kategoriFilter === kategori
-                              ? "bg-gray-700 text-white hover:bg-gray-900"
-                              : "bg-gray-100 text-gray-700 hover:bg-gray-300"
+                              ? "filter-chip-active"
+                              : ""
                         }`}
                         >
                         {kategori === "Semua" ? pengumuman.length + " | " + kategori : pengumuman.filter((item) => item.kategori === kategori).length + " | " + kategori}
@@ -65,7 +64,7 @@ export default function Pengumuman() {
 
             </div>
          </div>
-         <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-4">
+         <div className="grid grid-cols-1 gap-4 mb-4 lg:grid-cols-4">
             <div>
                { pengumuman.length > 0 ? 
                   filteredData.length > 0 ? 
@@ -75,21 +74,21 @@ export default function Pengumuman() {
                         <div
                            key={index}
                            onClick={()=>handlePdfClick(item.url)}
-                           className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center cursor-pointer"
+                           className="info-card mb-4 flex min-h-28 cursor-pointer flex-col transform opacity-0 animate-fadeIn"
                         >
                            <div className="flex flex-row overflow-hidden">
-                              <img className="rounded-lg h-14 w-auto p-2 my-auto" src={'/assets/image/pdf.png'} alt={item.peringkat} />
-                              <h4 className="text-left pt-2 border-b text-lg font-bold text-secondary line-clamp-2 w-full">
+                              <img className="my-auto h-14 w-auto p-2" src={'/assets/image/pdf.png'} alt={item.peringkat} />
+                              <h4 className="w-full border-b border-mainblue/10 pt-2 pr-3 text-left text-lg font-extrabold text-mainblue line-clamp-2">
                                  {item.judul}
                               </h4>
                            </div>
                            <div className="p-4">
                               <div className="flex items-center justify-between text-sm">
-                                 <p className="font-normal text-justify text-white">
+                                 <p className="font-semibold text-mainblue">
                                     {item.kategori}
                                  </p>
                                  <div>
-                                    <p className="text-white">
+                                    <p className="text-slate-500">
                                        {formatTanggal(item.tanggal)}
                                     </p>
                                  </div>
@@ -99,19 +98,19 @@ export default function Pengumuman() {
                      )) 
                      :
                      (
-                        <div className="rounded-lg flex flex-col mb-4 w-full h-auto min-h-28 hover:scale-105 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center">
+                        <div className="info-card mb-4 flex min-h-28 flex-col transform opacity-0 animate-fadeIn">
                            <div className="flex flex-row overflow-hidden">
-                              <h4 className="text-center pt-2 border-b text-lg font-bold text-secondary line-clamp-2 w-full">
+                              <h4 className="w-full border-b border-mainblue/10 pt-2 text-center text-lg font-bold text-mainblue line-clamp-2">
                                  Belum ada informasi
                               </h4>
                            </div>
                            <div className="p-4">
                               <div className="flex items-center justify-between text-sm">
-                                 <p className="font-normal text-justify text-white">
+                                 <p className="font-normal text-justify text-slate-500">
                                     -
                                  </p>
                                  <div>
-                                    <p className="text-white">
+                                    <p className="text-slate-500">
                                        -
                                     </p>
                                  </div>
@@ -135,7 +134,7 @@ export default function Pengumuman() {
                   ))
                }
             </div>
-            <div className="col-span-3">
+            <div className="lg:col-span-3">
                <PDFViewer fileId={pdfUrl} />
             </div>
          </div>

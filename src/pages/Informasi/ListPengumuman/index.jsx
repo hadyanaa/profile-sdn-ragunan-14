@@ -15,7 +15,7 @@ export default function ListPengumuman() {
    return (
    <>
       <LogoSD titlePage="Informasi" isTitlePage />
-      <div className="flex flex-col gap-8 px-4 sm:px-8 md:px-28 font-jakarta mb-8">
+      <div className="page-shell">
          <Pengumuman />
          {/* <Box sx={{ width: '100%', marginTop: '4px' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

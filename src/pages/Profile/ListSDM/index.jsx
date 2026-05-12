@@ -21,19 +21,18 @@ export default function ListSdm() {
    return (
    <>
       { loading ? (
-         <>
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-               <img className="w-32 md:w-auto h-auto" src="/assets/video/Rippletransparent.gif" alt="" />
-            </div>
-         </>
+         <div className="loading-toast">
+            <img className="h-8 w-8" src="/assets/video/Rippletransparent.gif" alt="" />
+            <span>Memuat data terbaru...</span>
+         </div>
       ) : (
          <></>
       )}
       <LogoSD titlePage="Data Guru & Tenaga Kependidikan" isTitlePage />
-      <div className="flex flex-col gap-8 px-4 xs:px-8 sm:px-14 md:px-28 font-jakarta mb-8">
-         <Box sx={{ width: '100%', marginTop: '4px' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs value={value} variant="scrollable" onChange={handleChange} aria-label="basic tabs example">
+      <div className="page-shell">
+         <Box className="panel-card" sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'rgba(10, 78, 160, 0.12)' }}>
+            <Tabs value={value} variant="scrollable" onChange={handleChange} aria-label="basic tabs example" textColor="primary" indicatorColor="primary">
                <Tab label="Data dan Statistik" />
                <Tab label="Struktur Organisasi" />
             </Tabs>

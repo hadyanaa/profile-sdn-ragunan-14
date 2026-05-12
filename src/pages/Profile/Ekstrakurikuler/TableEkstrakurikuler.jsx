@@ -42,10 +42,10 @@ export default function TableEkstrakurikuler() {
 
    return (
    <>
-      <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full px-4 sm:px-8 p-8 bg-[url(/assets/image/pattern.png)]">
-         <h1 className="font-bold text-xl md:text-2xl ">Data Ekstrakurikuler</h1>
-         <span className="font-medium text-sm md:text-md">Daftar lengkap data ekstrakurikuler sekolah</span>
-         <Paper sx={{ height: 450, width: '100%', marginTop: '16px' }}>
+      <div className="data-table-panel mt-4 text-center">
+         <h1 className="panel-title">Data Ekstrakurikuler</h1>
+         <span className="panel-subtitle">Daftar lengkap data ekstrakurikuler sekolah</span>
+         <Paper sx={{ height: 450, width: '100%', marginTop: '20px', overflow: 'hidden', borderRadius: '8px' }}>
             <DataGrid
                rows={dataEkskul}
                columns={columns}
@@ -55,7 +55,12 @@ export default function TableEkstrakurikuler() {
                }}
                initialState={{ pagination: { paginationModel } }}
                pageSizeOptions={[10, 25, 50]}
-               sx={{ "& .MuiDataGrid-row": { cursor: "pointer" }, border: 0, }}
+               sx={{
+                  "& .MuiDataGrid-row": { cursor: "pointer" },
+                  border: 0,
+                  '& .MuiDataGrid-columnHeaders': { backgroundColor: 'rgba(10, 78, 160, 0.06)', color: '#0a4ea0' },
+                  '& .MuiDataGrid-columnHeaderTitle': { fontWeight: 800 },
+               }}
             />
          </Paper>
       </div>

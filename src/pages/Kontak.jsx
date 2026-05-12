@@ -5,44 +5,50 @@ export default function Kontak() {
    return(
       <>
          <LogoSD titlePage="Kontak" isTitlePage />
-         <div className="my-8 text-center font-bold text-3xl text-mainblue">
-            <h1>Cek juga platform sekolah kami yang lain</h1>
+         <div className="page-shell page-stack">
+         <div className="section-heading !mb-0">
+            <div>
+               <p className="section-eyebrow">Platform sekolah</p>
+               <h2>Cek juga platform sekolah kami yang lain</h2>
+            </div>
          </div>
-         <div className="px-4 xs:px-8 sm:px-14 md:px-28 grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 text-white">
-            {/* Instagram */}
-            <div className="flex flex-row gap-2 rounded-lg w-full h-auto min-h-44  transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center">
-               <img src="/assets/image/instagram.png" alt="Logo Instagram" className="mx-1 my-auto w-20 h-auto bg-white rounded-xl" />
-               <div className="flex flex-col gap-2 text-left">
-                  <h2 className="w-full text-xl font-semibold pt-4 px-4">Instagram</h2>
-                  <p className="w-full text-lg font-semibold px-4">@sdnragunan14</p>
+         <div className="grid grid-cols-1 gap-4 text-white sm:grid-cols-2">
+            <div className="info-card flex min-h-44 flex-row gap-4 p-5 opacity-0 animate-fadeIn">
+               <img src="/assets/image/instagram.png" alt="Logo Instagram" className="my-auto h-auto w-20 rounded-lg bg-white p-2 shadow-sm" />
+               <div className="flex flex-col justify-center gap-2 text-left">
+                  <h2 className="w-full text-xl font-extrabold text-mainblue">Instagram</h2>
+                  <p className="w-full text-lg font-semibold text-slate-600">@sdnragunan14</p>
                   <button
                      onClick={()=>window.open("https://instagram.com/sdnragunan14", "_blank")}
-                     className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-500 ease-in-out`}
+                     className="brand-button brand-button--compact w-fit cursor-pointer"
                      >
                      Kunjungi
                   </button>
                </div>
             </div>
-            {/* YouTube */}
-            <div className="flex flex-row gap-2 rounded-lg w-full h-auto min-h-44  transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center">
-               <img src="/assets/image/youtube.png" alt="Logo Youtube" className="mx-1 my-auto w-20 h-auto bg-white rounded-xl" />
-               <div className="flex flex-col gap-2 text-left">
-                  <h2 className="w-full text-xl font-semibold pt-4 px-4">YouTube</h2>
-                  <p className="w-full text-lg font-semibold px-4">@sdnragunan14pagi</p>
+            <div className="info-card flex min-h-44 flex-row gap-4 p-5 opacity-0 animate-fadeIn">
+               <img src="/assets/image/youtube.png" alt="Logo Youtube" className="my-auto h-auto w-20 rounded-lg bg-white p-2 shadow-sm" />
+               <div className="flex flex-col justify-center gap-2 text-left">
+                  <h2 className="w-full text-xl font-extrabold text-mainblue">YouTube</h2>
+                  <p className="w-full text-lg font-semibold text-slate-600">@sdnragunan14pagi</p>
                   <button
                      onClick={()=>window.open("https://www.youtube.com/@sdnragunan14pagi", "_blank")}
-                     className={`px-3 py-1 rounded-full text-sm hover:scale-105 cursor-pointer bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-500 ease-in-out`}
+                     className="brand-button brand-button--compact w-fit cursor-pointer"
                      >
                      Kunjungi
                   </button>
                </div>
             </div>
          </div>
-         <div className="my-8 text-center font-bold text-3xl text-mainblue">
-            <h1>Butuh bantuan? Hubungi Operator Sekolah kami</h1>
+         <div className="section-heading !mb-0">
+            <div>
+               <p className="section-eyebrow">Bantuan</p>
+               <h2>Butuh bantuan? Hubungi Operator Sekolah kami</h2>
+            </div>
          </div>
-         <div className="flex mx-4 xs:mx-8 sm:mx-14 md:mx-28 mb-8 rounded-lg  h-auto min-h-44 transition-all duration-500 ease-in-out transform opacity-0 animate-fadeIn bg-[url(/assets/image/pattern.png)] bg-secondblue text-center text-white">
-            <h2 className="text-lg font-semibold m-auto">Future Development</h2>
+         <div className="panel-card-blue flex min-h-44 text-center opacity-0 animate-fadeIn">
+            <h2 className="m-auto text-lg font-semibold">Future Development</h2>
+         </div>
          </div>
       </>
    ) 

@@ -17,27 +17,26 @@ export default function VisiMisi() {
   return(
     <>
       { loading ? (
-          <>
-              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-                <img  src="/assets/video/Rippletransparent.gif" alt="" />
-              </div>
-          </>
+          <div className="loading-toast">
+            <img className="h-8 w-8" src="/assets/video/Rippletransparent.gif" alt="" />
+            <span>Memuat data terbaru...</span>
+          </div>
         ) : (
           <></>
       )}
       <LogoSD titlePage="Visi Misi" isTitlePage />
-      <div className="flex flex-col gap-8 px-8 sm:px-14 md:px-28 font-jakarta">
-        <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-8 w-full p-8 bg-[url(/assets/image/pattern.png)]">
-          <h1 className="font-bold text-lg md:text-2xl mb-4">VISI</h1>
-          <p className="text-lg md:text-2xl italic">
+      <div className="page-shell page-stack">
+        <div className="panel-card-blue text-center">
+          <h1 className="text-xl font-extrabold md:text-3xl mb-4">VISI</h1>
+          <p className="mx-auto max-w-4xl text-lg italic leading-8 text-white/90 md:text-2xl md:leading-10">
             "{loading ? 
             <Skeleton animation="wave" variant="overlay">
             </Skeleton> :
             visiMisi[0]?.visi}"
           </p>
         </div>
-        <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-          <h1 className="font-bold text-lg md:text-2xl mb-4">MISI</h1>
+        <div className="panel-card">
+          <h1 className="panel-title text-center mb-6">MISI</h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {loading ? 
             <>
@@ -47,9 +46,9 @@ export default function VisiMisi() {
             </Skeleton>
             </> :
             visiMisi.filter(item => item.misi).map((item, index) => (
-              <div className="border-2 rounded-lg p-4 flex flex-col md:flex-row text-sm md:text-base text-justify gap-x-2 hover:scale-105 hover:border-primaryoren hover:bg-mainblue/40 hover:text-primaryoren transition-all duration-300 ease-in-out" 
+              <div className="stat-tile flex flex-col gap-3 text-left text-sm leading-7 md:flex-row md:text-base" 
               key={index}>
-                <div className="mx-auto md:ml-0 w-fit h-fit p-0.5 text-center">
+                <div className="mx-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mainblue text-sm font-black text-white md:ml-0">
                   {index+1}. 
                 </div>
                 <div className="w-full">
@@ -60,8 +59,8 @@ export default function VisiMisi() {
             }
           </div>
         </div>
-        <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mb-8 w-full p-8 bg-[url(/assets/image/pattern.png)]">
-          <h1 className="font-bold text-lg md:text-2xl mb-4">TUJUAN</h1>
+        <div className="panel-card mb-8">
+          <h1 className="panel-title text-center mb-6">TUJUAN</h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {loading ? 
             <>
@@ -71,9 +70,9 @@ export default function VisiMisi() {
             </Skeleton>
             </> :
             visiMisi.map((item, index) => (
-              <div className="border-2 rounded-lg p-4 flex flex-col md:flex-row text-sm md:text-base text-justify gap-x-2 hover:scale-105 hover:border-primaryoren hover:bg-mainblue/40 hover:text-primaryoren transition-all duration-300 ease-in-out" 
+              <div className="stat-tile flex flex-col gap-3 text-left text-sm leading-7 md:flex-row md:text-base" 
               key={index}>
-                <div className="mx-auto md:ml-0 w-fit h-fit p-0.5 text-center ">
+                <div className="mx-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mainblue text-sm font-black text-white md:ml-0">
                   {index+1}. 
                 </div>
                 {item.tujuan}

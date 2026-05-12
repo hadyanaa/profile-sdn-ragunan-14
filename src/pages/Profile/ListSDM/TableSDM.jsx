@@ -57,16 +57,20 @@ export default function TableSDM() {
 
    return (
    <>
-      <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full px-4 sm:px-8 p-8 bg-[url(/assets/image/pattern.png)]">
-         <h1 className="font-bold text-xl md:text-2xl">Data Guru & Tenaga Kependidikan</h1>
-         <span className="font-medium text-sm md:text-md">Daftar lengkap data guru dan tenaga kependidikan sekolah</span>
-         <Paper sx={{ height: 600, width: '100%', marginTop: '16px' }}>
+      <div className="data-table-panel mt-4 text-center">
+         <h1 className="panel-title">Data Guru & Tenaga Kependidikan</h1>
+         <span className="panel-subtitle">Daftar lengkap data guru dan tenaga kependidikan sekolah</span>
+         <Paper sx={{ height: 600, width: '100%', marginTop: '20px', overflow: 'hidden', borderRadius: '8px' }}>
             <DataGrid
                rows={sdm}
                columns={columns}
                initialState={{ pagination: { paginationModel } }}
                pageSizeOptions={[10, 25, 50]}
-               sx={{ border: 0 }}
+               sx={{
+                  border: 0,
+                  '& .MuiDataGrid-columnHeaders': { backgroundColor: 'rgba(10, 78, 160, 0.06)', color: '#0a4ea0' },
+                  '& .MuiDataGrid-columnHeaderTitle': { fontWeight: 800 },
+               }}
             />
          </Paper>
       </div>

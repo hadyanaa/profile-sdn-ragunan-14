@@ -13,7 +13,7 @@ export default function TelusurAlumni() {
          fetchAlumni();
       }
    }, [alumni, fetchAlumni]);
-   const styleStat = "border-2 rounded-lg p-4 flex flex-col items-center text-justify gap-x-2 hover:scale-105 hover:border-primaryoren hover:bg-mainblue/40 hover:text-primaryoren transition-all duration-300 ease-in-out"
+   const styleStat = "stat-tile flex flex-col items-center justify-center gap-2 text-base font-bold md:text-lg"
 
    const dataRombel = siswa.filter(items => items.no < 13)
    const dayaTampung = dataRombel.length*32;
@@ -89,12 +89,12 @@ export default function TelusurAlumni() {
    const resDapa = Object.values(dapa);
    return (
       <>
-         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto w-full p-8 bg-[url(/assets/image/pattern.png)]">
-            <h1 className="font-bold text-xl md:text-2xl">Statistik Umum</h1>
-            <span className="font-medium text-sm md:text-md">Ringkasan data telusur alumni</span>
+         <div className="panel-card-blue text-center">
+            <h1 className="panel-title">Statistik Umum</h1>
+            <span className="panel-subtitle">Ringkasan data telusur alumni</span>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                <div className={styleStat}>
-                  <p className="font-extrabold text-4xl">
+                  <p className="stat-value">
                      {loading ?
                         <Skeleton animation="wave" variant="overlay">
                         </Skeleton>
@@ -103,7 +103,7 @@ export default function TelusurAlumni() {
                   Total Alumni
                </div>
                <div className={styleStat}>
-                  <p className="font-extrabold text-4xl">
+                  <p className="stat-value">
                      {loading ?
                         <Skeleton animation="wave" variant="overlay">
                         </Skeleton>
@@ -112,7 +112,7 @@ export default function TelusurAlumni() {
                   Jumlah Alumni Negeri
                </div>
                <div className={styleStat}>
-                  <p className="font-extrabold text-4xl">
+                  <p className="stat-value">
                      {loading ?
                         <Skeleton animation="wave" variant="overlay">
                         </Skeleton>
@@ -122,9 +122,9 @@ export default function TelusurAlumni() {
                </div>
             </div>
          </div>
-         <div className="bg-secondblue rounded-lg text-center text-whiteprime mx-auto mt-4 w-full p-8 bg-[url(/assets/image/pattern.png)]">
-            <h1 className="font-bold text-xl md:text-2xl">Visualisasi Data</h1>
-            <span className="font-medium text-sm md:text-md">Grafik dan diagram distribusi data telusur alumni</span>
+         <div className="panel-card-blue mt-4 text-center">
+            <h1 className="panel-title">Visualisasi Data</h1>
+            <span className="panel-subtitle">Grafik dan diagram distribusi data telusur alumni</span>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
                <div className={styleStat + " h-64 md:h-80"}>
                   <div className="h-52 md:h-60">
