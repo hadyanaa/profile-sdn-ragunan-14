@@ -56,25 +56,25 @@ export default function Header() {
       return () => window.removeEventListener("scroll", onScroll);
    }, []);
 
-   const styleMenu = "hover:text-primaryoren hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out"
-   const styleSubMenu = "block px-4 py-2 hover:bg-mainblue rounded-md cursor-pointer z-50 hover:text-primaryoren hover:scale-105 hover:shadow-lg transition-all duration-300"
-   const styleSubMenuActive = "bg-mainblue rounded-md cursor-pointer z-50 text-primaryoren scale-105shadow-lg transition-all duration-300"
+   const styleMenu = "rounded-lg px-2 py-1 font-semibold hover:text-primaryoren hover:bg-white/10 transition-all duration-200 ease-in-out"
+   const styleSubMenu = "block px-4 py-3 hover:bg-mainblue/10 rounded-md cursor-pointer z-50 hover:text-mainblue transition-all duration-200"
+   const styleSubMenuActive = "bg-mainblue/10 rounded-md cursor-pointer z-50 text-mainblue font-bold transition-all duration-200"
 
    return(
       <>
-         <header className={`fixed top-0 z-50 w-full flex flex-row justify-between text-whiteprime py-4 px-6 md:px-16 lg:px-28 
-            ${location.pathname === homePath ? isScrolled ?  'scrolled-header' : 'backdrop-blur-2xl' : 'scrolled-header' }
+         <header className={`fixed top-0 z-50 w-full flex flex-row justify-between py-3 px-5 md:px-12 lg:px-28 transition-all duration-300
+            ${location.pathname === homePath && !isScrolled ? 'bg-white/90 text-mainblue shadow-sm backdrop-blur-xl' : 'scrolled-header text-whiteprime shadow-lg shadow-blue-950/10' }
             `}>
-            <div className='flex content-center items-center my-auto gap-2'>
+            <div className='flex min-w-0 content-center items-center my-auto gap-2'>
                {/* <img src="/assets/image/dki-jakarta-logo.jpg" alt="Logo Jaya Raya" className='w-auto h-8' /> */}
                <img src="/assets/image/favicon-sdnragunan14.svg" alt="Logo SDN Ragunan 14 Pagi" className='w-auto h-10' />
-               <h1 className="text-base md:text-xl font-medium font-jakarta">
+               <h1 className="truncate text-base md:text-xl font-medium font-jakarta">
                   <span className='text-primaryoren font-bold'>SDN</span>
                   <span className='ml-1'>Ragunan 14 Pagi</span>
                </h1>
             </div>
             {/* header menu web */}
-            <nav className='hidden md:block content-center'>
+            <nav className='hidden lg:block content-center'>
                <ul className="flex flex-row space-y-2 gap-6">
                   <li className={`${styleMenu} ${location.pathname === '/' ? 'text-primaryoren' : ''}`}>
                      <Link to="/">Beranda</Link>
@@ -98,7 +98,7 @@ export default function Header() {
                         </button>
                         {
                            isDropdownProfileOpen && (
-                              <div className="absolute right-0 mt-2 w-52 bg-white text-black rounded-md z-50">
+                              <div className="absolute right-0 mt-3 w-56 bg-white text-slate-800 rounded-lg z-50 p-2 shadow-2xl ring-1 ring-black/5">
                                  <Link to="/profile/tentang-sekolah" className={`${styleSubMenu} ${location.pathname === "/profile/tentang-sekolah" ? styleSubMenuActive : "" }`}>Tentang Sekolah</Link>
                                  <Link to="/profile/visi-misi-tujuan" className={`${styleSubMenu} ${location.pathname === "/profile/visi-misi-tujuan" ? styleSubMenuActive : "" }`}>Visi, Misi dan Tujuan</Link>
                                  <Link to="/profile/sdm-sekolah" className={`${styleSubMenu} ${location.pathname === "/profile/sdm-sekolah" ? styleSubMenuActive : "" }`}>SDM Sekolah</Link>
@@ -121,16 +121,16 @@ export default function Header() {
                               <p>
                                  Informasi
                               </p>
-                              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2"
                                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
                               </svg>
                            </div>
 
                         </button>
                         {
                            isDropdownInformasiOpen && (
-                              <div className="absolute right-0 mt-2 w-40 bg-white text-black rounded-md z-50">
+                              <div className="absolute right-0 mt-3 w-44 bg-white text-slate-800 rounded-lg z-50 p-2 shadow-2xl ring-1 ring-black/5">
                                  <Link to="/informasi/agenda" className={`${styleSubMenu} ${location.pathname === "/informasi/agenda" ? styleSubMenuActive : "" }`}>Agenda</Link>
                                  <Link to="/informasi/pengumuman" className={`${styleSubMenu} ${location.pathname === "/informasi/pengumuman" ? styleSubMenuActive : "" }`}>Informasi</Link>
                               </div>
@@ -144,15 +144,19 @@ export default function Header() {
                </ul>
             </nav>
             {/* header menu mobile */}
-            <div className='relative block md:hidden transition-all duration-300 ease-out' ref={dropdownRefMenuMobile}>
+            <div
+               className='mobile-menu-wrap'
+               ref={dropdownRefMenuMobile}
+               style={{ display: "block" }}
+            >
                <button
                onClick={toggleDropdownMenuMobile} 
-               className='relative w-11 h-11 rounded-xl transition-all duration-300 ease-out bg-transparent/80 text-slate-700 hover:bg-gradient-to-br hover:from-primary/10 hover:to-blue-600/5 hover:text-primary border-2 border-whiteprime/60
-               backdrop-blur-md hover:scale-105 active:scale-95 hover:shadow-lg'>
+               aria-label="Buka menu navigasi"
+               className='relative w-11 h-11 rounded-lg transition-all duration-300 ease-out bg-mainblue text-white border border-mainblue shadow-lg shadow-blue-950/15 backdrop-blur-md hover:scale-105 active:scale-95 hover:bg-secondblue'>
                   <div className='absolute inset-0 flex items-center justify-center'>
-                     <div className={`w-6 h-6 transition-transform duration-300 text-whiteprime/60 ${isDropdownMenuMobileOpen ? 'rotate-90' : 'rotate-180'}`} bis_skin_checked="1">
+                     <div className={`w-6 h-6 transition-transform duration-300 ${isDropdownMenuMobileOpen ? 'rotate-90' : 'rotate-180'}`} bis_skin_checked="1">
                         {!isDropdownMenuMobileOpen ? (
-                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         ) : (
                            <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +174,7 @@ export default function Header() {
                   </div>
                </button>
                {isDropdownMenuMobileOpen && (
-                  <nav className={`absolute right-0 mt-2  w-40 block md:hidden bg-white text-black rounded-md`}>
+                  <nav className={`absolute right-0 mt-3 w-56 block md:hidden bg-white text-slate-800 rounded-lg p-2 shadow-2xl ring-1 ring-black/5`}>
                      <ul className="flex flex-col gap-3">
                         <li className={`${styleSubMenu} ${location.pathname === '/' ? styleSubMenuActive : ''}`}>
                            <Link to="/">Beranda</Link>
@@ -194,7 +198,7 @@ export default function Header() {
                               </button>
                               {
                                  isDropdownProfileOpen && (
-                                    <div className="absolute right-0 mt-2 w-52 bg-white text-black rounded-md z-50">
+                                    <div className="absolute right-0 mt-2 w-56 bg-white text-slate-800 rounded-lg z-50 p-2 shadow-2xl ring-1 ring-black/5">
                                        <Link to="/profile/tentang-sekolah" className={`${styleSubMenu} ${location.pathname === "/profile/tentang-sekolah" ? styleSubMenuActive : "" }`}>Tentang Sekolah</Link>
                                        <Link to="/profile/visi-misi-tujuan" className={`${styleSubMenu} ${location.pathname === "/profile/visi-misi-tujuan" ? styleSubMenuActive : "" }`}>Visi, Misi dan Tujuan</Link>
                                        <Link to="/profile/sdm-sekolah" className={`${styleSubMenu} ${location.pathname === "/profile/sdm-sekolah" ? styleSubMenuActive : "" }`}>SDM Sekolah</Link>
@@ -217,16 +221,16 @@ export default function Header() {
                                     <p>
                                        Informasi
                                     </p>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2"
                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                       <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                                       <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                  </div>
 
                               </button>
                               {
                                  isDropdownInformasiOpen && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md z-50">
+                                    <div className="absolute right-0 mt-2 w-52 bg-white text-slate-800 rounded-lg z-50 p-2 shadow-2xl ring-1 ring-black/5">
                                        <Link to="/informasi/agenda" className={`${styleSubMenu} ${location.pathname === "/informasi/agenda" ? styleSubMenuActive : "" }`}>Agenda</Link>
                                        <Link to="/informasi/pengumuman" className={`${styleSubMenu} ${location.pathname === "/informasi/pengumuman" ? styleSubMenuActive : "" }`}>Informasi</Link>
                                     </div>
