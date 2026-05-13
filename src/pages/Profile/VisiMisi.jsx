@@ -28,7 +28,7 @@ export default function VisiMisi() {
       <div className="page-shell page-stack">
         <div className="panel-card-blue text-center">
           <h1 className="text-xl font-extrabold md:text-3xl mb-4">VISI</h1>
-          <p className="mx-auto max-w-4xl text-lg italic leading-8 text-white/90 md:text-2xl md:leading-10">
+          <p className="mx-auto max-w-4xl text-lg italic leading-8 text-whiteprime/90 md:text-2xl md:leading-10">
             "{loading ? 
             <Skeleton animation="wave" variant="overlay">
             </Skeleton> :

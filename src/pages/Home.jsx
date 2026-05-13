@@ -39,12 +39,12 @@ const exploreCards = [
   },
 ];
 
-function SectionHeading({ eyebrow, title, description, action }) {
+function SectionHeading({ eyebrow, title, description, action, backgroundBlue }) {
   return (
     <div className="flex items-end justify-between gap-6 mb-7 max-[900px]:flex-col max-[900px]:items-start">
       <div>
         {eyebrow ? (
-          <p className="text-secondblue text-[0.82rem] font-extrabold tracking-normal mb-[10px] uppercase">
+          <p className={`text-[0.82rem] font-extrabold tracking-normal mb-[10px] uppercase ${backgroundBlue ? 'text-white' : 'text-secondblue'}`}>
             {eyebrow}
           </p>
         ) : null}
@@ -316,6 +316,7 @@ yang diselenggarakan oleh Dinas Pendidikan Provinsi DKI Jakarta."
       <div className="mt-[18px] py-16 bg-[linear-gradient(135deg,rgba(10,78,160,0.96),rgba(9,143,209,0.94)),url('/assets/image/pattern.png')]"> 
         <div className="w-full max-w-[1120px] mx-auto px-4 max-[640px]:px-3 text-whiteprime">
           <SectionHeading
+            backgroundBlue
             eyebrow="Data sekolah"
             title="Informasi sekolah dalam angka"
             description="Gambaran singkat sumber daya, rombongan belajar, siswa, dan kegiatan pengembangan minat."
