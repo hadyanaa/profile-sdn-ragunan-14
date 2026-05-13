@@ -44,11 +44,11 @@ function SectionHeading({ eyebrow, title, description, action, backgroundBlue })
     <div className="flex items-end justify-between gap-6 mb-7 max-[900px]:flex-col max-[900px]:items-start">
       <div>
         {eyebrow ? (
-          <p className={`text-[0.82rem] font-extrabold tracking-normal mb-[10px] uppercase ${backgroundBlue ? 'text-white' : 'text-secondblue'}`}>
+          <p className={`text-[0.82rem] font-extrabold tracking-normal mb-[10px] uppercase ${backgroundBlue ? 'text-white/80' : 'text-secondblue'}`}>
             {eyebrow}
           </p>
         ) : null}
-        <h2 className="text-mainblue text-[clamp(1.7rem,3vw,2.6rem)] font-extrabold leading-[1.15] max-w-[760px]">
+        <h2 className={`${backgroundBlue ? 'text-whiteprime' : 'text-secondblue'} text-[clamp(1.7rem,3vw,2.6rem)] font-extrabold leading-[1.15] max-w-[760px]`}>
           {title}
         </h2>
         {description ? (
