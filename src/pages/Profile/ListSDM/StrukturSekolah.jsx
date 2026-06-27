@@ -178,7 +178,7 @@ export default function StrukturOrganisasi() {
                   <div className="mx-auto p-4 bg-gradient-to-r from-emerald-300 to-emerald-500 w-[80%] sm:w-[60%] md:w-full h-auto rounded-lg hover:scale-105 transition-all duration-300 ease-in-out">
                      <h1 className="text-blue-900 font-extrabold">{item.nama}</h1>
                      <hr className="text-blue-900" />
-                     <p className="text-emerald-900 font-bold">Guru PJOK</p>
+                     <p className="text-emerald-900 font-bold">{item.deskripsi_jabatan}</p>
                   </div>
                )
             })}
@@ -187,7 +187,7 @@ export default function StrukturOrganisasi() {
                   <div className="mx-auto p-4 bg-gradient-to-r from-emerald-300 to-emerald-500 w-[80%] sm:w-[60%] md:w-full h-auto rounded-lg hover:scale-105 transition-all duration-300 ease-in-out">
                      <h1 className="text-blue-900 font-extrabold">{item.nama}</h1>
                      <hr className="text-blue-900" />
-                     <p className="text-emerald-900 font-bold">Guru PAI</p>
+                     <p className="text-emerald-900 font-bold">{item.deskripsi_jabatan}</p>
                   </div>
                )
             })}
