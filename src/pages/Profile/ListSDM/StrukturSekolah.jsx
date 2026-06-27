@@ -35,6 +35,7 @@ export default function StrukturOrganisasi() {
    const guruKelasVIB = sdm?.find((item) => item.deskripsi_jabatan.toLowerCase().includes("kelas vi b")) ?? "Belum ada Guru Kelas VI B"
    const guruPJOK = sdm?.filter((item) => item.deskripsi_jabatan.toLowerCase().includes("pjok")) ?? "Belum ada Guru PJOK"
    const guruPAI = sdm?.filter((item) => item.deskripsi_jabatan.toLowerCase().includes("pai")) ?? "Belum ada Guru PAI"
+   const guruBing = sdm?.filter((item) => item.deskripsi_jabatan.toLowerCase().includes("inggris")) ?? "Belum ada Guru Bahasa Inggris"
    const penjagaSekolah = sdm?.find((item) => item.deskripsi_jabatan.toLowerCase().includes("penjaga sekolah")) ?? "Belum ada Penjaga Sekolah"
    const tenagaKebersihan = sdm?.find((item) => item.deskripsi_jabatan.toLowerCase().includes("tenaga kebersihan")) ?? "Belum ada Tenaga Kebersihan"
    const tenagaSatpam = sdm?.find((item) => item.deskripsi_jabatan.toLowerCase().includes("tenaga satpam")) ?? "Belum ada Tenaga Satpam"
@@ -172,8 +173,17 @@ export default function StrukturOrganisasi() {
          </div>
          {/* GURU MATA PELAJARAN */}
          <div className="mx-auto px-4 py-2 bg-whiteprime text-blue-900 font-semibold rounded-full">Guru Mata Pelajaran</div>
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-4">
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
             {guruPJOK.map((item) => {
+               return (
+                  <div className="mx-auto p-4 bg-gradient-to-r from-emerald-300 to-emerald-500 w-[80%] sm:w-[60%] md:w-full h-auto rounded-lg hover:scale-105 transition-all duration-300 ease-in-out">
+                     <h1 className="text-blue-900 font-extrabold">{item.nama}</h1>
+                     <hr className="text-blue-900" />
+                     <p className="text-emerald-900 font-bold">{item.deskripsi_jabatan}</p>
+                  </div>
+               )
+            })}
+            {guruBing.map((item) => {
                return (
                   <div className="mx-auto p-4 bg-gradient-to-r from-emerald-300 to-emerald-500 w-[80%] sm:w-[60%] md:w-full h-auto rounded-lg hover:scale-105 transition-all duration-300 ease-in-out">
                      <h1 className="text-blue-900 font-extrabold">{item.nama}</h1>
