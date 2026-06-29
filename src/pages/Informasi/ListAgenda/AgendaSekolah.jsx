@@ -83,7 +83,16 @@ export default function Agenda() {
                         <div className="pt-4">
                            <div className="flex items-center justify-between text-sm">
                               <div className="text-justify w-full">
-                                 <h4 className="mb-4 border-b border-mainblue/10 pb-3 text-center text-lg font-extrabold text-mainblue line-clamp-2">
+                                 <h4 
+                                    className="mb-4 border-b border-mainblue/10 pb-3 text-center text-lg font-extrabold text-mainblue"
+                                    style={{
+                                       display: '-webkit-box',
+                                       WebkitLineClamp: 2,
+                                       WebkitBoxOrient: 'vertical',
+                                       overflow: 'hidden',
+                                       textOverflow: 'ellipsis'
+                                    }}
+                                 >
                                     {item.judul}
                                  </h4>
                                  <p className="font-normal leading-6 text-slate-500 line-clamp-3">

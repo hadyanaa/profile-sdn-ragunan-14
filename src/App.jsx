@@ -12,6 +12,7 @@ import Ekstrakurikuler from './pages/Profile/Ekstrakurikuler';
 import TentangSekolah from './pages/Profile/TentangSekolah';
 import ListAgenda from './pages/Informasi/ListAgenda';
 import DetailAgenda from './pages/Informasi/ListAgenda/DetailAgenda';
+import DetailPengumuman from './pages/Informasi/ListPengumuman/DetailPengumuman';
 import Kontak from './pages/Kontak';
 
 const theme = createTheme({
@@ -49,6 +50,7 @@ export const routes = [
   { path: "/informasi/agenda", element: <ListAgenda />, name: "Agenda" },
   { path: "/informasi/agenda/:no", element: <DetailAgenda />, name: "Detail Agenda" },
   { path: "/informasi/pengumuman", element: <ListPengumuman />, name: "Pengumuman" },
+  { path: "/informasi/pengumuman/:no", element: <DetailPengumuman />, name: "Detail Pengumuman" },
   { path: "/kontak", element: <Kontak />, name: "Kontak" },
 ];
 
