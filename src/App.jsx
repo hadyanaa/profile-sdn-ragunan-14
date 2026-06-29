@@ -11,6 +11,7 @@ import ListPrestasi from './pages/Profile/ListPrestasi';
 import Ekstrakurikuler from './pages/Profile/Ekstrakurikuler';
 import TentangSekolah from './pages/Profile/TentangSekolah';
 import ListAgenda from './pages/Informasi/ListAgenda';
+import DetailAgenda from './pages/Informasi/ListAgenda/DetailAgenda';
 import Kontak from './pages/Kontak';
 
 const theme = createTheme({
@@ -46,6 +47,7 @@ export const routes = [
   { path: "/profile/prestasi-sekolah", element: <ListPrestasi />, name: "Prestasi Sekolah" },
   { path: "/profile/ekstrakurikuler", element: <Ekstrakurikuler />, name: "Ekstrakurikuler" },
   { path: "/informasi/agenda", element: <ListAgenda />, name: "Agenda" },
+  { path: "/informasi/agenda/:no", element: <DetailAgenda />, name: "Detail Agenda" },
   { path: "/informasi/pengumuman", element: <ListPengumuman />, name: "Pengumuman" },
   { path: "/kontak", element: <Kontak />, name: "Kontak" },
 ];

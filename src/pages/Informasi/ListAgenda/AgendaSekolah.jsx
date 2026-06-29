@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Card, CardMedia, Chip, Skeleton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useAppStore } from "../../../store/useAppStore";
 import convertDriveUrl from "../../../functions/DriveImage";
 
 export default function Agenda() {
+   const navigate = useNavigate();
    const { agenda, loading, fetchAgenda } = useAppStore();
 
    useEffect(() => {
@@ -64,7 +66,8 @@ export default function Agenda() {
                filteredData.map((item, index) => (
                   <div
                      key={index}
-                     className="info-card transform opacity-0 animate-fadeIn"
+                     onClick={() => navigate(`/informasi/agenda/${item.no}`)}
+                     className="info-card transform opacity-0 animate-fadeIn cursor-pointer transition-all hover:scale-[1.02] duration-200"
                   >
                      <div className="relative overflow-hidden">
                         <img className="info-card-media" src={item.url_image ? convertDriveUrl(item.url_image, "thumbnail") : '/assets/image/agenda-no-image.png'} alt={item.peringkat} 
