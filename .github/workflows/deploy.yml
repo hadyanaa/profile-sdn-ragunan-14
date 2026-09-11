@@ -3,7 +3,7 @@ name: Deploy Website Sekolah
 on:
   push:
     branches:
-      - main  # Ganti dengan 'master' jika nama branch utama Anda 'master'
+      - main  # Ganti jika nama branch utama Anda 'master'
 
 jobs:
   deploy:
@@ -14,5 +14,7 @@ jobs:
         run: |
           cd /home/r14/apps/web-sekolah
           git pull origin main
+          npm install
+          npm run build
           docker compose down
           docker compose up -d --build
