@@ -1,0 +1,18 @@
+name: Deploy Website Sekolah
+
+on:
+  push:
+    branches:
+      - main  # Ganti dengan 'master' jika nama branch utama Anda 'master'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Rebuild & Restart Container di Server
+        run: |
+          cd /home/r14/apps/web-sekolah
+          git pull origin main
+          docker compose down
+          docker compose up -d --build
