@@ -10,11 +10,9 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Rebuild & Restart Container di Server
+      - name: Rebuild & Restart Container
         run: |
           cd /home/r14/apps/web-sekolah
           git pull origin main
-          npm install
-          npm run build
           docker compose down
           docker compose up -d --build
