@@ -1,10 +1,7 @@
 services:
   web:
-    image: nginx:alpine
+    build: .
     container_name: web-sekolah
     restart: unless-stopped
     ports:
       - "80:80"
-    volumes:
-      # Arahkan ke folder dist atau build tempat file index.html berada
-      - ./dist:/usr/share/nginx/html:ro
