@@ -6,4 +6,5 @@ services:
     ports:
       - "80:80"
     volumes:
-      - .:/usr/share/nginx/html:ro
+      # Arahkan ke folder dist atau build tempat file index.html berada
+      - ./dist:/usr/share/nginx/html:ro
