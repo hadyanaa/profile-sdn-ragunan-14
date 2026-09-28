@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Paper, Snackbar, Alert, Card, CardContent, Typography, TextField, Grid } from '@mui/material';
+import { Button, Paper, Snackbar, Alert, Card, CardContent, Typography, TextField, Grid, CircularProgress } from '@mui/material';
 
 const API_URL = import.meta.env.VITE_API_URL || 'https://api.sdnragunan14pagi.sch.id';
 
@@ -15,27 +15,34 @@ export default function VisiMisiManager() {
     fungsi_ekskul: ''
   });
   
+  const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`${API_URL}/public/visi-misi`);
+      const data = response.data?.data || response.data || {};
+      
+      setFormData({
+        visi: data.visi?.text || data.visi || '',
+        misi: typeof data.misi === 'string' ? data.misi : (Array.isArray(data.misi) ? data.misi.map(m => m.text || m).join('\n') : ''),
+        tujuan: typeof data.tujuan === 'string' ? data.tujuan : (Array.isArray(data.tujuan) ? data.tujuan.map(t => t.text || t).join('\n') : ''),
+        visi_ekskul: data.visiEkskul || data.visi_ekskul || '',
+        misi_ekskul: typeof data.misiEkskul === 'string' ? data.misiEkskul : (typeof data.misi_ekskul === 'string' ? data.misi_ekskul : (Array.isArray(data.misiEkskul) ? data.misiEkskul.map(m => m.text || m).join('\n') : '')),
+        tujuan_ekskul: typeof data.tujuanEkskul === 'string' ? data.tujuanEkskul : (typeof data.tujuan_ekskul === 'string' ? data.tujuan_ekskul : (Array.isArray(data.tujuanEkskul) ? data.tujuanEkskul.map(t => t.text || t).join('\n') : '')),
+        fungsi_ekskul: data.fungsiEkskul || data.fungsi_ekskul || ''
+      });
+    } catch (error) {
+      console.error("Error fetching visi-misi:", error);
+      setSnackbar({ open: true, message: 'Gagal mengambil data Visi & Misi', severity: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/public/visi-misi`);
-        const data = response.data.data || {};
-        
-        setFormData({
-          visi: data.visi?.text || '',
-          misi: Array.isArray(data.misi) ? data.misi.map(m => m.text).join('\n') : '',
-          tujuan: Array.isArray(data.tujuan) ? data.tujuan.map(t => t.text).join('\n') : '',
-          visi_ekskul: '', // Set if available from API
-          misi_ekskul: '',
-          tujuan_ekskul: '',
-          fungsi_ekskul: ''
-        });
-      } catch (error) {
-        console.error("Error fetching visi-misi:", error);
-      }
-    };
     fetchData();
   }, []);
 
@@ -45,14 +52,39 @@ export default function VisiMisiManager() {
   };
 
   const handleSave = async () => {
+    setSaving(true);
     try {
-      // TODO: Implement actual PUT request to /admin/visi-misi
-      // await axios.put(`${API_URL}/admin/visi-misi`, formData, { headers: { Authorization: `Bearer ${token}` } });
+      const token = localStorage.getItem('dashboard_token');
+      const payload = {
+        visi: formData.visi,
+        misi: formData.misi,
+        tujuan: formData.tujuan,
+        visiEkskul: formData.visi_ekskul,
+        misiEkskul: formData.misi_ekskul,
+        tujuanEkskul: formData.tujuan_ekskul,
+        fungsiEkskul: formData.fungsi_ekskul,
+        // Fallback property format
+        visi_ekskul: formData.visi_ekskul,
+        misi_ekskul: formData.misi_ekskul,
+        tujuan_ekskul: formData.tujuan_ekskul,
+        fungsi_ekskul: formData.fungsi_ekskul
+      };
+
+      const response = await axios.put(`${API_URL}/admin/visi-misi`, payload, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       
-      setSnackbar({ open: true, message: 'Berhasil menyimpan data Visi, Misi & Tujuan (Simulasi)', severity: 'success' });
+      setSnackbar({ 
+        open: true, 
+        message: response.data?.message || 'Berhasil menyimpan data Visi, Misi & Tujuan', 
+        severity: 'success' 
+      });
     } catch (error) {
       console.error("Error saving visi-misi:", error);
-      setSnackbar({ open: true, message: 'Gagal menyimpan data', severity: 'error' });
+      const msg = error.response?.data?.message || 'Gagal menyimpan data Visi & Misi';
+      setSnackbar({ open: true, message: msg, severity: 'error' });
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -152,8 +184,13 @@ export default function VisiMisiManager() {
               />
             </Grid>
             <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
-              <Button variant="contained" onClick={handleSave} sx={{ backgroundColor: '#0a4ea0' }}>
-                Simpan Perubahan
+              <Button 
+                variant="contained" 
+                onClick={handleSave} 
+                disabled={saving}
+                sx={{ backgroundColor: '#0a4ea0' }}
+              >
+                {saving ? 'Menyimpan...' : 'Simpan Perubahan'}
               </Button>
             </Grid>
           </Grid>

@@ -10,7 +10,7 @@ import {
   Alert,
   CircularProgress
 } from '@mui/material';
-import useAuthStore from '../../../store/useAuthStore';
+import useAuthStore from '../../store/useAuthStore';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');

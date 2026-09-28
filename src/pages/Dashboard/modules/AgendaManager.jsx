@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Paper, Snackbar, Alert, IconButton, Tooltip } from '@mui/material';
+import { Button, Paper, Snackbar, Alert, Tooltip } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import FormDialog from '../../../components/dashboard/FormDialog';
 import DeleteConfirmDialog from '../../../components/dashboard/DeleteConfirmDialog';
@@ -9,6 +9,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'https://api.sdnragunan14pagi.sc
 
 export default function AgendaManager() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -19,19 +20,24 @@ export default function AgendaManager() {
   }, []);
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/public/agenda`);
       const responseData = response.data?.data || response.data || [];
       const mappedData = responseData.map((item, index) => ({
         ...item,
-        id: item.id || index + 1,
+        id: item.id || item._id || index + 1,
         no: index + 1,
-        url_image: item.linkFoto || item.url_image
+        tanggal: item.tanggal ? String(item.tanggal).substring(0, 10) : '',
+        url_image: item.linkFoto || item.url_image || '',
+        linkFoto: item.linkFoto || item.url_image || ''
       }));
       setData(mappedData);
     } catch (error) {
       console.error("Error fetching agenda", error);
-      showSnackbar('Gagal mengambil data', 'error');
+      showSnackbar('Gagal mengambil data agenda', 'error');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -40,7 +46,7 @@ export default function AgendaManager() {
   };
 
   const handleCloseSnackbar = () => {
-    setSnackbar({ ...snackbar, open: false });
+    setSnackbar(prev => ({ ...prev, open: false }));
   };
 
   const handleAdd = () => {
@@ -60,43 +66,54 @@ export default function AgendaManager() {
 
   const handleSubmit = async (formData) => {
     try {
+      const token = localStorage.getItem('dashboard_token');
+      const headers = { Authorization: `Bearer ${token}` };
+      const payload = {
+        ...formData,
+        url_image: formData.linkFoto
+      };
+
       if (selectedItem?.id) {
-        // TODO: PUT request
-        // await axios.put(`${API_URL}/admin/agenda/${selectedItem.id}`, formData);
-        showSnackbar('Data berhasil diperbarui', 'success');
+        const response = await axios.put(`${API_URL}/admin/agenda/${selectedItem.id}`, payload, { headers });
+        showSnackbar(response.data?.message || 'Data berhasil diperbarui', 'success');
       } else {
-        // TODO: POST request
-        // await axios.post(`${API_URL}/admin/agenda`, formData);
-        showSnackbar('Data berhasil ditambahkan', 'success');
+        const response = await axios.post(`${API_URL}/admin/agenda`, payload, { headers });
+        showSnackbar(response.data?.message || 'Data berhasil ditambahkan', 'success');
       }
       setFormOpen(false);
       fetchData();
     } catch (error) {
-      showSnackbar('Gagal menyimpan data', 'error');
+      console.error("Error saving agenda:", error);
+      const msg = error.response?.data?.message || 'Gagal menyimpan data agenda';
+      showSnackbar(msg, 'error');
     }
   };
 
   const handleDeleteConfirm = async () => {
     try {
-      // TODO: DELETE request
-      // await axios.delete(`${API_URL}/admin/agenda/${selectedItem.id}`);
-      showSnackbar('Data berhasil dihapus', 'success');
+      const token = localStorage.getItem('dashboard_token');
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.delete(`${API_URL}/admin/agenda/${selectedItem.id}`, { headers });
+      showSnackbar(response.data?.message || 'Data berhasil dihapus', 'success');
       setDeleteOpen(false);
       fetchData();
     } catch (error) {
-      showSnackbar('Gagal menghapus data', 'error');
+      console.error("Error deleting agenda:", error);
+      const msg = error.response?.data?.message || 'Gagal menghapus data agenda';
+      showSnackbar(msg, 'error');
     }
   };
 
   const columns = [
     { field: 'no', headerName: 'No', width: 70 },
-    { field: 'judul', headerName: 'Judul', flex: 1 },
-    { field: 'deskripsi', headerName: 'Deskripsi', flex: 1.5, renderCell: (params) => params.value ? params.value.substring(0, 50) + '...' : '' },
+    { field: 'judul', headerName: 'Judul', flex: 1, minWidth: 160 },
+    { field: 'deskripsi', headerName: 'Deskripsi', flex: 1.5, minWidth: 200, renderCell: (params) => params.value ? params.value.substring(0, 50) + '...' : '' },
     { field: 'tanggal', headerName: 'Tanggal', width: 130 },
+    { field: 'lokasi', headerName: 'Lokasi', width: 140 },
     {
       field: 'aksi',
       headerName: 'Aksi',
-      width: 150,
+      width: 120,
       renderCell: (params) => (
         <div className="flex gap-2 h-full items-center">
           <Tooltip title="Edit">
@@ -120,15 +137,16 @@ export default function AgendaManager() {
 
   return (
     <div className="p-4 space-y-4">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold text-mainblue" style={{ color: '#0a4ea0' }}>Kelola Agenda Sekolah</h2>
-        <Button variant="contained" color="primary" onClick={handleAdd}>+ Tambah Agenda</Button>
+        <Button variant="contained" onClick={handleAdd} sx={{ backgroundColor: '#0a4ea0' }}>+ Tambah Agenda</Button>
       </div>
 
       <Paper sx={{ height: 500, width: '100%', overflow: 'hidden', borderRadius: '8px' }}>
         <DataGrid
           rows={data}
           columns={columns}
+          loading={loading}
           initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
           pageSizeOptions={[10, 25, 50]}
           sx={{

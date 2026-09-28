@@ -9,23 +9,30 @@ const API_URL = import.meta.env.VITE_API_URL || 'https://api.sdnragunan14pagi.sc
 
 export default function EkskulManager() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/public/ekskul`);
-      const items = response.data.data || [];
+      const items = response.data?.data || response.data || [];
       const filteredItems = items.filter(item => item.nama !== 'vmt');
       setData(filteredItems.map((item, index) => ({
         ...item,
-        id: item.id || index, // Use index as fallback id if not provided
-        no: index + 1
+        id: item.id || item._id || index + 1,
+        no: index + 1,
+        linkFoto: item.linkFoto || item.foto || '',
+        pembina: item.pembina || item.nama_pembina || ''
       })));
     } catch (error) {
       console.error("Error fetching Ekskul:", error);
+      setSnackbar({ open: true, message: 'Gagal mengambil data Ekstrakurikuler', severity: 'error' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -50,31 +57,42 @@ export default function EkskulManager() {
 
   const handleSubmit = async (formData) => {
     try {
-      if (selectedItem) {
-        // TODO: Implement actual PUT request to /admin/ekskul/:id
-        // await axios.put(`${API_URL}/admin/ekskul/${selectedItem.id}`, formData);
-        setSnackbar({ open: true, message: 'Berhasil mengubah data Ekstrakurikuler (Simulasi)', severity: 'success' });
+      const token = localStorage.getItem('dashboard_token');
+      const headers = { Authorization: `Bearer ${token}` };
+      const payload = {
+        ...formData,
+        foto: formData.linkFoto,
+        nama_pembina: formData.pembina
+      };
+
+      if (selectedItem?.id) {
+        const response = await axios.put(`${API_URL}/admin/ekskul/${selectedItem.id}`, payload, { headers });
+        setSnackbar({ open: true, message: response.data?.message || 'Berhasil mengubah data Ekstrakurikuler', severity: 'success' });
       } else {
-        // TODO: Implement actual POST request to /admin/ekskul
-        // await axios.post(`${API_URL}/admin/ekskul`, formData);
-        setSnackbar({ open: true, message: 'Berhasil menambah data Ekstrakurikuler (Simulasi)', severity: 'success' });
+        const response = await axios.post(`${API_URL}/admin/ekskul`, payload, { headers });
+        setSnackbar({ open: true, message: response.data?.message || 'Berhasil menambah data Ekstrakurikuler', severity: 'success' });
       }
       setFormOpen(false);
       fetchData();
     } catch (error) {
-      setSnackbar({ open: true, message: 'Gagal menyimpan data', severity: 'error' });
+      console.error("Error saving Ekskul:", error);
+      const msg = error.response?.data?.message || 'Gagal menyimpan data Ekstrakurikuler';
+      setSnackbar({ open: true, message: msg, severity: 'error' });
     }
   };
 
   const handleDeleteConfirm = async () => {
     try {
-      // TODO: Implement actual DELETE request to /admin/ekskul/:id
-      // await axios.delete(`${API_URL}/admin/ekskul/${selectedItem.id}`);
-      setSnackbar({ open: true, message: 'Berhasil menghapus data Ekstrakurikuler (Simulasi)', severity: 'success' });
+      const token = localStorage.getItem('dashboard_token');
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.delete(`${API_URL}/admin/ekskul/${selectedItem.id}`, { headers });
+      setSnackbar({ open: true, message: response.data?.message || 'Berhasil menghapus data Ekstrakurikuler', severity: 'success' });
       setDeleteOpen(false);
       fetchData();
     } catch (error) {
-      setSnackbar({ open: true, message: 'Gagal menghapus data', severity: 'error' });
+      console.error("Error deleting Ekskul:", error);
+      const msg = error.response?.data?.message || 'Gagal menghapus data Ekstrakurikuler';
+      setSnackbar({ open: true, message: msg, severity: 'error' });
     }
   };
 
@@ -136,6 +154,7 @@ export default function EkskulManager() {
         <DataGrid
           rows={data}
           columns={columns}
+          loading={loading}
           initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
           pageSizeOptions={[10, 25, 50]}
           sx={{

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {
   Box,
   Typography,
@@ -9,6 +10,8 @@ import {
   Button,
   Skeleton
 } from '@mui/material';
+
+const API_URL = import.meta.env.VITE_API_URL || 'https://api.sdnragunan14pagi.sch.id';
 
 export default function DashboardHome() {
   const navigate = useNavigate();
@@ -22,18 +25,34 @@ export default function DashboardHome() {
   });
 
   useEffect(() => {
-    // Simulate fetching counts from API endpoints
     const fetchStats = async () => {
       setLoading(true);
       try {
-        // TODO: Replace with actual API calls to /public/... endpoints
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        const [resSdm, resPrestasi, resEkskul, resAgenda, resPengumuman] = await Promise.allSettled([
+          axios.get(`${API_URL}/public/sdm`),
+          axios.get(`${API_URL}/public/prestasi`),
+          axios.get(`${API_URL}/public/ekskul`),
+          axios.get(`${API_URL}/public/agenda`),
+          axios.get(`${API_URL}/public/pengumuman`)
+        ]);
+
+        const getCount = (res, filterVmt = false) => {
+          if (res.status === 'fulfilled') {
+            const data = res.value.data?.data || res.value.data || [];
+            if (filterVmt && Array.isArray(data)) {
+              return data.filter(i => i.nama !== 'vmt').length;
+            }
+            return Array.isArray(data) ? data.length : 0;
+          }
+          return 0;
+        };
+
         setStats({
-          sdm: 24,
-          prestasi: 15,
-          ekskul: 8,
-          agenda: 5,
-          pengumuman: 3
+          sdm: getCount(resSdm),
+          prestasi: getCount(resPrestasi),
+          ekskul: getCount(resEkskul, true),
+          agenda: getCount(resAgenda),
+          pengumuman: getCount(resPengumuman)
         });
       } catch (error) {
         console.error("Error fetching stats:", error);

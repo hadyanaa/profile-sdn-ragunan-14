@@ -9,23 +9,31 @@ const API_URL = import.meta.env.VITE_API_URL || 'https://api.sdnragunan14pagi.sc
 
 export default function SDMManager() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/public/sdm`);
-      const items = response.data.data || [];
+      const items = response.data?.data || response.data || [];
       setData(items.map((item, index) => ({
         ...item,
-        id: item.id || index, // Use index as fallback id if not provided
+        id: item.id || item._id || index + 1,
         no: index + 1,
-        jabatanTampil: item.deskripsiJabatan || item.jabatan
+        nipNikki: item.nipNikki || item.nip_nikki || '',
+        jabatan: item.jabatan || item.deskripsiJabatan || '',
+        jabatanTampil: item.deskripsiJabatan || item.jabatan || '',
+        fotoUrl: item.fotoUrl || item.foto || ''
       })));
     } catch (error) {
       console.error("Error fetching SDM:", error);
+      setSnackbar({ open: true, message: 'Gagal mengambil data SDM', severity: 'error' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -50,31 +58,42 @@ export default function SDMManager() {
 
   const handleSubmit = async (formData) => {
     try {
-      if (selectedItem) {
-        // TODO: Implement actual PUT request to /admin/sdm/:id
-        // await axios.put(`${API_URL}/admin/sdm/${selectedItem.id}`, formData);
-        setSnackbar({ open: true, message: 'Berhasil mengubah data SDM (Simulasi)', severity: 'success' });
+      const token = localStorage.getItem('dashboard_token');
+      const headers = { Authorization: `Bearer ${token}` };
+      const payload = {
+        ...formData,
+        nip_nikki: formData.nipNikki,
+        foto: formData.fotoUrl
+      };
+
+      if (selectedItem?.id) {
+        const response = await axios.put(`${API_URL}/admin/sdm/${selectedItem.id}`, payload, { headers });
+        setSnackbar({ open: true, message: response.data?.message || 'Berhasil mengubah data SDM', severity: 'success' });
       } else {
-        // TODO: Implement actual POST request to /admin/sdm
-        // await axios.post(`${API_URL}/admin/sdm`, formData);
-        setSnackbar({ open: true, message: 'Berhasil menambah data SDM (Simulasi)', severity: 'success' });
+        const response = await axios.post(`${API_URL}/admin/sdm`, payload, { headers });
+        setSnackbar({ open: true, message: response.data?.message || 'Berhasil menambah data SDM', severity: 'success' });
       }
       setFormOpen(false);
       fetchData();
     } catch (error) {
-      setSnackbar({ open: true, message: 'Gagal menyimpan data', severity: 'error' });
+      console.error("Error saving SDM:", error);
+      const msg = error.response?.data?.message || 'Gagal menyimpan data SDM';
+      setSnackbar({ open: true, message: msg, severity: 'error' });
     }
   };
 
   const handleDeleteConfirm = async () => {
     try {
-      // TODO: Implement actual DELETE request to /admin/sdm/:id
-      // await axios.delete(`${API_URL}/admin/sdm/${selectedItem.id}`);
-      setSnackbar({ open: true, message: 'Berhasil menghapus data SDM (Simulasi)', severity: 'success' });
+      const token = localStorage.getItem('dashboard_token');
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.delete(`${API_URL}/admin/sdm/${selectedItem.id}`, { headers });
+      setSnackbar({ open: true, message: response.data?.message || 'Berhasil menghapus data SDM', severity: 'success' });
       setDeleteOpen(false);
       fetchData();
     } catch (error) {
-      setSnackbar({ open: true, message: 'Gagal menghapus data', severity: 'error' });
+      console.error("Error deleting SDM:", error);
+      const msg = error.response?.data?.message || 'Gagal menghapus data SDM';
+      setSnackbar({ open: true, message: msg, severity: 'error' });
     }
   };
 
@@ -84,10 +103,10 @@ export default function SDMManager() {
     { field: 'no', headerName: 'No', width: 60 },
     { field: 'nama', headerName: 'Nama Lengkap', flex: 1, minWidth: 150 },
     { field: 'nipNikki', headerName: 'NIP/NIKKI', width: 130 },
-    { field: 'gender', headerName: 'Gender', width: 100 },
-    { field: 'status', headerName: 'Status', width: 130 },
+    { field: 'gender', headerName: 'Gender', width: 90 },
+    { field: 'status', headerName: 'Status', width: 120 },
     { field: 'jabatanTampil', headerName: 'Jabatan', flex: 1, minWidth: 150 },
-    { field: 'pendidikan', headerName: 'Pendidikan', width: 130 },
+    { field: 'pendidikan', headerName: 'Pendidikan', width: 110 },
     { field: 'jurusan', headerName: 'Jurusan', width: 130 },
     {
       field: 'aksi',
@@ -141,6 +160,7 @@ export default function SDMManager() {
         <DataGrid
           rows={data}
           columns={columns}
+          loading={loading}
           initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
           pageSizeOptions={[10, 25, 50]}
           sx={{

@@ -9,22 +9,29 @@ const API_URL = import.meta.env.VITE_API_URL || 'https://api.sdnragunan14pagi.sc
 
 export default function PrestasiManager() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/public/prestasi`);
-      const items = response.data.data || [];
+      const items = response.data?.data || response.data || [];
       setData(items.map((item, index) => ({
         ...item,
-        id: item.id || index, // Use index as fallback id if not provided
-        no: index + 1
+        id: item.id || item._id || index + 1,
+        no: index + 1,
+        tanggal: item.tanggal ? String(item.tanggal).substring(0, 10) : '',
+        linkFoto: item.linkFoto || item.foto || ''
       })));
     } catch (error) {
       console.error("Error fetching Prestasi:", error);
+      setSnackbar({ open: true, message: 'Gagal mengambil data Prestasi', severity: 'error' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,31 +56,41 @@ export default function PrestasiManager() {
 
   const handleSubmit = async (formData) => {
     try {
-      if (selectedItem) {
-        // TODO: Implement actual PUT request to /admin/prestasi/:id
-        // await axios.put(`${API_URL}/admin/prestasi/${selectedItem.id}`, formData);
-        setSnackbar({ open: true, message: 'Berhasil mengubah data Prestasi (Simulasi)', severity: 'success' });
+      const token = localStorage.getItem('dashboard_token');
+      const headers = { Authorization: `Bearer ${token}` };
+      const payload = {
+        ...formData,
+        foto: formData.linkFoto
+      };
+
+      if (selectedItem?.id) {
+        const response = await axios.put(`${API_URL}/admin/prestasi/${selectedItem.id}`, payload, { headers });
+        setSnackbar({ open: true, message: response.data?.message || 'Berhasil mengubah data Prestasi', severity: 'success' });
       } else {
-        // TODO: Implement actual POST request to /admin/prestasi
-        // await axios.post(`${API_URL}/admin/prestasi`, formData);
-        setSnackbar({ open: true, message: 'Berhasil menambah data Prestasi (Simulasi)', severity: 'success' });
+        const response = await axios.post(`${API_URL}/admin/prestasi`, payload, { headers });
+        setSnackbar({ open: true, message: response.data?.message || 'Berhasil menambah data Prestasi', severity: 'success' });
       }
       setFormOpen(false);
       fetchData();
     } catch (error) {
-      setSnackbar({ open: true, message: 'Gagal menyimpan data', severity: 'error' });
+      console.error("Error saving Prestasi:", error);
+      const msg = error.response?.data?.message || 'Gagal menyimpan data Prestasi';
+      setSnackbar({ open: true, message: msg, severity: 'error' });
     }
   };
 
   const handleDeleteConfirm = async () => {
     try {
-      // TODO: Implement actual DELETE request to /admin/prestasi/:id
-      // await axios.delete(`${API_URL}/admin/prestasi/${selectedItem.id}`);
-      setSnackbar({ open: true, message: 'Berhasil menghapus data Prestasi (Simulasi)', severity: 'success' });
+      const token = localStorage.getItem('dashboard_token');
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.delete(`${API_URL}/admin/prestasi/${selectedItem.id}`, { headers });
+      setSnackbar({ open: true, message: response.data?.message || 'Berhasil menghapus data Prestasi', severity: 'success' });
       setDeleteOpen(false);
       fetchData();
     } catch (error) {
-      setSnackbar({ open: true, message: 'Gagal menghapus data', severity: 'error' });
+      console.error("Error deleting Prestasi:", error);
+      const msg = error.response?.data?.message || 'Gagal menghapus data Prestasi';
+      setSnackbar({ open: true, message: msg, severity: 'error' });
     }
   };
 
@@ -147,6 +164,7 @@ export default function PrestasiManager() {
         <DataGrid
           rows={data}
           columns={columns}
+          loading={loading}
           initialState={{ pagination: { paginationModel: { page: 0, pageSize: 10 } } }}
           pageSizeOptions={[10, 25, 50]}
           sx={{
