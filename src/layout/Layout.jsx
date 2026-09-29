@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import FloatingPengaduan from '../components/FloatingPengaduan';
 
 
 export default function Layout({ children }) {
@@ -15,6 +16,9 @@ export default function Layout({ children }) {
 
       {/* Footer */}
       <Footer/>
+
+      {/* Floating Pengaduan Button */}
+      <FloatingPengaduan />
     </div>
   );
 }
