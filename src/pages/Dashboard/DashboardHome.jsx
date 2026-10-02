@@ -21,19 +21,24 @@ export default function DashboardHome() {
     prestasi: 0,
     ekskul: 0,
     agenda: 0,
-    pengumuman: 0
+    pengumuman: 0,
+    bel: 0
   });
 
   useEffect(() => {
     const fetchStats = async () => {
       setLoading(true);
       try {
-        const [resSdm, resPrestasi, resEkskul, resAgenda, resPengumuman] = await Promise.allSettled([
+        const token = localStorage.getItem('dashboard_token');
+        const authHeaders = token ? { Authorization: `Bearer ${token}` } : {};
+
+        const [resSdm, resPrestasi, resEkskul, resAgenda, resPengumuman, resBel] = await Promise.allSettled([
           axios.get(`${API_URL}/public/sdm`),
           axios.get(`${API_URL}/public/prestasi`),
           axios.get(`${API_URL}/public/ekskul`),
           axios.get(`${API_URL}/public/agenda`),
-          axios.get(`${API_URL}/public/pengumuman`)
+          axios.get(`${API_URL}/public/pengumuman`),
+          axios.get(`${API_URL}/api/schedules`, { headers: authHeaders })
         ]);
 
         const getCount = (res, filterVmt = false) => {
@@ -52,7 +57,8 @@ export default function DashboardHome() {
           prestasi: getCount(resPrestasi),
           ekskul: getCount(resEkskul, true),
           agenda: getCount(resAgenda),
-          pengumuman: getCount(resPengumuman)
+          pengumuman: getCount(resPengumuman),
+          bel: getCount(resBel)
         });
       } catch (error) {
         console.error("Error fetching stats:", error);
@@ -69,7 +75,8 @@ export default function DashboardHome() {
     { label: 'Prestasi', count: stats.prestasi, icon: '🏆', color: '#f59e0b', path: '/dashboard/prestasi' },
     { label: 'Ekstrakurikuler', count: stats.ekskul, icon: '⚽', color: '#10b981', path: '/dashboard/ekskul' },
     { label: 'Agenda', count: stats.agenda, icon: '📅', color: '#8b5cf6', path: '/dashboard/agenda' },
-    { label: 'Pengumuman', count: stats.pengumuman, icon: '📢', color: '#ef4444', path: '/dashboard/pengumuman' }
+    { label: 'Pengumuman', count: stats.pengumuman, icon: '📢', color: '#ef4444', path: '/dashboard/pengumuman' },
+    { label: 'Bel Sekolah', count: stats.bel, icon: '🔔', color: '#0a4ea0', path: '/dashboard/bel-sekolah' }
   ];
 
   return (

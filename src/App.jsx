@@ -27,6 +27,7 @@ const EkskulManager = lazy(() => import('./pages/Dashboard/modules/EkskulManager
 const AgendaManager = lazy(() => import('./pages/Dashboard/modules/AgendaManager'));
 const PengumumanManager = lazy(() => import('./pages/Dashboard/modules/PengumumanManager'));
 const KalenderManager = lazy(() => import('./pages/Dashboard/modules/KalenderManager'));
+const SchoolBellManager = lazy(() => import('./pages/Dashboard/modules/SchoolBellManager'));
 
 const theme = createTheme({
   typography: {
@@ -78,6 +79,7 @@ function App() {
               <Route path="agenda" element={<AgendaManager />} />
               <Route path="pengumuman" element={<PengumumanManager />} />
               <Route path="kalender" element={<KalenderManager />} />
+              <Route path="bel-sekolah" element={<SchoolBellManager />} />
             </Route>
 
             {/* Public website routes */}

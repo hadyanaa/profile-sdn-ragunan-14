@@ -25,6 +25,7 @@ const menuItems = [
   { path: '/dashboard/agenda', label: 'Agenda', icon: '📅' },
   { path: '/dashboard/pengumuman', label: 'Pengumuman', icon: '📢' },
   { path: '/dashboard/kalender', label: 'Kalender Akademik', icon: '🗓️' },
+  { path: '/dashboard/bel-sekolah', label: 'Bel Sekolah', icon: '🔔' },
 ];
 
 export default function DashboardSidebar({ open, onClose }) {
